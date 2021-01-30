@@ -10,6 +10,13 @@ import './shibari.scss'
 
 const Shibari = () => {
   const data = PageData.en.shibari
+
+  if(typeof document !== 'undefined') {
+    const bodyClasses = document.body.classList
+    bodyClasses.remove(...bodyClasses)
+    bodyClasses.add('shibari')
+  }
+
   return(
   <StaticQuery
     query={graphql`
