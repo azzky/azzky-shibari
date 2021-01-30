@@ -30,6 +30,12 @@ module.exports = {
     //     // Any additional optional fields
     //   },
     // },
+    // {
+    //   resolve: `gatsby-plugin-yandex-metrika`,
+    //   options: {
+    //     trackingId: 12345,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
