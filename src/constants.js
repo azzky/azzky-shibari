@@ -1,5 +1,5 @@
 const Maindata = {
-    url: 'https://azzky-gatsby.netlify.app',
+    url: 'https://azzky.ru',
     author: 'Azzky',
     socials: {
         instagram_nsfw: 'https://www.instagram.com/azzky_gallery/',
