@@ -58,14 +58,14 @@ module.exports = {
         }
       }
     },
-    // {
-    //   resolve: 'gatsby-plugin-i18n',
-    //   options: {   
-    //     langKeyDefault: 'en',
-    //     useLangKeyLayout: true,     
-    //     prefixDefault: false
-    //   }
-    // },
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {   
+        langKeyDefault: 'en',
+        useLangKeyLayout: true,     
+        prefixDefault: false
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
