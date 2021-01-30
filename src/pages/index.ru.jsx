@@ -10,6 +10,13 @@ import './shibari.scss'
 
 const Shibari = () => {
   const data = PageData.ru.shibari
+
+  if(typeof document !== 'undefined') {
+    const bodyClasses = document.body.classList
+    bodyClasses.remove(...bodyClasses)
+    bodyClasses.add('shibari')
+  }
+
   return(
   <StaticQuery
     query={graphql`
@@ -42,7 +49,7 @@ const Shibari = () => {
     }
     `}
     render={({ allContentfulPost: { edges } }) => (
-      <Layout toggler={true} hero={true} dark={true} heroType="video" classes="shibari" lang="ru" url="/ru/shibari" nsfw={true}>
+      <Layout toggler={true} hero={true} dark={true} heroType="video" classes="shibari" lang="ru" url="/ru" nsfw={true}>
         <MetaPage data={data} />
         <div className="hero__wrapper">
           <div className="hero__content">
