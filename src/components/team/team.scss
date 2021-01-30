@@ -1,0 +1,28 @@
+@import '../../styles/mixins';
+.people-card {
+    a {
+        font-weight: 500;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .people-card {
+        &__list {
+            bottom: 80px;
+            @include hero-element;
+        }
+    
+        a {
+            font-weight: 500;
+            color: var(--color-black);
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .people-card {
+        &__list {
+            margin-top: 20px;
+        }
+    }
+}

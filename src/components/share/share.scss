@@ -1,0 +1,35 @@
+@import '../../styles/mixins';
+.react-share {
+    &__group {
+        display: flex;
+        column-gap: 5px;
+        align-items: center;
+    }
+    
+    &__ShareButton svg,
+    &__label {
+        color: var(--color-black);
+    }
+
+    &__label {
+        font-size: 13px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .react-share {
+        &__group {
+            bottom: 30px;
+            margin-bottom: 0;
+            @include hero-element;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .react-share {
+        &__group {
+            margin: 20px 0 15px;
+        }
+    }
+}

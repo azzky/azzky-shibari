@@ -1,0 +1,12 @@
+.post {
+    .filters {
+        display: none;
+    }
+    
+    &__image {
+        cursor: pointer;
+    }
+    .masonry__gallery {
+        padding: 15px 15px 0 ;
+    }
+}

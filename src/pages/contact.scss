@@ -1,0 +1,27 @@
+.contact {
+    &__form {
+        display: grid;
+    }
+
+    .column {
+        width: 100%;
+    }
+
+    .column__wrapper {
+        padding: 0 15px;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .contact {
+        .column__wrapper {
+            display: flex;
+            justify-content: center;
+            column-gap: 40px;
+        }
+
+        .column {
+            max-width: 450px;
+        }
+    }
+}

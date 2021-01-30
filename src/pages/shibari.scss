@@ -1,0 +1,43 @@
+.filters {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        column-gap: 10px;
+        margin-bottom: 15px;
+        padding-top: 15px;
+    }
+
+    &__item {
+        & {
+            background: none;
+            border: none;
+            color: var(--color-black);
+            padding: 0 15px;
+            font-size: inherit;
+            text-transform: capitalize;
+            pointer-events: none;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:not(.active) {
+            pointer-events: all;
+            color: var(--color-highlight);
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .filters {
+        &__list {
+            padding-top: 0;
+        }
+
+        &__item {
+            padding: 25px 15px;
+        }
+    }
+}

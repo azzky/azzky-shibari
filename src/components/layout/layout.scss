@@ -1,0 +1,109 @@
+@import '../../styles/mixins';
+main {
+    min-height: calc(100vh - 20px);
+
+    &.hero {
+        min-height: calc(100vh - 20px);
+
+        &.home::before {
+            background-color: transparent;
+        }
+    }
+
+    &:not(.hero) {
+        padding-top: var(--header-height);
+    }
+}
+
+.content {
+    background-color: var(--color-white);
+}
+
+.hero {
+    &__wrapper {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            display: block;
+            height: 100%;
+            background-color: rgba($color: #000000, $alpha: 0.2);
+        }
+
+        .gatsby-image-wrapper {
+            z-index: -2;
+            position: absolute !important;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        top: 0;
+        padding: 70px 15px 15px;
+        max-height: 100vh;
+        overflow-x: auto;
+        display: grid;
+        row-gap: 20px;
+    }
+
+    &__description {
+        a {
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+}
+
+
+.video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+    overflow: hidden;
+    background-color: var(--color-white);
+
+    video {
+        width: 100vw;
+        min-height: 100vh;
+        height: 75.10vw; /* Given actual ratio, 18.7/24.9*100 = 75.10 */
+        min-width: 133.15vh; /* Given actual ratio, 24.9/18.7*100 = 133.15 */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    // filter: grayscale(1); /* comment on if wanted color */
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .hero {
+        &__description {
+            top: 280px;
+            @include hero-element;
+            max-width: 810px;
+        }
+
+        &__content {
+            position: initial;
+        }
+
+        .hero__title {
+            top: 150px;
+            font-size: 34px;
+            @include hero-element;
+        }
+    }
+}

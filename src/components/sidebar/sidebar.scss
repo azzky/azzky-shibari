@@ -1,0 +1,34 @@
+.social__links {
+    svg {
+        height: 40px;
+        width: 40px;
+        margin: 0 20px;
+    }
+
+    use {
+        transform: scale(1.6);
+    }
+
+    a {
+        line-height: 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .social__links {
+        display: grid;
+        gap: 25px;
+        margin: 25px 0;
+        justify-content: center;
+
+        svg {
+            height: auto;
+            width: auto;
+            margin: 0;
+        }
+    
+        use {   
+            transform: none;
+        }
+    }
+}

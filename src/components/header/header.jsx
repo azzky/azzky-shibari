@@ -1,0 +1,76 @@
+import React, {useState} from "react"
+import { Link } from "gatsby"
+import LangSwitcher from "../lang-switcher"
+import NsfwSwitcher from "../toggler/toggler"
+import { Sidebar } from "../sidebar/sidebar"
+
+import './header.scss'
+
+const Header = (props) => {
+  const menuItems = [
+    {
+      name: 'shibari',
+      runame: 'шибари',
+      link: '/'
+    },
+    {
+      name: 'contacts',
+      runame: 'контакты',
+      link: '/contact'
+    }
+  ]
+  const [showMenu, toggleMenu] = useState(false)
+  const [showSettings, toggleSettings] = useState(false)
+
+  let lang = ''
+  if(props.lang === 'ru') {
+    lang = '/ru'
+  }
+  return(
+    <header className={`header${showMenu ? ' active' : ''}${showSettings ? ' active' : ''}`}>
+      <Link to={`${lang}/`} className="logo__wrapper">
+        <img className="logo" src="/logo.svg" alt="logo" width="81" height="17" />
+      </Link>
+      <nav className="nav">
+        <button type="button" aria-controls="menu__list"
+        aria-expanded={showMenu} aria-label="menu button"
+        className={`menu__button ${showMenu ? 'active' : ''}`}
+        onClick={() => toggleMenu((prev) => !prev)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div id="menu__list" className={`menu__list ${showMenu ? 'active' : ''}`}>
+          <ul>
+          {menuItems.map((el, i) => (
+            <li key={i} className="menu__item">
+              <Link to={lang + el.link} activeClassName="active">
+                <svg width="24" height="24">
+                <use href={`#${el.name}`}></use>
+                </svg>
+                <span className="menu__label">{lang === '/ru' ? el.runame :el.name}</span>
+              </Link>
+            </li>
+          ))}
+          </ul>
+        </div>
+      </nav>
+      <div className="settings__wrapper">
+        <button type="button" className="settings__trigger" aria-label="setings button"
+        onClick={() => toggleSettings((prev) => !prev)}>
+          <svg width="24" height="24">
+            <use href="#settings"></use>
+          </svg>
+        </button>
+        <div className={`settings__block${showSettings ? ' active' : ''}`}>
+          <LangSwitcher lang={props.lang} url={props.url} post={props.post} />
+          <hr />
+          <Sidebar nsfw={props.nsfw} />
+          <hr />
+          <NsfwSwitcher />
+        </div>
+      </div>
+    </header>
+)}
+
+export default Header
