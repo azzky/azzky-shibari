@@ -3,7 +3,28 @@ import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import Maindata from "../../constants"
 
+const MetaHome = (props) => {
+    const schemaBreadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Azzky's",
+        "item": Maindata.url
+        }]
+    }
+    return(
+        <Helmet>
+            <title>{props.data.title}</title>
+            <meta name="description" content={props.data.description} />
+            <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
+        </Helmet>
+    )
+}
+
 const MetaPage = (props) => {
+    console.log(props.type);
     const schemaBreadcrumb = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -84,4 +105,4 @@ const MetaPost = (props) => {
     )
 }
 
-export {MetaPost, MetaPage}
+export {MetaPost, MetaPage, MetaHome}

@@ -2,7 +2,7 @@
 import React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/layout/layout"
-import {MetaPage} from '../components/meta/meta'
+import {MetaHome} from '../components/meta/meta'
 import {PostsGallery} from '../components/gallery/gallery'
 import {PageData} from "../constants"
 
@@ -50,7 +50,7 @@ const Shibari = () => {
     `}
     render={({ allContentfulPost: { edges } }) => (
       <Layout toggler={true} hero={true} dark={true} heroType="video" classes="shibari" lang="ru" url="/ru" nsfw={true}>
-        <MetaPage data={data} />
+        <MetaHome data={data} />
         <div className="hero__wrapper">
           <div className="hero__content">
             <h1 className="hero__title">{data.h1}</h1>
