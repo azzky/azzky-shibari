@@ -53,13 +53,22 @@ main {
         overflow-x: auto;
         display: grid;
         row-gap: 20px;
+        height: 100%;
+        grid-template-areas: 'h1' 'text' 'team' 'share';
+        grid-template-rows: auto 1fr auto auto;
     }
 
     &__description {
+        grid-area: text;
+        
         a {
             color: inherit;
             text-decoration: underline;
         }
+    }
+
+    &__title {
+        grid-area: h1;
     }
 }
 

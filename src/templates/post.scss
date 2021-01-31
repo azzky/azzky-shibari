@@ -7,6 +7,18 @@
         cursor: pointer;
     }
     .masonry__gallery {
-        padding: 15px 15px 0 ;
+        padding: 15px 15px 0;
+    }
+}
+
+@media screen and (min-width: 850px){
+    .post .masonry__gallery {
+        padding-top: 20px;
+    }
+}
+
+@media screen and (min-width: 1441px) {
+    .post .masonry__gallery {
+        padding-top: 40px;
     }
 }

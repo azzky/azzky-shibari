@@ -1,9 +1,11 @@
 @import '../../styles/mixins';
 .react-share {
     &__group {
-        display: flex;
-        column-gap: 5px;
+        display: grid;
+        grid-auto-flow: column;
         align-items: center;
+        grid-area: share;
+        gap: 5px;
     }
     
     &__ShareButton svg,

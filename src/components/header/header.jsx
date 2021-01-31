@@ -9,8 +9,8 @@ import './header.scss'
 const Header = (props) => {
   const menuItems = [
     {
-      name: 'shibari',
-      runame: 'шибари',
+      name: 'home',
+      runame: 'главная',
       link: '/'
     },
     {

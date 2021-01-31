@@ -15,13 +15,11 @@
 @media screen and (min-width: 768px) {
     .contact {
         .column__wrapper {
-            display: flex;
+            display: grid;
+            grid-auto-flow: column;
             justify-content: center;
-            column-gap: 40px;
-        }
-
-        .column {
-            max-width: 450px;
+            gap: 40px;
+            grid-template-columns: repeat(2, 450px);
         }
     }
 }

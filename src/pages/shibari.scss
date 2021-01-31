@@ -1,11 +1,9 @@
 .filters {
     &__list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        column-gap: 10px;
         margin-bottom: 15px;
         padding-top: 15px;
+        overflow: auto;
+        white-space: nowrap;
     }
 
     &__item {
@@ -34,6 +32,10 @@
     .filters {
         &__list {
             padding-top: 0;
+            display: grid;
+            grid-auto-flow: column;
+            justify-content: center;
+            gap: 10px;
         }
 
         &__item {

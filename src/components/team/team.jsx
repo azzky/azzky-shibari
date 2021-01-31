@@ -37,7 +37,7 @@ const Model = (props) => {
 const AllByMe = (props) => (
     <div className="people-card">
         <p>{props.lang === 'ru' ? 'Фото и шибари: ' : 'Photo and shibari by '}
-            <a href={Maindata.socials.instagram_nsfw}> me</a>
+            <a href={Maindata.socials.instagram_nsfw}>{props.lang === 'ru' ? ' я' : ' me'}</a>
         </p>
     </div>
 )
@@ -45,7 +45,7 @@ const AllByMe = (props) => (
 const Nawashi = (props) => (
     <div className="people-card">
         <p>{props.lang === 'ru' ? 'Шибари: ' : 'Shibari by '}
-            <a href={Maindata.socials.instagram_nsfw}> me</a>
+            <a href={Maindata.socials.instagram_nsfw}>{props.lang === 'ru' ? ' я' : ' me'}</a>
         </p>
     </div>
 )

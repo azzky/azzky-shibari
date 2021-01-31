@@ -1,8 +1,9 @@
 .language {
     &__list {
-        display: flex;
+        display: grid;
+        grid-auto-flow: column;
+        gap: 20px;
         justify-content: center;
-        column-gap: 20px;
     }
 
     &__item {
@@ -16,6 +17,4 @@
     }
 }
 
-@media screen and (min-width: 768px) {
-
-}
+@media screen and (min-width: 768px) {}

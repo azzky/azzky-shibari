@@ -1,5 +1,9 @@
 @import '../../styles/mixins';
 .people-card {
+    &__list {
+        grid-area: team;
+    }
+    
     a {
         font-weight: 500;
     }
