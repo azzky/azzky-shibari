@@ -61,8 +61,8 @@ const Shibari = () => {
           </div>
           <div className="video-wrapper">
               <video autoPlay loop={true} muted={true} playsInline id="background-video">
-                <source src="/background.mp4" type="video/mp4" />
-                <source src="/background.webm" type="video/webm" />
+                <source src="/video/background.mp4" type="video/mp4" />
+                <source src="/video/background.webm" type="video/webm" />
               </video>
             </div>
         </div>
