@@ -10,6 +10,51 @@
     .column__wrapper {
         padding: 0 15px;
     }
+
+    &__links {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 40px;
+        padding: 30px 10px;
+        justify-content: start;
+
+        svg {
+            transform: scale(2);
+        }
+    }
+
+    &__submit {
+        background-color: var(--color-black);
+        color: var(--color-white);
+        text-transform: uppercase;
+        padding: 1em;
+        margin-top: 1em;
+        font-weight: 500;
+    }
+
+    &__hr {
+        margin: 1em 0;
+    }
+
+    &__message {
+        padding: 10px;
+    }
+
+    &__label {
+        visibility: hidden;
+        position: absolute;
+    }
+
+    &__input {
+        border-radius: 0;
+        margin-bottom: 1em;
+        border-width: 1px;
+        padding: 10px;
+    }
+
+    &__flex {
+        display: flex;
+    }
 }
 
 @media screen and (min-width: 768px) {

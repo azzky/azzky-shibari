@@ -22,28 +22,11 @@ export const i18n = {
 
 export const PageData = {
     en: {
-        home: {
-            h1: 'Welcome, traveller!',
-            title: 'Home | Azzky',
-            description: '',
-        },
         shibari: {
             h1: 'Shibari by Azzky',
-            title: 'Shibari | Azzky',
+            title: 'Shibari by Azzky',
             description: 'Shibari is a traditional Japanese art of tying up people in rope bondage. If you\'re looking for a shibari shooting in Belarus, just contact me.',
-            text: 'Shibari is a traditional Japanese art of tying up people. I\'ve been doing it since 2017 and ready for cosplay and fashion shoots collaboration, events performing and individual training. If you are interested in shibari shooting or learning - just'
-        },
-        photo: {
-            h1: '',
-            title: '',
-            description: '',
-            text: ''
-        },
-        mecha: {
-            h1: 'Mecha by Azzky',
-            title: 'Mecha | Azzky',
-            description: '',
-            text: ''
+            text: 'Shibari is a traditional Japanese art of tying up people. I\'ve been doing it since 2017 and ready for cosplay and fashion shooting collaboration, events performing and individual training. If you are interested to work with - just'
         },
         contact: {
             h1: 'Get in touch',
@@ -53,28 +36,11 @@ export const PageData = {
         }
     },
     ru: {
-        home: {
-            h1: 'Здравствуй, странник!',
-            title: 'Главная | Azzky',
-            description: '',
-        },
         shibari: {
             h1: 'Шибари от Azzky',
-            title: 'Шибари | Azzky',
+            title: 'Шибари от Azzky',
             description: 'Шибари - традиционное японское искусство связывания веревками, тип бондажа. Если тебя интересуют съемки с шибари, или ты ищешь обучение шибари в Минске, то свяжись со мной.',
             text: 'Шибари - традиционное японское искусство связывания. Я занимаюсь им с 2017 года и сейчас готов к коллаборации для косплей и фэшн съемок, а также к выступлениям на мероприятиях и обучению в индивидуальной форме. Если тебя интересуют съемки с шибари, или ты ищешь обучение шибари в Минске, то'
-        },
-        photo: {
-            h1: '',
-            title: '',
-            description: '',
-            text: ''
-        },
-        mecha: {
-            h1: 'Мехи от Azzky',
-            title: 'Мехи | Azzky',
-            description: '',
-            text: ''
         },
         contact: {
             h1: 'Напиши мне',

@@ -1,6 +1,7 @@
 @import '../../styles/mixins';
 main {
     min-height: calc(100vh - 20px);
+    background-color: var(--color-white);
 
     &.hero {
         min-height: calc(100vh - 20px);
@@ -13,10 +14,6 @@ main {
     &:not(.hero) {
         padding-top: var(--header-height);
     }
-}
-
-.content {
-    background-color: var(--color-white);
 }
 
 .hero {
