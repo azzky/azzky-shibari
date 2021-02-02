@@ -53,6 +53,8 @@ const MetaPage = (props) => {
 const MetaPost = (props) => {
     const post = props.post
     let date = post.date.split('/')
+    const image = post.wallpaper ? post.wallpaper.fluid.src : post.preview.fluid.src
+    console.log(image);
     date = `20${date[0]}-${date[1]}-${date[2]}T08:00:00+08:00`
     const { href } = useLocation()
     const schemaArticle = {
@@ -92,13 +94,13 @@ const MetaPost = (props) => {
             <meta name="description" property="description" content={post.metadescription} />
             <meta name="og:title" property="og:title" content={!post.metatitle ? post.title : post.metatitle} />
             <meta name="og:description" property="og:description" content={post.metadescription} />
-            <meta name="og:image" property="og:image" content={post.preview.fluid.src} />
+            <meta name="og:image" property="og:image" content={image} />
             <meta name="og:url" property="og:url" content={href} />
             <meta name="twitter:card" property="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" property="twitter:title" content={!post.metatitle ? post.title : post.metatitle} />
             <meta name="twitter:description" property="twitter:description" content={post.metadescription} />
-            <meta name="twitter:image" property="twitter:image" content={post.preview.fluid.src} />
-            <meta name="vk:image" property="vk:image" content={post.preview.fluid.src} />
+            <meta name="twitter:image" property="twitter:image" content={image} />
+            <meta name="vk:image" property="vk:image" content={image} />
             <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>
             <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
         </Helmet>
