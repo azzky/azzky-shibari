@@ -30,7 +30,7 @@ export const PageData = {
         },
         contact: {
             h1: 'Get in touch',
-            title: 'Contacts | Azzky',
+            title: 'Contacts | Shibari by Azzky',
             description: '',
             text: ''
         }
@@ -44,7 +44,7 @@ export const PageData = {
         },
         contact: {
             h1: 'Напиши мне',
-            title: 'Контакты | Azzky',
+            title: 'Контакты | Шибари от Azzky',
             description: '',
         }
     }
