@@ -24,7 +24,6 @@ const MetaHome = (props) => {
 }
 
 const MetaPage = (props) => {
-    console.log(props.type);
     const schemaBreadcrumb = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -54,7 +53,6 @@ const MetaPost = (props) => {
     const post = props.post
     let date = post.date.split('/')
     const image = post.wallpaper ? post.wallpaper.fluid.src : post.preview.fluid.src
-    console.log(image);
     date = `20${date[0]}-${date[1]}-${date[2]}T08:00:00+08:00`
     const { href } = useLocation()
     const schemaArticle = {
