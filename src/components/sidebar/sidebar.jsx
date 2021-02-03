@@ -5,44 +5,29 @@ import './sidebar.scss'
 const Sidebar = (props) => {
     return (
         <div className="social__links">
-            {NsfwIcons}
+            <NsfwIcons />
         </div>
     )
 }
 
-const NsfwIcons = (
+const NsfwIcons = (props) => (
     <>
     <a href={Maindata.socials.instagram_nsfw} rel="noreferrer" target="_blank" aria-label="instagram link">
-        <svg width="24" height="24">
+        <svg width="24" height="24" className={props.class}>
         <use href="#instagram"></use>
         </svg>
     </a>
     <a href={Maindata.socials.telegram} rel="noreferrer" target="_blank" aria-label="telegram link">
-        <svg width="24" height="24">
+        <svg width="24" height="24" className={props.class}>
         <use href="#telegram"></use>
         </svg>
     </a>
     <a href={Maindata.socials.twitter} rel="noreferrer" target="_blank" aria-label="twitter link">
-        <svg width="24" height="24">
+        <svg width="24" height="24" className={props.class}>
         <use href="#twitter"></use>
         </svg>
     </a>
     </>
 )
 
-const SfwIcons = (
-    <>
-    <a href={Maindata.socials.instagram_sfw} rel="noreferrer" target="_blank" aria-label="instagram link">
-        <svg width="24" height="24">
-        <use href="#instagram"></use>
-        </svg>
-    </a>
-    <a href={Maindata.socials.linkedin} rel="noreferrer" target="_blank" aria-label="linkedin link">
-        <svg width="24" height="24">
-        <use href="#linkedin"></use>
-        </svg>
-    </a>
-    </>
-)
-
-export { Sidebar, NsfwIcons, SfwIcons }
+export { Sidebar, NsfwIcons }
