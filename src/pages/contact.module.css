@@ -27,6 +27,7 @@
 }
 .message {
     padding: 10px;
+    resize: vertical;
 }
 .input {
     border-radius: 0;
