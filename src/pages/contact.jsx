@@ -18,11 +18,11 @@ export default () => {
           <input type="hidden" name="bot-field" />
           <input type="hidden" name="form-name" value="contact" />
           <label className="visually-hidden" htmlFor="name">Name</label>
-          <input className={styles.input} type="text" name="name" id="name" placeholder="Name" />
+          <input className={styles.input} type="text" name="name" id="name" placeholder="Name" required />
           <label className="visually-hidden" htmlFor="email">Email</label>
-          <input className={styles.input} type="email" name="email" id="email" inputMode="email" placeholder="Email" />
+          <input className={styles.input} type="email" name="email" id="email" inputMode="email" placeholder="Email" required />
           <label className="visually-hidden" htmlFor="message">Message</label>
-          <textarea className={styles.message} name="message" id="message" rows="10" placeholder="Message" />
+          <textarea className={styles.message} name="message" id="message" rows="10" placeholder="Message" required />
           <button className={styles.submit} type="submit">Send</button>
         </form>
       </section>
