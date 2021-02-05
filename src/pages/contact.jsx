@@ -1,13 +1,17 @@
-import React from "react"
+import React, {useState} from "react"
 import Layout from "../components/layout/layout"
 import {MetaPage} from '../components/meta/meta'
 import {PageData} from "../constants"
 import { NsfwIcons } from "../components/sidebar/sidebar"
 
 import styles from './contact.module.css'
+import { getToken, onMessageListener } from '../../firebase'
 
 export default () => {
   const data = PageData.en.contact
+  const [isTokenFound, setTokenFound] = useState(false)
+  getToken(setTokenFound)
+
   return(
   <Layout lang="en" url="/contact" classes="contact">
     <MetaPage data={data} />
@@ -39,7 +43,10 @@ export default () => {
         <p>Follow me on:</p>
         <div className={styles.links}>
           <NsfwIcons class={styles.svg} />
-          </div>
+        </div>
+        <hr className={styles.hr}></hr>
+        {isTokenFound && <p>Notification permission enabled - Tnak you!</p>}
+        {!isTokenFound && <p>Please, enable notification permission to get new posts notifications!</p>}
       </section>
     </div>
   </Layout>

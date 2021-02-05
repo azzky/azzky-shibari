@@ -82,6 +82,7 @@ module.exports = {
         icon: `src/images/fav.png`,
         include_favicon: true,
         cache_busting_mode: 'none',
+        gcm_sender_id: '976120493038',
         localize: [
           {
             start_url: '/ru/',

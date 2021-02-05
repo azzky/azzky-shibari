@@ -27,11 +27,6 @@ const NsfwIcons = (props) => (
         <use href="#twitter"></use>
         </svg>
     </a>
-    <a rel="me noreferrer" href="https://kinbaku.club/@azzky" target="_blank" aria-label="mastodon link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#mastodon"></use>
-        </svg>
-    </a>
     </>
 )
 
