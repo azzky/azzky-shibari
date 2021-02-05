@@ -20,7 +20,7 @@ export default () => {
           <label className="visually-hidden" htmlFor="name">Name</label>
           <input className={styles.input} type="text" name="name" id="name" placeholder="Name" />
           <label className="visually-hidden" htmlFor="email">Email</label>
-          <input className={styles.input} type="text" name="email" id="email" placeholder="Email" />
+          <input className={styles.input} type="email" name="email" id="email" inputMode="email" placeholder="Email" />
           <label className="visually-hidden" htmlFor="message">Message</label>
           <textarea className={styles.message} name="message" id="message" rows="10" placeholder="Message" />
           <button className={styles.submit} type="submit">Send</button>
