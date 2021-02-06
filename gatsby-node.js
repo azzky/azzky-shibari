@@ -1,4 +1,5 @@
 const path = require(`path`);
+const fetch = require(`node-fetch`);
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
