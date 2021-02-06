@@ -77,11 +77,12 @@ module.exports = {
         direction: 'ltr',
         orientation: 'portrait',
         background_color: `#f7f0eb`,
-        theme_color: `#a2466c`,
+        theme_color: `#000`,
         display: `standalone`,
         icon: `src/images/fav.png`,
         include_favicon: true,
         cache_busting_mode: 'none',
+        gcm_sender_id: '976120493038',
         localize: [
           {
             start_url: '/ru/',
@@ -120,5 +121,27 @@ module.exports = {
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-plugin-firebase",
+      options: {
+        credentials: {
+          apiKey: process.env.GATSBY_FIREBASE_API_KEY,
+          appId: process.env.GATSBY_FIREBASE_APP_ID,
+          messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
+          projectId: process.env.GATSBY_FIREBASE_PROJECT_ID
+        }
+      }
+    },
+    {
+      resolve: `gatsby-plugin-firebase-messaging`,
+      options: {
+        config: { 
+          apiKey: process.env.GATSBY_FIREBASE_API_KEY,
+          appId: process.env.GATSBY_FIREBASE_APP_ID,
+          messagingSenderId: process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID,
+          projectId: process.env.GATSBY_FIREBASE_PROJECT_ID
+        },
+      },
+    },
   ],
 }

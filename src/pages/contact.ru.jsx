@@ -1,13 +1,20 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 import Layout from "../components/layout/layout"
 import {MetaPage} from '../components/meta/meta'
 import {PageData} from "../constants"
 import { NsfwIcons } from "../components/sidebar/sidebar"
 
 import styles from './contact.module.css'
+import { getToken } from '../firebase'
 
 export default () => {
   const data = PageData.ru.contact
+  const [isTokenFound, setTokenFound] = useState(false)
+
+  useEffect(() => {
+    getToken(setTokenFound)
+  }, [])
+
   return(
   <Layout lang="ru" url="/ru/contact" nsfw={false} classes="contact" light={true}>
     <MetaPage data={data} />
@@ -39,7 +46,10 @@ export default () => {
         <p>Подпишись на меня в:</p>
         <div className={styles.links}>
           <NsfwIcons class={styles.svg} />
-          </div>
+        </div>
+        <hr className={styles.hr}></hr>
+        {isTokenFound && <p>Пуш-уведомления разрешены - спасибо!</p>}
+        {!isTokenFound && <p>Пожалуйста, разрешите отправку пуш-уведомлений для получения новостей о последних публикациях</p>}
       </section>
     </div>
   </Layout>
