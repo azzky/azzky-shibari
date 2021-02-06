@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState} from "react"
 import Layout from "../components/layout/layout"
 import {MetaPage} from '../components/meta/meta'
 import {PageData} from "../constants"
@@ -11,28 +11,11 @@ export default () => {
   const data = PageData.en.contact
   const [isTokenFound, setTokenFound] = useState(false)
 
-  useEffect(() => {
-    getToken(setTokenFound)
-  }, [])
-
   return(
   <Layout lang="en" url="/contact" classes="contact">
     <MetaPage data={data} />
     <h1>{data.h1}</h1>
     <div className={styles.wrapper}>
-      <section className={styles.column}>
-        <form className={styles.form} method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact">
-          <input type="hidden" name="bot-field" />
-          <input type="hidden" name="form-name" value="contact" />
-          <label className="visually-hidden" htmlFor="name">Name</label>
-          <input className={styles.input} type="text" name="name" id="name" placeholder="Name" required />
-          <label className="visually-hidden" htmlFor="email">Email</label>
-          <input className={styles.input} type="email" name="email" id="email" inputMode="email" placeholder="Email" required />
-          <label className="visually-hidden" htmlFor="message">Message</label>
-          <textarea className={styles.message} name="message" id="message" rows="10" placeholder="Message" required />
-          <button className={styles.submit} type="submit">Send</button>
-        </form>
-      </section>
       <section className={styles.column}>
         <div className={styles.flex}>
           <svg width="24" height="24">
@@ -50,6 +33,20 @@ export default () => {
         <hr className={styles.hr}></hr>
         {isTokenFound && <p>Notification permission enabled - thank you!</p>}
         {!isTokenFound && <p>Please, enable permission to get notifications about new posts</p>}
+        {!isTokenFound && <button className={styles.submit} onClick={() => getToken(setTokenFound)}>Allow now</button>}
+      </section>
+      <section className={styles.column}>
+        <form className={styles.form} method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact">
+          <input type="hidden" name="bot-field" />
+          <input type="hidden" name="form-name" value="contact" />
+          <label className="visually-hidden" htmlFor="name">Name</label>
+          <input className={styles.input} type="text" name="name" id="name" placeholder="Name" required />
+          <label className="visually-hidden" htmlFor="email">Email</label>
+          <input className={styles.input} type="email" name="email" id="email" inputMode="email" placeholder="Email" required />
+          <label className="visually-hidden" htmlFor="message">Message</label>
+          <textarea className={styles.message} name="message" id="message" rows="10" placeholder="Message" required />
+          <button className={styles.submit} type="submit">Send</button>
+        </form>
       </section>
     </div>
   </Layout>
