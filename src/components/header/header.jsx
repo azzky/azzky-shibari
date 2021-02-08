@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import LangSwitcher from "../lang-switcher"
 import NsfwSwitcher from "../toggler/toggler"
 import { Sidebar } from "../sidebar/sidebar"
+import { getToken } from '../../firebase'
 
 import './header.scss'
 
@@ -21,6 +22,7 @@ const Header = (props) => {
   ]
   const [showMenu, toggleMenu] = useState(false)
   const [showSettings, toggleSettings] = useState(false)
+  const [isTokenFound, setTokenFound] = useState(false)
 
   let lang = ''
   if(props.lang === 'ru') {
@@ -68,6 +70,12 @@ const Header = (props) => {
           <Sidebar nsfw={props.nsfw} />
           <hr />
           <NsfwSwitcher />
+          <hr />
+          <div className="subscription">
+          {isTokenFound && <p>Notification permission enabled - thank you!</p>}
+          {!isTokenFound && <p>Please, enable permission to get notifications about new posts</p>}
+          {!isTokenFound && <button className="subscription__button" onClick={() => getToken(setTokenFound)}>Allow now</button>}
+          </div>
         </div>
       </div>
     </header>

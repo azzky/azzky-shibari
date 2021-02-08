@@ -75,12 +75,17 @@
     left: 0;
     display: grid;
     justify-content: center;
-    height: 50vh;
-    padding-top: 10vh;
+    height: 70vh;
+    padding: 40px 20px 0;
     transition: all .4s ease-in;
 
     &.active {
       background-color: var(--color-white);
+
+      hr {
+        display: block;
+        height: 2px;
+      }
     }
 
     &:not(.active) {
@@ -104,6 +109,21 @@
   .settings__block:not(.active) {
     .language__item:not(.active) {
       pointer-events: none;
+    }
+  }
+
+  .social__links {
+    display: flex;
+    justify-content: center;
+  }
+
+  .subscription {
+    &__button {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      padding: 1em 3em;
+      margin: 1em auto;
+      display: block;
     }
   }
 }
@@ -259,5 +279,9 @@
       align-items: center;
       padding-top: 0;
     }
+  }
+
+  .subscription {
+    display: none;
   }
 }
