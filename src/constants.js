@@ -25,8 +25,8 @@ export const PageData = {
         shibari: {
             h1: 'Shibari by Azzky',
             title: 'Shibari by Azzky',
-            description: 'Shibari is a traditional Japanese art of tying up people in rope bondage. If you\'re looking for a shibari shooting in Belarus, just contact me.',
-            text: 'Shibari is a traditional Japanese art of tying up people. I\'ve been doing it since 2017 and ready for cosplay and fashion shooting collaboration, events performing and individual training. If you are interested to work with - just'
+            description: 'I\'m Azzky and I\'m doing shibari since 2017. If you\'re looking for a shibari shooting or learning in Belarus, just contact me.',
+            text: 'Shibari is a traditional Japanese art of rope bondage. I\'ve been doing it since 2017 and ready for cosplay and fashion shooting collaboration, events performing and individual training. If you are interested to work with - just'
         },
         contact: {
             h1: 'Get in touch',
@@ -39,8 +39,8 @@ export const PageData = {
         shibari: {
             h1: 'Шибари от Azzky',
             title: 'Шибари от Azzky',
-            description: 'Шибари - традиционное японское искусство связывания веревками, тип бондажа. Если тебя интересуют съемки или обучение шибари в Минске, то свяжись со мной.',
-            text: 'Шибари - традиционное японское искусство связывания. Я занимаюсь им с 2017 года и сейчас готов к коллаборации для косплей и фэшн съемок, а также к выступлениям на мероприятиях и обучению в индивидуальной форме. Если тебя интересуют съемки или обучение шибари в Минске, то'
+            description: 'Я Azzky и я занимаюсь шибари с 2017 года. Если тебя интересуют съемки или обучение шибари в Минске, то свяжись со мной.',
+            text: 'Шибари - традиционное японское искусство веревочного бондажа. Я занимаюсь им с 2017 года и сейчас готов к коллаборации для косплей и фэшн съемок, а также к выступлениям на мероприятиях и обучению в индивидуальной форме. Если тебя интересуют съемки или обучение шибари в Минске, то'
         },
         contact: {
             h1: 'Напиши мне',

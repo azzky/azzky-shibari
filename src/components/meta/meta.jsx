@@ -4,6 +4,8 @@ import { useLocation } from "@reach/router"
 import Maindata from "../../constants"
 
 const MetaHome = (props) => {
+    const href = Maindata.url
+    const image = `${Maindata.url}/shibari-background.webp`
     const schemaBreadcrumb = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -17,7 +19,16 @@ const MetaHome = (props) => {
     return(
         <Helmet>
             <title>{props.data.title}</title>
-            <meta name="description" content={props.data.description} />
+            <meta name="description" property="description" content={props.data.description} />
+            <meta name="og:title" property="og:title" content={props.data.title} />
+            <meta name="og:description" property="og:description" content={props.data.description} />
+            <meta name="og:image" property="og:image" content={image} />
+            <meta name="og:url" property="og:url" content={href} />
+            <meta name="twitter:card" property="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" property="twitter:title" content={props.data.title} />
+            <meta name="twitter:description" property="twitter:description" content={props.data.description} />
+            <meta name="twitter:image" property="twitter:image" content={image} />
+            <meta name="vk:image" property="vk:image" content={image} />
             <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
         </Helmet>
     )
