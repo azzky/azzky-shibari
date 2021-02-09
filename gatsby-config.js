@@ -13,21 +13,7 @@ module.exports = {
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
     //   options: {
-    //     // The property ID; the tracking code won't be generated without it
     //     // trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
-    //     // Defines where to place the tracking script - `true` in the head and `false` in the body
-    //     head: false,
-    //     // Setting this parameter is optional
-    //     anonymize: true,
-    //     // Setting this parameter is also optional
-    //     respectDNT: true,
-    //     // Avoids sending pageview hits from custom paths
-    //     // exclude: ["/preview/**", "/do-not-track/me/too/"],
-    //     // Delays sending pageview hits on route update (in milliseconds)
-    //     pageTransitionDelay: 0,
-    //     // Defers execution of google analytics script after page load
-    //     defer: true,
-    //     // Any additional optional fields
     //   },
     // },
     // {
@@ -69,10 +55,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Azzky's`,
+        name: `shibari by Azzky`,
         short_name: `Azzky's`,
         start_url: `/`,
-        description: 'Azzky\'s postfolio website about shibari, mecha and my other hobbies',
+        description: 'Shibari portfolio of rope artist Azzky',
         lang: 'en',
         direction: 'ltr',
         orientation: 'portrait',
@@ -87,9 +73,9 @@ module.exports = {
           {
             start_url: '/ru/',
             lang: 'ru',
-            name: `Azzky's`,
+            name: `Шибари от Azzky`,
             short_name: `Azzky's`,
-            description: 'Сайт-портфолио Azzky про шибари, меху и прочие мои хобби',
+            description: 'Сайт-портфолио Azzky про шибари',
           }
         ]
       }
