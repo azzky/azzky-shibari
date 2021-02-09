@@ -110,7 +110,14 @@ module.exports = {
         siteUrl: `https://azzky.ru`,
       },
     },
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: process.env.GATSBY_JPEG_ENCODER === `MOZJPEG`,
+        stripMetadata: true,
+        failOnError: true,
+      },
+    },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-contentful`,
