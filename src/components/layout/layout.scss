@@ -1,11 +1,9 @@
 @import '../../styles/mixins';
 main {
-    min-height: calc(100vh - 20px);
+    min-height: calc(100vh - var(--hero-height));
     background-color: var(--color-white);
 
     &.hero {
-        min-height: calc(100vh - 20px);
-
         &.home::before {
             background-color: transparent;
         }
@@ -100,6 +98,7 @@ main {
             top: 280px;
             @include hero-element;
             max-width: 810px;
+            height: 100%;
         }
 
         &__content {
