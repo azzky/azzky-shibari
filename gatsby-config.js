@@ -55,8 +55,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `shibari by Azzky`,
-        short_name: `Azzky's`,
+        name: `Shibari by Azzky`,
+        short_name: `Shibari by Azzky`,
         start_url: `/`,
         description: 'Shibari portfolio of rope artist Azzky',
         lang: 'en',
@@ -74,7 +74,7 @@ module.exports = {
             start_url: '/ru/',
             lang: 'ru',
             name: `Шибари от Azzky`,
-            short_name: `Azzky's`,
+            short_name: `Шибари от Azzky`,
             description: 'Сайт-портфолио Azzky про шибари',
           }
         ]
