@@ -36,7 +36,7 @@ export default () => {
         {!isTokenFound && <button className={styles.submit} onClick={() => getToken(setTokenFound)}>Разрешить</button>}
       </section>
       <section className={styles.column}>
-        <form className={styles.form} method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact">
+        <form className={styles.form} method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact" action="/ru/success">
           <input type="hidden" name="bot-field" />
           <input type="hidden" name="form-name" value="contact" />
           <label className="visually-hidden" htmlFor="name">Имя</label>
