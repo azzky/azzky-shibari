@@ -6,6 +6,16 @@ import Maindata from "../../constants"
 const MetaHome = (props) => {
     const href = Maindata.url
     const image = `${Maindata.url}/shibari-background.webp`
+    const schemaVideo = {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "Shibari by Azzky video for Lovalce lingerie brand ad",
+        "description": "Girl tied up in rope bondage by Azzky for Lovalce lingerie brand ad",
+        "thumbnailUrl": [image],
+        "uploadDate": "2020-05-15T11:47:00-05:00",
+        "duration": "PT0M44S",
+        "contentUrl": "https://www.example.com/video/123/file.mp4"
+    }
     const schemaBreadcrumb = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -19,6 +29,7 @@ const MetaHome = (props) => {
     return(
         <Helmet>
             <title>{props.data.title}</title>
+            <meta property="og:type" content="website"></meta>
             <meta name="description" property="description" content={props.data.description} />
             <meta name="og:title" property="og:title" content={props.data.title} />
             <meta name="og:description" property="og:description" content={props.data.description} />
@@ -30,6 +41,7 @@ const MetaHome = (props) => {
             <meta name="twitter:image" property="twitter:image" content={image} />
             <meta name="vk:image" property="vk:image" content={image} />
             <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
+            <script type="application/ld+json">{JSON.stringify(schemaVideo)}</script>
         </Helmet>
     )
 }
@@ -66,6 +78,16 @@ const MetaPost = (props) => {
     const image = post.wallpaper ? post.wallpaper.fluid.src : post.preview.fluid.src
     date = `20${date[0]}-${date[1]}-${date[2]}T08:00:00+08:00`
     const { href } = useLocation()
+    const schemaImage = {
+        "@context": "https://schema.org",
+        "@type": "ImageObject",
+        "author": post.photographer.name,
+        "contentLocation": "Minsk, Belarus",
+        "contentUrl": image,
+        "datePublished": date.split('T')[0],
+        "description": !post.metadescription ? post.description : post.metadescription,
+        "name": !post.metatitle ? post.title : post.metatitle
+    }
     const schemaArticle = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
@@ -100,6 +122,7 @@ const MetaPost = (props) => {
     return(
         <Helmet>
             <title>{!post.metatitle ? post.title : post.metatitle}</title>
+            <meta property="og:type" content="article"></meta>
             <meta name="description" property="description" content={post.metadescription} />
             <meta name="og:title" property="og:title" content={!post.metatitle ? post.title : post.metatitle} />
             <meta name="og:description" property="og:description" content={post.metadescription} />
@@ -112,6 +135,7 @@ const MetaPost = (props) => {
             <meta name="vk:image" property="vk:image" content={image} />
             <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>
             <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
+            <script type="application/ld+json">{JSON.stringify(schemaImage)}</script>
         </Helmet>
     )
 }
