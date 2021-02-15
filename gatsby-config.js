@@ -90,12 +90,12 @@ module.exports = {
         path: `${__dirname}/src/images/`,
       }
     },
-    {
-      resolve: `gatsby-plugin-canonical-urls`,
-      options: {
-        siteUrl: `https://azzky.ru`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-canonical-urls`,
+    //   options: {
+    //     siteUrl: `https://azzky.ru`,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
