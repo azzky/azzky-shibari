@@ -81,12 +81,14 @@ const MetaPost = (props) => {
     const schemaImage = {
         "@context": "https://schema.org",
         "@type": "ImageObject",
-        "author": post.photographer.name,
         "contentLocation": "Minsk, Belarus",
         "contentUrl": image,
         "datePublished": date.split('T')[0],
         "description": !post.metadescription ? post.description : post.metadescription,
         "name": !post.metatitle ? post.title : post.metatitle
+    }
+    if(post.photographer) {
+        schemaImage.author = post.photographer.name
     }
     const schemaArticle = {
         "@context": "https://schema.org",

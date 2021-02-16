@@ -87,7 +87,7 @@ const Team = (props) => {
             {props.photographer && props.photographer.name === Maindata.author ?
             <AllByMe lang={props.lang} />
             : <>
-            <Photographer photographer={props.photographer} lang={props.lang} />
+            {props.photographer && <Photographer photographer={props.photographer} lang={props.lang} />}
             <Muah muah={props.muah} lang={props.lang} />
             <Nawashi lang={props.lang} />
             </>}
