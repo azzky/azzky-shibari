@@ -114,6 +114,7 @@ module.exports = {
     },
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-remove-trailing-slashes`,
     {
       resolve: "gatsby-plugin-firebase",
       options: {
