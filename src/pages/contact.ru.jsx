@@ -13,7 +13,7 @@ export default () => {
 
   return(
   <Layout lang="ru" url="/ru/contact" nsfw={false} classes="contact" light={true}>
-    <MetaPage data={data} />
+    <MetaPage data={data} type="contact" />
     <h1>{data.h1}</h1>
     <div className={styles.wrapper}>
       <section className={styles.column}>
