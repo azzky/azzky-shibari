@@ -4,10 +4,10 @@ import {MetaPage} from '../components/meta/meta'
 import {PageData} from "../constants"
 import { NsfwIcons } from "../components/sidebar/sidebar"
 
-import styles from './contact.module.css'
+import * as styles from './contact.module.css'
 import { getToken } from '../firebase'
 
-export default () => {
+const Contact = () => {
   const data = PageData.ru.contact
   const [isTokenFound, setTokenFound] = useState(false)
 
@@ -51,3 +51,5 @@ export default () => {
     </div>
   </Layout>
 )}
+
+export default Contact

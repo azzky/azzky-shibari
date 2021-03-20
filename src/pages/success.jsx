@@ -1,27 +1,24 @@
 import React from "react"
 import Layout from "../components/layout/layout"
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import {graphql, StaticQuery, Link} from "gatsby"
 
 import './success.scss'
 
-export default () => (
+const Success = () => (
     <StaticQuery
-        query={graphql`
-      {
-        allFile(filter: { name: { eq: "404" } }) {
-          edges {
-            node {
-              childImageSharp {
-                  fluid(quality: 100, maxWidth: 1920) {
-                    ...GatsbyImageSharpFluid_withWebp
-                  }
-              }
-            }
-          }
+        query={graphql`{
+  allFile(filter: {name: {eq: "404"}}) {
+    edges {
+      node {
+        childImageSharp {
+          gatsbyImageData(quality: 100, layout: FULL_WIDTH)
         }
       }
-    `}
+    }
+  }
+}
+`}
     render={({
               allFile: {
                   edges: [
@@ -41,8 +38,10 @@ export default () => (
                 <p className="">You will be contacted shortly</p>
                 <Link to="/" className="hero__button">Home page</Link>
               </div>
-              <Img fluid={fluid} />
+              <GatsbyImage image={fluid} />
             </Layout>
         )}
     />
 )
+
+export default Success

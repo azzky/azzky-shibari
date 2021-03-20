@@ -13,7 +13,6 @@ import './layout.scss'
 const Layout = (props) => {
   const heroType = props.heroType
   const isHero = props.hero
-  const light = props.light
   const classes = props.classes
   const lang = props.lang
   const url = props.url
@@ -22,14 +21,6 @@ const Layout = (props) => {
     "@type": "Organization",
     "url": Maindata.url,
     "logo": Maindata.url + "/logo.svg"
-  }
-
-  if(typeof window !== 'undefined' && light) {
-    document.body.classList.add('light')
-  }
-
-  if(typeof window !== 'undefined' && !light) {
-    document.body.classList.remove('light')
   }
 
   return(

@@ -96,6 +96,7 @@ module.exports = {
         siteUrl: `https://azzky.ru`,
       },
     },
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {

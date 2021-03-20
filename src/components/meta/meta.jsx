@@ -75,7 +75,7 @@ const MetaPage = (props) => {
 const MetaPost = (props) => {
     const post = props.post
     let date = post.date.split('/')
-    const image = post.wallpaper ? post.wallpaper.fluid.src : post.preview.fluid.src
+    const image = post.wallpaper ? post.wallpaper.file.url : post.preview.file.url
     date = `20${date[0]}-${date[1]}-${date[2]}T08:00:00+08:00`
     const { href } = useLocation()
     const schemaImage = {
@@ -96,7 +96,7 @@ const MetaPost = (props) => {
         "headline": !post.metatitle ? post.title : post.metatitle,
         "author": Maindata.author,
         "image": [
-            post.preview.fluid.src
+            post.preview.file.url
         ],
         "datePublished": date,
 

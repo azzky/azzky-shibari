@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions */
 import React, {useState} from "react"
 import { graphql } from "gatsby"
-import Img from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/layout"
 import {PostGallery} from '../components/gallery/gallery'
 import { MetaPost } from '../components/meta/meta'
@@ -79,15 +79,18 @@ const Post = ({
           : ''}
           <Share preview={preview.file.url} title={type.type === 'shibari' ? title + ' shibari by Azzky' : title + ' by Azzky'} type={type.type}/>
         </div>
-        <Img fluid={wallpaper ? wallpaper.fluid : preview.fluid} className={isWallNsfw ? 'nsfw' : ''} loading="lazy" />
+        <GatsbyImage
+          image={wallpaper ? wallpaper.gatsbyImageData : preview.gatsbyImageData}
+          className={isWallNsfw ? 'nsfw' : ''}
+          loading="lazy" />
       </div>
       <PostGallery nsfw={nsfw} title={title} gallery={gallery} nsfwarr={nsfwarr} />
       {!popup ? '' :
       <div role="dialog" className={isShowModal ? 'modal open ' + linkClass : 'modal ' + linkClass} onClick={() => showModal(false)}>
-        <div className="modal__content" dangerouslySetInnerHTML={{ __html: popup.content[0].content[0].value }} />
+        <div className="modal__content" dangerouslySetInnerHTML={{ __html: popup.raw }} />
       </div>}
     </Layout>
-  )
+  );
 }
 
 export const query = graphql`
@@ -105,22 +108,34 @@ export const query = graphql`
             }
           }
           preview {
-            fluid(quality: 100, maxWidth: 1920) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              quality: 100
+              placeholder: BLURRED
+              formats: [AUTO, WEBP]
+              width: 1920
+            )
             file {
               url
             }
           }
           wallpaper {
-            fluid(quality: 100, maxWidth: 1920) {
-              ...GatsbyContentfulFluid_withWebp
+            gatsbyImageData(
+              quality: 100
+              placeholder: BLURRED
+              formats: [AUTO, WEBP]
+              width: 1920
+            )
+            file {
+              url
             }
           }
           gallery {
-            fluid(quality: 100, maxWidth: 400) {
-              ...GatsbyContentfulFluid_withWebp
-            }
+            gatsbyImageData(
+              width: 400
+              quality: 100
+              placeholder: BLURRED
+              formats: [AUTO, WEBP]
+            )
             file {
               url
             }
@@ -149,11 +164,7 @@ export const query = graphql`
             type
           }
           popup {
-            content {
-              content {
-                value
-              }
-            }
+            raw
           }
         }
       }

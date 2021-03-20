@@ -1,0 +1,1 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/75439205-9757-4b79-99eb-5774df2a7b19/deploy-status)](https://app.netlify.com/sites/trusting-stonebraker-195bf5/deploys)

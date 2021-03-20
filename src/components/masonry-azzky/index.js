@@ -2,7 +2,7 @@ import React, { useEffect, useState, useReducer } from "react"
 import { Link } from "gatsby"
 import ImagesLightBox from "../gallery/lightbox"
 import { lightBoxReducer } from "./reducers"
-import Img from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import Filters from "./filters"
 import useWidth from "./windowsize"
 
@@ -113,47 +113,45 @@ const ResponsiveGallery = ({
         isOpen: false,
     })
     
-    return (
-        <>
-        {useLightBox && lightBoxVal.isOpen && (
-        <ImagesLightBox
-            imagesLightbox={images}
-            photoIndex={lightBoxVal.photoIndex}
-            lightBoxDispatch={lightBoxDispatch}
-            />
-        )}
-        <Filters uniqueArr={uniqueArr} changeFilter={changeFilter} lang={lang} />
-        <div className="masonry__gallery">
-            {getWidth && imgSubArray.map((column, index) => (
-                <div className={`masonry__column ${column.length > 0 ? '' : 'no-display'}`} key={index}>
-                {column.map((img, imgIndex) => (
-                    <figure className={`masonry__item
-                    ${img.nsfw ? 'nsfw' : ''}
-                    ${hover ? 'hover' : ''}
-                    `} key={imgIndex} role="presentation"
-                    onClick={() =>
-                        useLightBox &&
-                        lightBoxDispatch({
-                            type: "photoIndex_Open",
-                            photoIndex:
-                                imgIndex === 0
-                                    ? index
-                                    : index + imgIndex * columnNumber,
-                        })
-                    }>
-                        {useLinks
-                    ? <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
-                        <Img fluid={img.data} alt={img.title} />
-                        </Link>
-                    : <Img fluid={img.data} alt={`${img.title} - ${img.number}`} />
-                }
-                </figure>
-            ))}
-        </div>
-            ))}
-        </div>
-        </>
-    )
+    return <>
+    {useLightBox && lightBoxVal.isOpen && (
+    <ImagesLightBox
+        imagesLightbox={images}
+        photoIndex={lightBoxVal.photoIndex}
+        lightBoxDispatch={lightBoxDispatch}
+        />
+    )}
+    <Filters uniqueArr={uniqueArr} changeFilter={changeFilter} lang={lang} />
+    <div className="masonry__gallery">
+        {getWidth && imgSubArray.map((column, index) => (
+            <div className={`masonry__column ${column.length > 0 ? '' : 'no-display'}`} key={index}>
+            {column.map((img, imgIndex) => (
+                <figure className={`masonry__item
+                ${img.nsfw ? 'nsfw' : ''}
+                ${hover ? 'hover' : ''}
+                `} key={imgIndex} role="presentation"
+                onClick={() =>
+                    useLightBox &&
+                    lightBoxDispatch({
+                        type: "photoIndex_Open",
+                        photoIndex:
+                            imgIndex === 0
+                                ? index
+                                : index + imgIndex * columnNumber,
+                    })
+                }>
+                    {useLinks
+                ? <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
+                    <GatsbyImage image={img.data} alt={img.title} />
+                    </Link>
+                : <GatsbyImage image={img.data} alt={`${img.title} - ${img.number}`} />
+            }
+            </figure>
+        ))}
+    </div>
+        ))}
+    </div>
+    </>;
 }
 
 export default ResponsiveGallery
