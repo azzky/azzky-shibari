@@ -2,20 +2,20 @@ import React, { useEffect, useState, useReducer } from "react"
 import { Link } from "gatsby"
 import ImagesLightBox from "../gallery/lightbox"
 import { lightBoxReducer } from "./reducers"
-// import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import Filters from "./filters"
 import useWidth from "./windowsize"
 
 import "react-image-lightbox/style.css"
 
-const GalleryImage = ({
-    url,
-    alt}) => {
-        // console.log(url);
-        const srcSet = url.images.sources.[0].srcSet
-        const placeholder = url.placeholder.fallback
-        return <img srcSet={srcSet} alt={alt} src={placeholder} width={url.width * 2} height={url.height * 2} />
-}
+// const GalleryImage = ({
+//     url,
+//     alt}) => {
+//         // console.log(url);
+//         const srcSet = url.images.sources?.[0].srcSet
+//         const placeholder = url.placeholder.fallback
+//         return <img srcSet={srcSet} alt={alt} src={placeholder} width={url.width * 2} height={url.height * 2} />
+// }
 
 const GalleryItem = ({
     img,
@@ -39,9 +39,9 @@ const GalleryItem = ({
                 }>
                     {settings.useLinks
                 ? <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
-                    <GalleryImage url={img.data} alt={img.alt} />
+                    <GatsbyImage image={img.data} alt={img.alt} />
                     </Link>
-                : <GalleryImage url={img.data} alt={`${img.title} - ${img.number}`} />
+                : <GatsbyImage image={img.data} alt={`${img.title} - ${img.number}`} />
             }
             </figure>
     )
