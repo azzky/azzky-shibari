@@ -14,8 +14,7 @@ const GalleryImage = ({
         // console.log(url);
         const srcSet = url.images.sources.[0].srcSet
         const placeholder = url.placeholder.fallback
-        // const sizes = url.images.sources.[0].sizes
-        return <img srcSet={srcSet} alt={alt} src={placeholder} />
+        return <img srcSet={srcSet} alt={alt} src={placeholder} width={url.width * 2} height={url.height * 2} />
 }
 
 const GalleryItem = ({
