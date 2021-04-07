@@ -10,12 +10,11 @@ import { getToken } from '../firebase'
 const Contact = () => {
   const data = PageData.en.contact
   let savedSubsciption = false
-  if(localStorage.getItem('subscribed')) {
+  if(localStorage && localStorage.getItem('subscribed')) {
     savedSubsciption = true
   }
   const [isTokenFound, setTokenFound] = useState(savedSubsciption)
   const allowNotifications = () => {
-    console.log('yoba');
     localStorage.setItem('subscribed', true)
     getToken(setTokenFound)
   }
