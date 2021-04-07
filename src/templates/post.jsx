@@ -96,13 +96,13 @@ const Post = ({
 
     popupSize = checkPopupWidth(popupRatio)
 
-    paddingTopValue = popupRatio ? `${popupSize.maximumHeight}px` : popupRatio
+    paddingTopValue = popupRatio && popupSize?.maximumHeight ? `${popupSize.maximumHeight}px` : popupRatio
   }
 
   const textData = content ? prepareContent(content.childMarkdownRemark.html) : ''
   const popupStyles = {
     paddingTop: paddingTopValue,
-    width: `${popupSize.popupWidth}px`
+    width: popupSize?.popupWidth ? `${popupSize.popupWidth}px` : `0`
   }
     
   return (
