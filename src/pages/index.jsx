@@ -36,7 +36,7 @@ const Shibari = () => {
             }
             preview {
               gatsbyImageData(
-                width: 400
+                width: 200
                 quality: 100
                 placeholder: BLURRED
                 formats: [JPG, WEBP]

@@ -28,7 +28,7 @@ const checkPopupWidth = (popupRatio) => {
     const w = document.documentElement.clientWidth
     let maximumHeight, popupWidth
 
-    if(h < w || h == w) {
+    if(h < w || h === w) {
       maximumHeight = h * 0.8
       popupWidth = maximumHeight / (popupRatio.w/popupRatio.h)
     }
@@ -176,10 +176,10 @@ export const query = graphql`
           }
           gallery {
             gatsbyImageData(
-              width: 400
+              width: 200
               quality: 100
               placeholder: BLURRED
-              formats: [AUTO, WEBP]
+              formats: [AUTO, JPG, WEBP]
             )
             file {
               url
