@@ -22,6 +22,25 @@ const prepareContent = (str) => {
   return str
 }
 
+const checkPopupWidth = (popupRatio) => {
+  if(typeof document !== 'undefined') {
+    const h = document.documentElement.clientHeight
+    const w = document.documentElement.clientWidth
+    let maximumHeight, popupWidth
+
+    if(h < w || h == w) {
+      maximumHeight = h * 0.8
+      popupWidth = maximumHeight / (popupRatio.w/popupRatio.h)
+    }
+    if(h > w) { // mobile
+      popupWidth = w
+      maximumHeight = w * (popupRatio.w/popupRatio.h)
+    }
+
+    return {maximumHeight, popupWidth}
+  }
+}
+
 const Post = ({
   data: {
     allContentfulPost: {
@@ -43,7 +62,8 @@ const Post = ({
             wallpaper,
             node_locale,
             isWallNsfw,
-            popup
+            popup,
+            popupRatio
           },
           node
         }
@@ -53,6 +73,9 @@ const Post = ({
 }) => {
   const [isShowModal, showModal] = useState(false)
   const linkClass = link.replace('/', '')
+  let readyData,
+      paddingTopValue,
+      popupSize
 
   if(typeof document !== 'undefined') {
     const bodyClasses = document.body.classList
@@ -60,7 +83,27 @@ const Post = ({
     bodyClasses.add('post','shibari')
   }
 
+  if(popup) {
+    const rawData = popup.raw
+    const a = JSON.stringify(rawData)
+    const b = JSON.parse(a)
+    readyData = JSON.parse(b).content[0].content[0].value
+
+    popupRatio = popupRatio ? {
+      h: popupRatio.split('/')[0],
+      w: popupRatio.split('/')[1]
+    } : 0
+
+    popupSize = checkPopupWidth(popupRatio)
+
+    paddingTopValue = popupRatio ? `${popupSize.maximumHeight}px` : popupRatio
+  }
+
   const textData = content ? prepareContent(content.childMarkdownRemark.html) : ''
+  const popupStyles = {
+    paddingTop: paddingTopValue,
+    width: `${popupSize.popupWidth}px`
+  }
     
   return (
     <Layout toggler={type.type === 'shibari' ? true : false} lang={node_locale} hero={true} dark={true} url={link} post={true} nsfw={type.type === 'shibari' ? true : false}>
@@ -82,12 +125,14 @@ const Post = ({
         <GatsbyImage
           image={wallpaper ? wallpaper.gatsbyImageData : preview.gatsbyImageData}
           className={isWallNsfw ? 'nsfw' : ''}
-          loading="lazy" />
+          loading="lazy" alt={title} />
       </div>
       <PostGallery nsfw={nsfw} title={title} gallery={gallery} nsfwarr={nsfwarr} />
       {!popup ? '' :
       <div role="dialog" className={isShowModal ? 'modal open ' + linkClass : 'modal ' + linkClass} onClick={() => showModal(false)}>
-        <div className="modal__content" dangerouslySetInnerHTML={{ __html: popup.raw }} />
+        <div className="modal__content" style={popupStyles}>
+        {isShowModal ? <div dangerouslySetInnerHTML={{ __html: readyData }} /> : null}
+        </div>
       </div>}
     </Layout>
   );
@@ -166,6 +211,7 @@ export const query = graphql`
           popup {
             raw
           }
+          popupRatio
         }
       }
     }

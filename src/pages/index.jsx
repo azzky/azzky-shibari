@@ -39,7 +39,7 @@ const Shibari = () => {
                 width: 400
                 quality: 100
                 placeholder: BLURRED
-                formats: [AUTO, WEBP]
+                formats: [JPG, WEBP]
               )
             }
             tags

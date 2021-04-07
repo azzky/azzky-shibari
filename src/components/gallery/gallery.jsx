@@ -38,8 +38,6 @@ const PostsGallery = (props) => {
     const filter = props.filter
     const images = []
 
-    console.log(edges)
-
     edges.map((i) => {
         let prefix = '/'
         if(lang === 'ru') {

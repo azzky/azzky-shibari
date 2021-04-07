@@ -2,11 +2,68 @@ import React, { useEffect, useState, useReducer } from "react"
 import { Link } from "gatsby"
 import ImagesLightBox from "../gallery/lightbox"
 import { lightBoxReducer } from "./reducers"
-import { GatsbyImage } from "gatsby-plugin-image";
+// import { GatsbyImage } from "gatsby-plugin-image"
 import Filters from "./filters"
 import useWidth from "./windowsize"
 
 import "react-image-lightbox/style.css"
+
+const GalleryImage = ({
+    url,
+    alt}) => {
+        // console.log(url);
+        const srcSet = url.images.sources.[0].srcSet
+        const placeholder = url.placeholder.fallback
+        // const sizes = url.images.sources.[0].sizes
+        return <img srcSet={srcSet} alt={alt} src={placeholder} />
+}
+
+const GalleryItem = ({
+    img,
+    imgIndex,
+    index,
+    settings}) => {
+    return (
+        <figure className={`masonry__item
+                ${img.nsfw ? 'nsfw' : ''}
+                ${settings.hover ? 'hover' : ''}
+                `} role="presentation"
+                onClick={() =>
+                    settings.useLightBox &&
+                    settings.lightBoxDispatch({
+                        type: "photoIndex_Open",
+                        photoIndex:
+                            imgIndex === 0
+                                ? index
+                                : index + imgIndex * settings.columnNumber,
+                    })
+                }>
+                    {settings.useLinks
+                ? <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
+                    <GalleryImage url={img.data} alt={img.alt} />
+                    </Link>
+                : <GalleryImage url={img.data} alt={`${img.title} - ${img.number}`} />
+            }
+            </figure>
+    )
+}
+
+const GalleryColumn = ({
+    column,
+    index,
+    settings}) => {
+    return (
+        <div className={`masonry__column ${column.length > 0 ? '' : 'no-display'}`} key={index}>
+            {column.map((img, imgIndex) => (
+                <GalleryItem
+                    img={img}
+                    imgIndex={imgIndex}
+                    index={index}
+                    settings={settings} key={imgIndex} />
+                ))}
+        </div>
+    )
+}
 
 const ResponsiveGallery = ({
     images,
@@ -112,6 +169,10 @@ const ResponsiveGallery = ({
         photoIndex: 0,
         isOpen: false,
     })
+
+    const settings = {
+        hover, useLightBox, lightBoxDispatch, useLinks, columnNumber
+    }
     
     return <>
     {useLightBox && lightBoxVal.isOpen && (
@@ -124,31 +185,10 @@ const ResponsiveGallery = ({
     <Filters uniqueArr={uniqueArr} changeFilter={changeFilter} lang={lang} />
     <div className="masonry__gallery">
         {getWidth && imgSubArray.map((column, index) => (
-            <div className={`masonry__column ${column.length > 0 ? '' : 'no-display'}`} key={index}>
-            {column.map((img, imgIndex) => (
-                <figure className={`masonry__item
-                ${img.nsfw ? 'nsfw' : ''}
-                ${hover ? 'hover' : ''}
-                `} key={imgIndex} role="presentation"
-                onClick={() =>
-                    useLightBox &&
-                    lightBoxDispatch({
-                        type: "photoIndex_Open",
-                        photoIndex:
-                            imgIndex === 0
-                                ? index
-                                : index + imgIndex * columnNumber,
-                    })
-                }>
-                    {useLinks
-                ? <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
-                    <GatsbyImage image={img.data} alt={img.title} />
-                    </Link>
-                : <GatsbyImage image={img.data} alt={`${img.title} - ${img.number}`} />
-            }
-            </figure>
-        ))}
-    </div>
+            <GalleryColumn
+                column={column}
+                index={index}
+                settings={settings} key={index} />
         ))}
     </div>
     </>;
