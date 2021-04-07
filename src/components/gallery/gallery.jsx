@@ -17,7 +17,7 @@ const PostGallery = (props) => {
         images.push(
             {
                 nsfw: nsfwArr.includes(i + 1),
-                data: gallery[i].fluid,
+                data: gallery[i].gatsbyImageData,
                 full: gallery[i].file.url,
                 number: i + 1,
                 title: props.title
@@ -47,7 +47,7 @@ const PostsGallery = (props) => {
             {
                 nsfw: i.node.isPrevNsfw === true ? true : false,
                 url: prefix + i.node.type.type + i.node.link,
-                data: i.node.preview.fluid,
+                data: i.node.preview.gatsbyImageData,
                 tags: i.node.tags,
                 type: i.node.type.type,
                 title: i.node.title

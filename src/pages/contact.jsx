@@ -4,12 +4,22 @@ import {MetaPage} from '../components/meta/meta'
 import {PageData} from "../constants"
 import { NsfwIcons } from "../components/sidebar/sidebar"
 
-import styles from './contact.module.css'
+import * as styles from './contact.module.css'
 import { getToken } from '../firebase'
 
-export default () => {
+const Contact = () => {
   const data = PageData.en.contact
-  const [isTokenFound, setTokenFound] = useState(false)
+  let savedSubsciption = false
+  if(typeof window !== 'undefined' && localStorage !== 'undefined' && localStorage.getItem('subscribed')) {
+    savedSubsciption = true
+  }
+  const [isTokenFound, setTokenFound] = useState(savedSubsciption)
+  const allowNotifications = () => {
+    localStorage.setItem('subscribed', true)
+    getToken(setTokenFound)
+  }
+
+  
 
   return(
   <Layout lang="en" url="/contact" classes="contact">
@@ -33,7 +43,7 @@ export default () => {
         <hr className={styles.hr}></hr>
         {isTokenFound && <p>Notification permission enabled - thank you!</p>}
         {!isTokenFound && <p>Please, enable permission to get notifications about new posts</p>}
-        {!isTokenFound && <button className={styles.submit} onClick={() => getToken(setTokenFound)}>Allow now</button>}
+        {!isTokenFound && <button className={styles.submit} onClick={() => allowNotifications()}>Allow now</button>}
       </section>
       <section className={styles.column}>
         <form className={styles.form} method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact" action="/success">
@@ -51,3 +61,5 @@ export default () => {
     </div>
   </Layout>
 )}
+
+export default Contact

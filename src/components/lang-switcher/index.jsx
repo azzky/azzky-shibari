@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 import Maindata from '../../constants'
 
-import styles from './styles.module.scss'
+import * as styles from './styles.module.scss'
 
 const Switcher = (props) => {
     const origin = Maindata.url

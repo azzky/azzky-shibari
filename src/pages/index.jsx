@@ -35,9 +35,12 @@ const Shibari = () => {
               }
             }
             preview {
-              fluid(quality: 100, maxWidth: 400) {
-                ...GatsbyContentfulFluid_withWebp
-              }
+              gatsbyImageData(
+                width: 200
+                quality: 100
+                placeholder: BLURRED
+                formats: [JPG, WEBP]
+              )
             }
             tags
             type {

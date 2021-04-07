@@ -96,6 +96,7 @@ module.exports = {
         siteUrl: `https://azzky.ru`,
       },
     },
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
@@ -112,6 +113,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    `@contentful/gatsby-transformer-contentful-richtext`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-remove-trailing-slashes`,

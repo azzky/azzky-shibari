@@ -22,7 +22,15 @@ const Header = (props) => {
   ]
   const [showMenu, toggleMenu] = useState(false)
   const [showSettings, toggleSettings] = useState(false)
-  const [isTokenFound, setTokenFound] = useState(false)
+  let savedSubsciption = false
+  if(typeof window !== 'undefined' && localStorage !== 'undefined' && localStorage.getItem('subscribed')) {
+    savedSubsciption = true
+  }
+  const [isTokenFound, setTokenFound] = useState(savedSubsciption)
+  const allowNotifications = () => {
+    localStorage.setItem('subscribed', true)
+    getToken(setTokenFound)
+  }
 
   let lang = ''
   if(props.lang === 'ru') {
@@ -74,7 +82,7 @@ const Header = (props) => {
           <div className="subscription">
           {isTokenFound && <p>Notification permission enabled - thank you!</p>}
           {!isTokenFound && <p>Please, enable permission to get notifications about new posts</p>}
-          {!isTokenFound && <button className="subscription__button" onClick={() => getToken(setTokenFound)}>Allow now</button>}
+          {!isTokenFound && <button className="subscription__button" onClick={() => allowNotifications()}>Allow now</button>}
           </div>
         </div>
       </div>
