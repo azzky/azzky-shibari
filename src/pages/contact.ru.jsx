@@ -9,7 +9,15 @@ import { getToken } from '../firebase'
 
 const Contact = () => {
   const data = PageData.ru.contact
-  const [isTokenFound, setTokenFound] = useState(false)
+  let savedSubsciption = false
+  if(typeof window !== 'undefined' && localStorage !== 'undefined' && localStorage.getItem('subscribed')) {
+    savedSubsciption = true
+  }
+  const [isTokenFound, setTokenFound] = useState(savedSubsciption)
+  const allowNotifications = () => {
+    localStorage.setItem('subscribed', true)
+    getToken(setTokenFound)
+  }
 
   return(
   <Layout lang="ru" url="/ru/contact" nsfw={false} classes="contact" light={true}>
@@ -33,7 +41,7 @@ const Contact = () => {
         <hr className={styles.hr}></hr>
         {isTokenFound && <p>Пуш-уведомления разрешены - спасибо!</p>}
         {!isTokenFound && <p>Пожалуйста, разрешите отправку пуш-уведомлений для получения новостей о последних публикациях</p>}
-        {!isTokenFound && <button className={styles.submit} onClick={() => getToken(setTokenFound)}>Разрешить</button>}
+        {!isTokenFound && <button className={styles.submit} onClick={() => allowNotifications()}>Разрешить</button>}
       </section>
       <section className={styles.column}>
         <form className={styles.form} method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact" action="/ru/success">

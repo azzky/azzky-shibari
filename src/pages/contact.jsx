@@ -10,7 +10,7 @@ import { getToken } from '../firebase'
 const Contact = () => {
   const data = PageData.en.contact
   let savedSubsciption = false
-  if(localStorage && localStorage.getItem('subscribed')) {
+  if(typeof window !== 'undefined' && localStorage !== 'undefined' && localStorage.getItem('subscribed')) {
     savedSubsciption = true
   }
   const [isTokenFound, setTokenFound] = useState(savedSubsciption)
