@@ -157,7 +157,8 @@ export const query = graphql`
               quality: 100
               placeholder: BLURRED
               formats: [AUTO, WEBP]
-              width: 1920
+              width: 1920,
+              breakpoints: [400, 800, 1080, 1366, 1440, 1920]
             )
             file {
               url
@@ -168,7 +169,8 @@ export const query = graphql`
               quality: 100
               placeholder: BLURRED
               formats: [AUTO, WEBP]
-              width: 1920
+              width: 1920,
+              breakpoints: [400, 800, 1080, 1366, 1440, 1920]
             )
             file {
               url
