@@ -44,7 +44,7 @@ const Contact = () => {
         {!isTokenFound && <button className={styles.submit} onClick={() => allowNotifications()}>Разрешить</button>}
       </section>
       <section className={styles.column}>
-        <form className={styles.form} method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact" action="/ru/success">
+        <form className={styles.form} method="post" netlify-honeypot="bot-field" data-netlify="true" name="contact-ru" action="/ru/success">
           <input type="hidden" name="bot-field" />
           <input type="hidden" name="form-name" value="contact" />
           <label className="visually-hidden" htmlFor="name">Имя</label>
