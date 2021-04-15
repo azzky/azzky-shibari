@@ -6,6 +6,7 @@ import { Sidebar } from "../sidebar/sidebar"
 import { getToken } from '../../firebase'
 
 import './header.scss'
+import './setting-block.scss'
 
 const Header = (props) => {
   const menuItems = [
