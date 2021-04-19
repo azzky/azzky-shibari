@@ -1,10 +1,10 @@
 @mixin horizontally-center {
-    left: 50%;
+    inset-inline-start: 50%;
     transform: translateX(-50%);
 }
 
 @mixin hero-element {
     position: absolute;
-    left: var(--hero-padding-desktop);
-    max-width: calc(100vw - 30px);
+    inset-inline-start: var(--hero-padding-desktop);
+    max-inline-size: calc(100vw - 30px);
 }

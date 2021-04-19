@@ -12,7 +12,7 @@
 @media screen and (min-width: 768px) {
     .people-card {
         &__list {
-            bottom: 80px;
+            inset-block-end: 80px;
             @include hero-element;
         }
     
@@ -26,7 +26,7 @@
 @media screen and (max-width: 768px) {
     .people-card {
         &__list {
-            margin-top: 20px;
+            margin-block-start: 20px;
         }
     }
 }

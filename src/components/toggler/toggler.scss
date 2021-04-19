@@ -13,22 +13,22 @@ body:not(.nsfw) {
 .nsfw-switch {
   position: relative;
   display: inline-block;
-  width: 50px;
-  height: 26px;
+  inline-size: 50px;
+  block-size: 26px;
   z-index: 3;
   @include horizontally-center;
 
   &::before,
   &::after {
     position: absolute;
-    top: 50%;
+    inset-block-start: 50%;
     transform: translateY(-50%);
   }
 
   .nsfw--trigger {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    inline-size: 1px;
+    block-size: 1px;
     overflow: hidden;
     clip: rect(0 0 0 0);
 
@@ -58,10 +58,10 @@ body:not(.nsfw) {
   .slider {
     position: absolute;
     cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    inset-block-end: 0;
     background-color: var(--color-black);
     border-radius: 26px;
     transition: .4s;
@@ -69,10 +69,10 @@ body:not(.nsfw) {
     &::before {
       position: absolute;
       content: "";
-      height: 16px;
-      width: 16px;
-      left: 3px;
-      bottom: 5px;
+      block-size: 16px;
+      inline-size: 16px;
+      inset-inline-start: 3px;
+      inset-block-end: 5px;
       background-color: var(--color-white);
       transition: .4s;
       border-radius: 50%;
@@ -87,11 +87,11 @@ body:not(.nsfw) {
     font-size: 0.625rem;
 
     &-on {
-      padding-left: 5px;
+      padding-inline-start: 5px;
     }
 
     &-off {
-      padding-left: 28px;
+      padding-inline-start: 28px;
     }
   }
 }

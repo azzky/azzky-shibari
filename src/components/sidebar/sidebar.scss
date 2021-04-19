@@ -1,7 +1,7 @@
 .social__links {
     svg {
-        height: 40px;
-        width: 40px;
+        block-size: 40px;
+        inline-size: 40px;
         margin: 0 20px;
     }
 
@@ -22,8 +22,8 @@
         justify-content: center;
 
         svg {
-            height: auto;
-            width: auto;
+            block-size: auto;
+            inline-size: auto;
             margin: 0;
         }
     

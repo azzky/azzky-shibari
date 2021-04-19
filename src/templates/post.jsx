@@ -101,8 +101,8 @@ const Post = ({
 
   const textData = content ? prepareContent(content.childMarkdownRemark.html) : ''
   const popupStyles = {
-    paddingTop: paddingTopValue,
-    width: popupSize?.popupWidth ? `${popupSize.popupWidth}px` : `0`
+    paddingBlockStart: paddingTopValue,
+    inlineSize: popupSize?.popupWidth ? `${popupSize.popupWidth}px` : `0`
   }
     
   return (

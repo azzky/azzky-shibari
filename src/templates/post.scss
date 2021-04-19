@@ -13,12 +13,12 @@
 
 @media screen and (min-width: 850px){
     .post .masonry__gallery {
-        padding-top: 20px;
+        padding-block-end: 20px;
     }
 }
 
 @media screen and (min-width: 1441px) {
     .post .masonry__gallery {
-        padding-top: 40px;
+        padding-block-start: 40px;
     }
 }

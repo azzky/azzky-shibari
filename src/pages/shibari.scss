@@ -1,7 +1,7 @@
 .filters {
     &__list {
-        margin-bottom: 15px;
-        padding-top: 15px;
+        margin-block-end: 15px;
+        padding-block-start: 15px;
         overflow: auto;
         white-space: nowrap;
     }
@@ -31,7 +31,7 @@
 @media screen and (min-width: 768px) {
     .filters {
         &__list {
-            padding-top: 0;
+            padding-block-start: 0;
             display: grid;
             grid-auto-flow: column;
             justify-content: center;
