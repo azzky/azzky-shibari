@@ -48,6 +48,7 @@
     "react-share": "^4.4.0"
   },
   "devDependencies": {
-    "gatsby-plugin-remove-trailing-slashes": "^3.3.0"
+    "gatsby-plugin-remove-trailing-slashes": "^3.3.0",
+    "sass": "^1.32.11"
   }
 }

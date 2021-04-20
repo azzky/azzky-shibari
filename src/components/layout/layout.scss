@@ -1,4 +1,4 @@
-@import '../../styles/mixins';
+@use '../../styles/mixins' as mixin;
 main {
     min-block-size: calc(100vh - var(--hero-height));
     background-color: var(--color-white);
@@ -96,7 +96,7 @@ main {
     .hero {
         &__description {
             inset-block-start: 280px;
-            @include hero-element;
+            @include mixin.hero-element;
             max-inline-size: 810px;
             block-size: 100%;
         }
@@ -108,7 +108,7 @@ main {
         .hero__title {
             inset-block-start: 150px;
             font-size: 2.125rem;
-            @include hero-element;
+            @include mixin.hero-element;
         }
     }
 }

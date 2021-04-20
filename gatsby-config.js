@@ -114,7 +114,12 @@ module.exports = {
       },
     },
     `@contentful/gatsby-transformer-contentful-richtext`,
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("sass"),
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-remove-trailing-slashes`,
     {

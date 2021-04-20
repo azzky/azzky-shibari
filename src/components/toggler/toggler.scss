@@ -1,4 +1,4 @@
-@import '../../styles/_mixins.scss';
+@use '../../styles/_mixins.scss' as mixin;
 body:not(.nsfw) {
   .nsfw img {
     filter: blur(3px);
@@ -16,7 +16,7 @@ body:not(.nsfw) {
   inline-size: 50px;
   block-size: 26px;
   z-index: 3;
-  @include horizontally-center;
+  @include mixin.horizontally-center;
 
   &::before,
   &::after {

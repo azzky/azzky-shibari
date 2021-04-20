@@ -1,4 +1,4 @@
-@import '../../styles/mixins';
+@use '../../styles/mixins' as mixin;
 .header {
   display: grid;
   grid-template-columns: 4fr 1fr;
@@ -63,7 +63,7 @@
   &__wrapper {
     position: fixed;
     inset-block-start: 10px;
-    @include horizontally-center;
+    @include mixin.horizontally-center;
   }
 }
 
