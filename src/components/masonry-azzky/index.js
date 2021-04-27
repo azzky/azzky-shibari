@@ -186,14 +186,14 @@ const ResponsiveGallery = ({
         />
     )}
     <Filters uniqueArr={uniqueArr} changeFilter={changeFilter} lang={lang} />
-    <div className="masonry__gallery">
+    <section className="masonry__gallery">
         {getWidth && imgSubArray.map((column, index) => (
             <GalleryColumn
                 column={column}
                 index={index}
                 settings={settings} key={index} />
         ))}
-    </div>
+    </section>
     </>;
 }
 

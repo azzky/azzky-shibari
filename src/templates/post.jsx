@@ -108,7 +108,7 @@ const Post = ({
   return (
     <Layout toggler={type.type === 'shibari' ? true : false} lang={node_locale} hero={true} dark={true} url={link} post={true} nsfw={type.type === 'shibari' ? true : false}>
       <MetaPost post={node}/>
-      <div className="hero__wrapper">
+      <section className="hero__wrapper">
         <div className="hero__content">
           <h1 className="hero__title">{title}</h1>
           {!content ? '' : <div className="hero__description">
@@ -126,7 +126,7 @@ const Post = ({
           image={wallpaper ? wallpaper.gatsbyImageData : preview.gatsbyImageData}
           className={isWallNsfw ? 'nsfw' : ''}
           loading="lazy" alt={title} />
-      </div>
+      </section>
       <PostGallery nsfw={nsfw} title={title} gallery={gallery} nsfwarr={nsfwarr} />
       {!popup ? '' :
       <div role="dialog" className={isShowModal ? 'modal open ' + linkClass : 'modal ' + linkClass} onClick={() => showModal(false)}>

@@ -55,7 +55,7 @@ const Header = (props) => {
           <ul>
           {menuItems.map((el, i) => (
             <li key={i} className="menu__item">
-              <Link to={lang + el.link} activeClassName="active">
+              <Link to={lang + el.link} activeClassName="active" role="menuitem">
                 <svg width="24" height="24">
                 <use href={`#${el.name}`}></use>
                 </svg>
@@ -66,7 +66,7 @@ const Header = (props) => {
           </ul>
         </div>
       </nav>
-      <div className="settings__wrapper">
+      <section className="settings__wrapper">
         <button type="button" className="settings__trigger" aria-label="setings button"
         onClick={() => toggleSettings((prev) => !prev)}>
           <svg width="24" height="24">
@@ -86,7 +86,7 @@ const Header = (props) => {
           {!isTokenFound && <button className="subscription__button" onClick={() => allowNotifications()}>Allow now</button>}
           </div>
         </div>
-      </div>
+      </section>
     </header>
 )}
 
