@@ -6,8 +6,21 @@
     &__image {
         cursor: pointer;
     }
+
     .masonry__gallery {
         padding: 15px 15px 0;
+    }
+
+    .masonry__item {
+        position: relative;
+    }
+
+    .masonry__item--full-opener {
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block-start: 0;
+        inline-size: 100%;
+        block-size: 100%;
     }
 }
 
