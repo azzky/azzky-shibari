@@ -1,3 +1,5 @@
+@use '../styles/mixins.scss' as mixin;
+
 :root {
   --header-height: 60px;
   --color-highlight: #999;
@@ -95,14 +97,7 @@ button {
 }
 
 .visually-hidden {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+  @include mixin.visually-hidden;
 }
 
 @media screen and (min-width: 768px) {

@@ -97,6 +97,9 @@ module.exports = {
         include_favicon: true,
         cache_busting_mode: 'none',
         gcm_sender_id: '976120493038',
+        icon_options: {
+          purpose: `any maskable`,
+        },
         localize: [
           {
             start_url: '/ru/',
@@ -108,7 +111,13 @@ module.exports = {
         ]
       }
     },
-    // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-preconnect',
+      options: {
+        domains: ['*.ctfassets.net'],
+      },
+    },
+    `gatsby-plugin-offline`,
     // `gatsby-plugin-remove-serviceworker`,
     `gatsby-transformer-remark`,
     {

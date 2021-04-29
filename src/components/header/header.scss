@@ -48,10 +48,6 @@
     }
   }
 
-  &__label {
-    display: none;
-  }
-
   &__button {
     display: none;
   }
@@ -70,6 +66,10 @@
 @media screen and (max-width: 768px) {
   .menu__item:first-child {
     display: none;
+  }
+
+  .menu__label {
+    @include mixin.visually-hidden;
   }
 
   .social__links {

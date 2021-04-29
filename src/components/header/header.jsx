@@ -52,9 +52,10 @@ const Header = (props) => {
           <span></span>
         </button>
         <div id="menu__list" className={`menu__list ${showMenu ? 'active' : ''}`}>
-          <ul>
+          <ul // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+          role="menu">
           {menuItems.map((el, i) => (
-            <li key={i} className="menu__item">
+            <li key={i} className="menu__item" role="none">
               <Link to={lang + el.link} activeClassName="active" role="menuitem">
                 <svg width="24" height="24">
                 <use href={`#${el.name}`}></use>
