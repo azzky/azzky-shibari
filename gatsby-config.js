@@ -114,7 +114,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-preconnect',
       options: {
-        domains: ['*.ctfassets.net'],
+        domains: ['https://images.ctfassets.net'],
       },
     },
     `gatsby-plugin-offline`,
