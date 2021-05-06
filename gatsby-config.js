@@ -61,7 +61,7 @@ module.exports = {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://azzky.ru',
-        sitemap: 'https://azzky.ru/sitemap.xml',
+        sitemap: 'https://azzky.ru/new-sitemap.xml',
         env: {
           development: {
             policy: [{ userAgent: '*', disallow: ['/'] }]
