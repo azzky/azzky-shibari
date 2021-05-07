@@ -21,7 +21,7 @@ body:not(.nsfw) {
   &::before,
   &::after {
     position: absolute;
-    inset-block-start: 50%;
+    top: 50%;
     transform: translateY(-50%);
   }
 
@@ -58,10 +58,10 @@ body:not(.nsfw) {
   .slider {
     position: absolute;
     cursor: pointer;
-    inset-block-start: 0;
+    top: 0;
     inset-inline-start: 0;
     inset-inline-end: 0;
-    inset-block-end: 0;
+    bottom: 0;
     background-color: var(--color-black);
     border-radius: 26px;
     transition: .4s;
@@ -72,7 +72,7 @@ body:not(.nsfw) {
       block-size: 16px;
       inline-size: 16px;
       inset-inline-start: 3px;
-      inset-block-end: 5px;
+      bottom: 5px;
       background-color: var(--color-white);
       transition: .4s;
       border-radius: 50%;

@@ -5,8 +5,8 @@
   justify-content: center;
   align-items: center;
   position: fixed;
-  inset-block-end: 0;
-  inset-block-start: auto;
+  bottom: 0;
+  top: auto;
   z-index: 2;
   pointer-events: none;
   inline-size: 100%;
@@ -58,7 +58,7 @@
   
   &__wrapper {
     position: fixed;
-    inset-block-start: 10px;
+    top: 10px;
     @include mixin.horizontally-center;
   }
 }
@@ -90,8 +90,8 @@
 
 @media screen and (min-width: 768px) {
   .header {
-    inset-block-start: 0;
-    inset-block-end: auto;
+    top: 0;
+    bottom: auto;
     display: flex;
 
     hr {
@@ -107,7 +107,7 @@
     &__wrapper {
       transform: none;
       inset-inline-start: 20px;
-      inset-block-start: auto;
+      top: auto;
     }
   }
 
@@ -121,7 +121,7 @@
       position: absolute;
       inset-inline-start: 0;
       inline-size: 100%;
-      inset-block-start: var(--header-height);
+      top: var(--header-height);
       block-size: calc(100vh - var(--header-height));
       opacity: 0;
       z-index: -2;
@@ -158,7 +158,7 @@
         inline-size: 5px;
         position: absolute;
         background-color:var(--color-black);
-        inset-block-start: 0;
+        top: 0;
         transition: all .3s ease-in;
         pointer-events: none;
         
