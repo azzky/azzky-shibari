@@ -25,15 +25,43 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        output: `/sitemap.xml`,
-        exclude: [`/ru/404/`],
+        output: `/new-sitemap.xml`,
+        exclude: [`/ru/404`, `/404.html`, `/success`, `/ru/success`, `/contact`, `/ru/contact`],
+        query: `{
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage {
+            nodes {
+              path
+              context {
+                modified
+              }
+            }
+          }
+        }`,
+        resolveSiteUrl: ({ site, allSitePage }) => {
+          return site.siteMetadata.siteUrl
+        },
+        serialize: ({ site, allSitePage }) =>
+          allSitePage.nodes.map(node => {
+            const today = new Date()
+            return {
+              url: `${site.siteMetadata.siteUrl}${node.path}`,
+              changefreq: `daily`,
+              priority: 0.7,
+              lastmodISO: node.context.modified ? node.context.modified : today.toISOString()
+            }
+          })
       }
     },
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
         host: 'https://azzky.ru',
-        sitemap: 'https://azzky.ru/sitemap.xml',
+        sitemap: 'https://azzky.ru/new-sitemap.xml',
         env: {
           development: {
             policy: [{ userAgent: '*', disallow: ['/'] }]
@@ -69,6 +97,9 @@ module.exports = {
         include_favicon: true,
         cache_busting_mode: 'none',
         gcm_sender_id: '976120493038',
+        icon_options: {
+          purpose: `any maskable`,
+        },
         localize: [
           {
             start_url: '/ru/',
@@ -80,7 +111,13 @@ module.exports = {
         ]
       }
     },
-    // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-preconnect',
+      options: {
+        domains: ['https://images.ctfassets.net'],
+      },
+    },
+    `gatsby-plugin-offline`,
     // `gatsby-plugin-remove-serviceworker`,
     `gatsby-transformer-remark`,
     {
@@ -114,7 +151,12 @@ module.exports = {
       },
     },
     `@contentful/gatsby-transformer-contentful-richtext`,
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("sass"),
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-remove-trailing-slashes`,
     {

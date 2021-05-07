@@ -39,7 +39,8 @@ const Shibari = () => {
                 width: 400
                 quality: 100
                 placeholder: BLURRED
-                formats: [JPG, WEBP]
+                formats: [JPG, WEBP],
+                breakpoints: [400, 800, 1080, 1366, 1440, 1920]
               )
             }
             tags
@@ -55,7 +56,7 @@ const Shibari = () => {
       allContentfulPost: { edges } }) => (
       <Layout toggler={true} hero={true} dark={true} heroType="video" classes="shibari" lang="en" url="/" nsfw={true}>
         <MetaHome data={data} />
-        <div className="hero__wrapper">
+        <section className="hero__wrapper">
           <div className="hero__content">
             <h1 className="hero__title">{data.h1}</h1>
             <div className="hero__description">
@@ -68,7 +69,7 @@ const Shibari = () => {
                 <source src="/background.mp4" type="video/mp4" />
               </video>
             </div>
-        </div>
+        </section>
         
         
         <PostsGallery classes="shibari" edges={edges} lang="en" />

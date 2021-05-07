@@ -3,10 +3,10 @@
 
   &>.content>.gatsby-image-wrapper {
     position: absolute !important;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100vh;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: 100%;
+    block-size: 100vh;
     z-index: -2;
   }
 }
@@ -18,13 +18,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100%;
+      inline-size: 100%;
     }
 
     &__title {
       font-weight: 900;
       font-size: 9.375rem;
-      margin-bottom: 30px;
+      margin-block-end: 30px;
     }
 
     &__description {
@@ -32,11 +32,11 @@
     }
 
     &__button {
-      margin-top: 56px;
+      margin-block-start: 56px;
       line-height: 70px;
       text-transform: uppercase;
       background-color: var(--color-black);
-      width: 100%;
+      inline-size: 100%;
       color: var(--color-white);
       text-align: center;
     }
@@ -45,8 +45,8 @@
   ~ footer {
     background-color: transparent;
     position: absolute;
-    bottom: 0;
-    width: 100%;
+    inset-block-end: 0;
+    inline-size: 100%;
   }
 }
 
@@ -57,18 +57,18 @@
         align-items: center;
         flex-direction: column;
         position: absolute;
-        right: 204px;
-        left: auto;
-        width: auto;
-        top: 80px;
+        inset-inline-end: 204px;
+        inset-inline-start: auto;
+        inline-size: auto;
+        inset-block-start: 80px;
         text-align: center;
-        height: auto;
+        block-size: auto;
       }
   
       &__title {
         position: static;
         font-size: 12.5rem;
-        margin-bottom: 6px;
+        margin-block-end: 6px;
       }
   
       &__description {
@@ -76,7 +76,7 @@
       }
   
       &__button {
-        width: 350px;
+        inline-size: 350px;
       }
     }
   }

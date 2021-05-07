@@ -101,14 +101,14 @@ const Post = ({
 
   const textData = content ? prepareContent(content.childMarkdownRemark.html) : ''
   const popupStyles = {
-    paddingTop: paddingTopValue,
-    width: popupSize?.popupWidth ? `${popupSize.popupWidth}px` : `0`
+    paddingBlockStart: paddingTopValue,
+    inlineSize: popupSize?.popupWidth ? `${popupSize.popupWidth}px` : `0`
   }
     
   return (
     <Layout toggler={type.type === 'shibari' ? true : false} lang={node_locale} hero={true} dark={true} url={link} post={true} nsfw={type.type === 'shibari' ? true : false}>
       <MetaPost post={node}/>
-      <div className="hero__wrapper">
+      <section className="hero__wrapper">
         <div className="hero__content">
           <h1 className="hero__title">{title}</h1>
           {!content ? '' : <div className="hero__description">
@@ -126,7 +126,7 @@ const Post = ({
           image={wallpaper ? wallpaper.gatsbyImageData : preview.gatsbyImageData}
           className={isWallNsfw ? 'nsfw' : ''}
           loading="lazy" alt={title} />
-      </div>
+      </section>
       <PostGallery nsfw={nsfw} title={title} gallery={gallery} nsfwarr={nsfwarr} />
       {!popup ? '' :
       <div role="dialog" className={isShowModal ? 'modal open ' + linkClass : 'modal ' + linkClass} onClick={() => showModal(false)}>
@@ -157,7 +157,8 @@ export const query = graphql`
               quality: 100
               placeholder: BLURRED
               formats: [AUTO, WEBP]
-              width: 1920
+              width: 1920,
+              breakpoints: [400, 800, 1080, 1366, 1440, 1920]
             )
             file {
               url
@@ -168,7 +169,8 @@ export const query = graphql`
               quality: 100
               placeholder: BLURRED
               formats: [AUTO, WEBP]
-              width: 1920
+              width: 1920,
+              breakpoints: [400, 800, 1080, 1366, 1440, 1920]
             )
             file {
               url

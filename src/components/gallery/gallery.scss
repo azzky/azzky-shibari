@@ -22,24 +22,24 @@ $image-size: 400px;
         justify-content: center;
 
         & > * + * {
-            margin-left: 20px;
+            margin-inline-start: 20px;
         }
     }
     
     &__item {
-        margin-bottom: 15px;
+        margin-block-end: 15px;
     }
     
     &__column {
-        width: 100%;
-        max-width: 400px;
+        inline-size: 100%;
+        max-inline-size: 400px;
     }
 }
 
 @media screen and (min-width: 850px) {
     .masonry {
         &__item {
-            margin-bottom: 20px;
+            margin-block-end: 20px;
         }
         
     }
@@ -51,12 +51,12 @@ $image-size: 400px;
             padding: 0 42px;
 
             & > * + * {
-                margin-left: 40px;
+                margin-inline-start: 40px;
             }
         }
 
         &__item {
-            margin-bottom: 40px;
+            margin-block-end: 40px;
         }
         
     }
@@ -67,7 +67,7 @@ $image-size: 400px;
         column-gap: 20px;
         
         & > * + * {
-            margin-left: 0;
+            margin-inline-start: 0;
         }
     }
 
@@ -76,7 +76,7 @@ $image-size: 400px;
             column-gap: 40px;
 
             & > * + * {
-                margin-left: 0;
+                margin-inline-start: 0;
             }
         }
     }

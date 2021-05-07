@@ -8,25 +8,26 @@ import useWidth from "./windowsize"
 
 import "react-image-lightbox/style.css"
 
-// const GalleryImage = ({
-//     url,
-//     alt}) => {
-//         // console.log(url);
-//         const srcSet = url.images.sources?.[0].srcSet
-//         const placeholder = url.placeholder.fallback
-//         return <img srcSet={srcSet} alt={alt} src={placeholder} width={url.width * 2} height={url.height * 2} />
-// }
-
 const GalleryItem = ({
     img,
     imgIndex,
     index,
     settings}) => {
-    return (
-        <figure className={`masonry__item
-                ${img.nsfw ? 'nsfw' : ''}
-                ${settings.hover ? 'hover' : ''}
-                `} role="presentation"
+        return (
+        settings.useLinks ?
+            <figure itemScope itemType="http://schema.org/ImageObject"
+            className={`masonry__item${img.nsfw ? ' nsfw' : ''}${settings.hover ? ' hover' : ''}`}>
+                <figcaption itemProp="name" className="visually-hidden">{img.title}</figcaption>
+                <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
+                    <GatsbyImage itemProp="contentUrl" image={img.data} alt={img.title} />
+                </Link>
+            </figure>
+            :
+            <figure itemScope itemType="http://schema.org/ImageObject"
+            className={`masonry__item${img.nsfw ? ' nsfw' : ''}${settings.hover ? ' hover' : ''}`}>
+                <figcaption itemProp="name" className="visually-hidden">{`${img.title} - gallery image ${img.number}`}</figcaption>
+                <GatsbyImage itemProp="contentUrl" image={img.data} alt={`${img.title} - gallery image ${img.number}`} />
+                <button className="masonry__item--full-opener"
                 onClick={() =>
                     settings.useLightBox &&
                     settings.lightBoxDispatch({
@@ -35,14 +36,9 @@ const GalleryItem = ({
                             imgIndex === 0
                                 ? index
                                 : index + imgIndex * settings.columnNumber,
-                    })
-                }>
-                    {settings.useLinks
-                ? <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
-                    <GatsbyImage image={img.data} alt={img.alt} />
-                    </Link>
-                : <GatsbyImage image={img.data} alt={`${img.title} - ${img.number}`} />
-            }
+                    })}>
+                    <span className="visually-hidden">Open full image</span>
+                </button>
             </figure>
     )
 }
@@ -182,14 +178,14 @@ const ResponsiveGallery = ({
         />
     )}
     <Filters uniqueArr={uniqueArr} changeFilter={changeFilter} lang={lang} />
-    <div className="masonry__gallery">
+    <section className="masonry__gallery">
         {getWidth && imgSubArray.map((column, index) => (
             <GalleryColumn
                 column={column}
                 index={index}
                 settings={settings} key={index} />
         ))}
-    </div>
+    </section>
     </>;
 }
 

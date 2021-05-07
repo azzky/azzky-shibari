@@ -1,8 +1,8 @@
-const path = require(`path`);
-const fetch = require(`node-fetch`);
+const path = require(`path`)
+const fetch = require(`node-fetch`)
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   return graphql(`
     {
         allContentfulPost {
@@ -13,6 +13,7 @@ exports.createPages = ({ graphql, actions }) => {
               type
             }
             node_locale
+            updatedAt(formatString: "YYYY-MM-DD")
           }
         }
       }
@@ -28,9 +29,10 @@ exports.createPages = ({ graphql, actions }) => {
         component: path.resolve(`./src/templates/post.jsx`),
         context: {
           slug: node.link,
-          lang: node.node_locale
+          lang: node.node_locale,
+          modified: node.updatedAt
         }
-      });
-    });
-  });
-};
+      })
+    })
+  })
+}

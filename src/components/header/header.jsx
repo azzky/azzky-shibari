@@ -6,6 +6,7 @@ import { Sidebar } from "../sidebar/sidebar"
 import { getToken } from '../../firebase'
 
 import './header.scss'
+import './setting-block.scss'
 
 const Header = (props) => {
   const menuItems = [
@@ -51,10 +52,11 @@ const Header = (props) => {
           <span></span>
         </button>
         <div id="menu__list" className={`menu__list ${showMenu ? 'active' : ''}`}>
-          <ul>
+          <ul // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+          role="menu">
           {menuItems.map((el, i) => (
-            <li key={i} className="menu__item">
-              <Link to={lang + el.link} activeClassName="active">
+            <li key={i} className="menu__item" role="none">
+              <Link to={lang + el.link} activeClassName="active" role="menuitem">
                 <svg width="24" height="24">
                 <use href={`#${el.name}`}></use>
                 </svg>
@@ -65,7 +67,7 @@ const Header = (props) => {
           </ul>
         </div>
       </nav>
-      <div className="settings__wrapper">
+      <section className="settings__wrapper">
         <button type="button" className="settings__trigger" aria-label="setings button"
         onClick={() => toggleSettings((prev) => !prev)}>
           <svg width="24" height="24">
@@ -85,7 +87,7 @@ const Header = (props) => {
           {!isTokenFound && <button className="subscription__button" onClick={() => allowNotifications()}>Allow now</button>}
           </div>
         </div>
-      </div>
+      </section>
     </header>
 )}
 

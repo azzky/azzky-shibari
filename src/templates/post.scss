@@ -6,19 +6,32 @@
     &__image {
         cursor: pointer;
     }
+
     .masonry__gallery {
         padding: 15px 15px 0;
+    }
+
+    .masonry__item {
+        position: relative;
+    }
+
+    .masonry__item--full-opener {
+        position: absolute;
+        inset-inline-start: 0;
+        inset-block-start: 0;
+        inline-size: 100%;
+        block-size: 100%;
     }
 }
 
 @media screen and (min-width: 850px){
     .post .masonry__gallery {
-        padding-top: 20px;
+        padding-block-end: 20px;
     }
 }
 
 @media screen and (min-width: 1441px) {
     .post .masonry__gallery {
-        padding-top: 40px;
+        padding-block-start: 40px;
     }
 }
