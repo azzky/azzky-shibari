@@ -106,7 +106,7 @@
   .logo {
     &__wrapper {
       transform: none;
-      inset-inline-start: 20px;
+      left: 20px;
       top: auto;
     }
   }
@@ -119,7 +119,7 @@
   .menu {
     &__list {
       position: absolute;
-      inset-inline-start: 0;
+      left: 0;
       inline-size: 100%;
       top: var(--header-height);
       block-size: calc(100vh - var(--header-height));
@@ -164,17 +164,17 @@
         
         &:first-child {
           block-size: 50%;
-          inset-inline-start: 2.5px;
+          left: 2.5px;
         }
         
         &:nth-child(2) {
           block-size: 75%;
-          inset-inline-start: calc(50% - 3px);
+          left: calc(50% - 3px);
         }
         
         &:last-child {
           block-size: 100%;
-          inset-inline-end: 2.5px;
+          right: 2.5px;
         }
       }
       &.active {

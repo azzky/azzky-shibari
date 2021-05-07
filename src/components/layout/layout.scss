@@ -21,7 +21,7 @@ main {
         block-size: 100vh;
         z-index: 1;
         top: 0;
-        inset-inline-start: 0;
+        left: 0;
         overflow: hidden;
 
         &::before {
@@ -71,7 +71,7 @@ main {
 .video-wrapper {
     position: absolute;
     top: 0;
-    inset-inline-start: 0;
+    left: 0;
     inline-size: 100%;
     block-size: 100%;
     z-index: -2;
@@ -86,7 +86,7 @@ main {
         min-inline-size: 133.15vh; /* Given actual ratio, 24.9/18.7*100 = 133.15 */
         position: absolute;
         top: 50%;
-        inset-inline-start: 50%;
+        left: 50%;
         transform: translate(-50%, -50%);
     // filter: grayscale(1); /* comment on if wanted color */
     }

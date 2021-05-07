@@ -3,7 +3,7 @@
       position: absolute;
       bottom: var(--header-height);
       inline-size: 100%;
-      inset-inline-start: 0;
+      left: 0;
       display: grid;
       justify-content: center;
       block-size: 70vh;
@@ -41,7 +41,7 @@
     .settings {
         &__wrapper {
           position: absolute;
-          inset-inline-end: 0;
+          right: 0;
         }
     
         &__trigger {
@@ -53,9 +53,9 @@
           z-index: 2;
           block-size: 100vh;
           inline-size: 100px;
-          inset-inline-end: 0;
+          right: 0;
           top: -46px;
-          inset-inline-start: auto;
+          left: auto;
           display: grid;
           grid-template-rows: var(--header-height) 1fr auto 1fr 80px;
           align-items: center;
