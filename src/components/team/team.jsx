@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import Maindata from '../../constants'
 import './team.scss'
 
@@ -9,15 +9,15 @@ const Models = (props) => {
             <div className="people-card">
                 <p>
                     {models.length > 1 ?
-                    props.lang === 'ru' ? 'Модели: ' : 'Models: ' :
-                    props.lang === 'ru' ? 'Модель: ' : 'Model: '}
+                    props.lang === 'ru' ? 'Модели:' : 'Models:' :
+                    props.lang === 'ru' ? 'Модель:' : 'Model:'}
                     {models.map((model,i) => (
-                        <span key={i}>
+                        <Fragment key={i}>
                             <Model model={model}  />
                             {models.length > 1 && i !== models.length - 1 ?
-                            <span>{i < models.length - 2 ? ', ' : ' and '}</span>
+                            <Fragment>{i < models.length - 2 ? ', ' : ' and '}</Fragment>
                             : ''}
-                        </span>
+                        </Fragment>
                         ))}
                 </p>
             </div>
@@ -30,22 +30,22 @@ const Models = (props) => {
 const Model = (props) => {
     const model = props.model
     return(
-        <a href={model.url}> {model.name}</a>
+        <a href={model.url}>&nbsp;{model.name}</a>
     )
 }
 
 const AllByMe = (props) => (
     <div className="people-card">
         <p>{props.lang === 'ru' ? 'Фото и шибари: ' : 'Photo and shibari by '}
-            <a href={Maindata.socials.instagram_nsfw}>{props.lang === 'ru' ? ' я' : ' me'}</a>
+            <a href={Maindata.socials.instagram_nsfw}>&nbsp;{props.lang === 'ru' ? 'я' : 'me'}</a>
         </p>
     </div>
 )
 
 const Nawashi = (props) => (
     <div className="people-card">
-        <p>{props.lang === 'ru' ? 'Шибари: ' : 'Shibari by '}
-            <a href={Maindata.socials.instagram_nsfw}>{props.lang === 'ru' ? ' я' : ' me'}</a>
+        <p>{props.lang === 'ru' ? 'Шибари:' : 'Shibari by'}
+            <a href={Maindata.socials.instagram_nsfw}>&nbsp;{props.lang === 'ru' ? 'я' : 'me'}</a>
         </p>
     </div>
 )
@@ -56,7 +56,7 @@ const Photographer = (props) => {
         return(
             <div className="people-card">
                 <p>{props.lang === 'ru' ? 'Фотограф:' : 'Photo:'}
-                    <a href={photographer.url}> {photographer.name}</a>
+                    <a href={photographer.url}>&nbsp;{photographer.name}</a>
                 </p>
             </div>
         )
@@ -71,7 +71,7 @@ const Muah = (props) => {
         return(
             <div className="people-card">
                 <p>{props.lang === 'ru' ? 'Визажист: ' : 'Muah: '}
-                    <a href={muah.url}> {muah.name}</a>
+                    <a href={muah.url}>&nbsp;{muah.name}</a>
                 </p>
             </div>
         )
