@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react"
+import React, { useState, useReducer, useRef } from "react"
 import { Link } from "gatsby"
 import ImagesLightBox from "../gallery/lightbox"
 import { lightBoxReducer } from "./reducers"
@@ -94,7 +94,6 @@ const ResponsiveGallery = ({
             getWidth = true
     }
     
-    
     // end masonry logic here
     
     // start getting unique filters from all posts collected
@@ -124,33 +123,18 @@ const ResponsiveGallery = ({
         }
     }
 
-    useEffect(() => {
-        const filterWrapper = document.querySelector('[data-filter="' + localFilter + '"]')
-        if(classes && filterWrapper) {
-            filterWrapper.click()
-            filterWrapper.classList.add('active')
-        }
-    })
+    const activeFilter = useRef(localFilter)
+    const [activeFilterName, setActiveFilter] = useState(activeFilter.current)
 
-    const [activeFilter, setActiveFilter] = useState(localFilter)
-
-    const changeFilter = (e) => {
-        const el = e.target
-        const selectedFilter = e.target.getAttribute('data-filter')
-        const siblings = [...el.parentElement.children]
-        siblings.forEach(sib => sib.classList.remove('active'))
-        el.classList.add('active')
-        
-        localStorage.setItem('filter-' + classes, selectedFilter)
-        
-        setActiveFilter((oldfilter) => {
-            return selectedFilter
-        })
+    const handleFilterChange = (filter) => {
+        setActiveFilter(filter)
+        localFilter = filter
+        localStorage.setItem('filter-' + classes, localFilter)
     }
 
     if(filters) {
         const tempArr = [...images]
-        images = tempArr.filter((node) => node.tags && node.tags.includes(activeFilter))
+        images = tempArr.filter((node) => node.tags && node.tags.includes(activeFilterName))
     }
 
     let imgSubArray = [...Array(columnNumber)].map((_, i) => [])
@@ -177,7 +161,7 @@ const ResponsiveGallery = ({
         lightBoxDispatch={lightBoxDispatch}
         />
     )}
-    <Filters uniqueArr={uniqueArr} changeFilter={changeFilter} lang={lang} />
+    <Filters uniqueArr={uniqueArr} handleFilterChange={handleFilterChange} lang={lang} activeFilter={activeFilterName} />
     <section className="masonry__gallery">
         {getWidth && imgSubArray.map((column, index) => (
             <GalleryColumn
@@ -186,7 +170,7 @@ const ResponsiveGallery = ({
                 settings={settings} key={index} />
         ))}
     </section>
-    </>;
+    </>
 }
 
 export default ResponsiveGallery

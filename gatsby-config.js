@@ -158,6 +158,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-remove-trailing-slashes`,
     {
       resolve: "gatsby-plugin-firebase",
