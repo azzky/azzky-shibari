@@ -11,11 +11,14 @@ import '@fontsource/montserrat/900.css'
 import './layout.scss'
 
 const Layout = (props) => {
-  const heroType = props.heroType
-  const isHero = props.hero
-  const classes = props.classes
-  const lang = props.lang
-  const url = props.url
+  const {
+    heroType,
+    hero: isHero,
+    classes,
+    lang,
+    url
+  } = props;
+  
   const schemaLogo = {
     "@context": "https://schema.org",
     "@type": "Organization",

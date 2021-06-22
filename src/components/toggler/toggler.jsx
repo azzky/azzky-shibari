@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import './toggler.scss'
+import { Wrapper } from './styled'
 
 const Toggler = () => {
   let localState = false
@@ -24,12 +24,12 @@ const Toggler = () => {
   })
 
   return (
-    <label className="switch nsfw-switch">
-      <input type="checkbox" className="nsfw--trigger" onChange={toggleNsfw} defaultChecked={pageNsfw}/>
-      <span className="slider round"></span>
-      <span className="label-off label">sfw</span>
-      <span className="label-on label">nsfw</span>
-    </label>
+    <Wrapper nsfw={pageNsfw}>
+      <input  type="checkbox"
+              onChange={toggleNsfw}
+              defaultChecked={pageNsfw}/>
+      {pageNsfw ? 'nsfw' : 'sfw'}
+    </Wrapper>
   )
 }
 

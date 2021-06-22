@@ -3,7 +3,24 @@ import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
 import Maindata from '../../constants'
 
-import * as styles from './styles.module.scss'
+import { Wrapper } from './styled'
+
+const ActiveLink = (props) => {
+    return (
+        <Link to={props.to}>
+            {props.children}
+        </Link>
+    )
+}
+
+const InactiveLink = (props) => {
+    return (
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        <a role="link" aria-disabled="true">
+            {props.children}
+        </a>
+    )
+}
 
 const Switcher = (props) => {
     const origin = Maindata.url
@@ -11,20 +28,26 @@ const Switcher = (props) => {
     const postPrefix = props.post === true ? '/shibari' : ''
     let locale
     
-    if(props.lang === 'ru') {
-        locale = 'ru'
-    } else {
-        locale = 'en'
-    }
+    locale = props.lang === 'ru' ? 'ru' : 'en'
     return(
     <>
     <Helmet htmlAttributes={{ lang: locale }}>
         <meta charSet="utf-8" />
     </Helmet>
-    <div className={styles.list}>
-        <Link to={props.lang !== 'ru' ? origin + url : origin + postPrefix + url.replace('/ru', '')} className={`${styles.item} ${props.lang !== 'ru' ? styles.active : ''}`}>en</Link>
-        <Link to={props.lang === 'ru' ? origin + url : origin + '/ru' + postPrefix + url} className={`${styles.item} ${props.lang === 'ru' ? styles.active : ''}`}>ru</Link>
-    </div>
+    <Wrapper>
+        {props.lang === 'ru' ? (
+        <>
+            <ActiveLink to={origin + postPrefix + url.replace('/ru', '')}>en</ActiveLink>
+            <InactiveLink>ru</InactiveLink>
+        </>
+        ) : (
+        <>
+            <InactiveLink>en</InactiveLink>
+            <ActiveLink to={origin + '/ru' + postPrefix + url}>ru</ActiveLink>
+        </>
+        )}
+        
+    </Wrapper>
     </>
 )}
 
