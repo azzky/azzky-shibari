@@ -77,7 +77,7 @@ const Header = (props) => {
         <div className={`settings__block${showSettings ? ' active' : ''}`}>
           <LangSwitcher lang={props.lang} url={props.url} post={props.post} />
           <hr />
-          <Sidebar nsfw={props.nsfw} />
+          <Sidebar />
           <hr />
           <NsfwSwitcher />
           <hr />

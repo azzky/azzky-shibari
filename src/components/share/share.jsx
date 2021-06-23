@@ -10,17 +10,16 @@ import {
     VKShareButton
 } from "react-share"
 
-import './share.scss'
+import Wrapper from './styled'
 
 const Share = (props) => {
-    const title = props.title
     const { href } = useLocation()
-    const image = props.preview
+    const { title, preview: image } = props
 
 
     return(
-        <div className="react-share__group">
-            <p className="react-share__label">{'Share via: '}</p>
+        <Wrapper>
+            <p>{'Share via: '}</p>
             <FacebookShareButton quote={title} url={href}>
                 <svg width="24" height="24">
                 <use href="#facebook"></use>
@@ -51,7 +50,7 @@ const Share = (props) => {
                 <use href="#vk"></use>
                 </svg>
             </VKShareButton>
-        </div>
+        </Wrapper>
     )
 }
 

@@ -1,4 +1,9 @@
-.social__links {
+import styled from "styled-components"
+
+const Wrapper = styled.div`
+    display: flex;
+    justify-content: center;
+
     svg {
         block-size: 40px;
         inline-size: 40px;
@@ -12,10 +17,8 @@
     a {
         line-height: 0;
     }
-}
 
-@media screen and (min-width: 768px) {
-    .social__links {
+    @media (min-width: 768px) {
         display: grid;
         gap: 25px;
         margin: 25px 0;
@@ -31,4 +34,6 @@
             transform: none;
         }
     }
-}
+`;
+
+export { Wrapper }

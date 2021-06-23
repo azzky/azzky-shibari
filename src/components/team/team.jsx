@@ -1,98 +1,93 @@
 import React, { Fragment } from "react"
 import Maindata from '../../constants'
-import './team.scss'
+import config from './config'
+import { Wrapper } from './styled'
 
 const Models = (props) => {
-    const models = props.models
-    if(models) {
-        return(
-            <div className="people-card">
-                <p>
-                    {models.length > 1 ?
-                    props.lang === 'ru' ? 'Модели:' : 'Models:' :
-                    props.lang === 'ru' ? 'Модель:' : 'Model:'}
-                    {models.map((model,i) => (
-                        <Fragment key={i}>
-                            <Model model={model}  />
-                            {models.length > 1 && i !== models.length - 1 ?
-                            <Fragment>{i < models.length - 2 ? ', ' : ' and '}</Fragment>
-                            : ''}
-                        </Fragment>
-                        ))}
-                </p>
-            </div>
-        )
-    } else {
-        return null
-    }
-}
-
-const Model = (props) => {
-    const model = props.model
-    return(
-        <a href={model.url}>&nbsp;{model.name}</a>
+    const { models, lang } = props
+    return(models ?
+        <p>
+            {models.length > 1 ?
+            config.manyModels[lang] :
+            config.singleModel[lang]}
+            {models.map((model,i) => (
+                <Fragment key={i}>
+                    <Model model={model}  />
+                    {models.length > 1 && i !== models.length - 1 ?
+                    <Fragment>{i < models.length - 2 ? ',' : ' and'}</Fragment>
+                    : ''}
+                </Fragment>
+                ))}
+        </p> : null
     )
 }
 
-const AllByMe = (props) => (
-    <div className="people-card">
-        <p>{props.lang === 'ru' ? 'Фото и шибари: ' : 'Photo and shibari by '}
-            <a href={Maindata.socials.instagram_nsfw}>&nbsp;{props.lang === 'ru' ? 'я' : 'me'}</a>
-        </p>
-    </div>
-)
+const Model = (props) => {
+    const {
+        model: {
+            url,
+            name
+        }
+    } = props
+    return(
+        <a href={url}>{config.space}{name}</a>
+    )
+}
 
-const Nawashi = (props) => (
-    <div className="people-card">
-        <p>{props.lang === 'ru' ? 'Шибари:' : 'Shibari by'}
-            <a href={Maindata.socials.instagram_nsfw}>&nbsp;{props.lang === 'ru' ? 'я' : 'me'}</a>
+const AllByMe = (props) => {
+    const { lang } = props
+    return(
+        <p>{config.allByMeText[lang]}
+            <a href={Maindata.socials.instagram_nsfw}>{config.space}{config.meText[props.lang]}</a>
         </p>
-    </div>
-)
+    )
+}
+
+const Nawashi = (props) => {
+    const { lang } = props
+    return(
+    <p>{config.nawaText[lang]}
+        <a href={Maindata.socials.instagram_nsfw}>{config.space}{config.meText[props.lang]}</a>
+    </p>
+    )
+}
 
 const Photographer = (props) => {
-    const photographer = props.photographer
-    if(photographer) {
-        return(
-            <div className="people-card">
-                <p>{props.lang === 'ru' ? 'Фотограф:' : 'Photo:'}
-                    <a href={photographer.url}>&nbsp;{photographer.name}</a>
-                </p>
-            </div>
-        )
-    } else {
-        return null
-    }
+    const { photographer, lang }  = props
+    return( photographer ? 
+        <p>{config.photographerText[lang]}
+            <a href={photographer.url}>{config.space}{photographer.name}</a>
+        </p> : null
+    )
 }
 
 const Muah = (props) => {
-    const muah = props.muah
-    if(muah) {
-        return(
-            <div className="people-card">
-                <p>{props.lang === 'ru' ? 'Визажист: ' : 'Muah: '}
-                    <a href={muah.url}>&nbsp;{muah.name}</a>
-                </p>
-            </div>
-        )
-    } else {
-        return null
-    }
+    const { muah, lang } = props
+    return(muah ? 
+        <p>{config.muahText[lang]}
+            <a href={muah.url}>{config.space}{muah.name}</a>
+        </p> : null
+    )
 }
 
 const Team = (props) => {
+    const {
+        models,
+        lang,
+        photographer,
+        muah
+    } = props
     return(
-        <div className="people-card__list">
-            <Models models={props.models} lang={props.lang} />
-            {props.photographer && props.photographer.name === Maindata.author ?
-            <AllByMe lang={props.lang} />
+        <Wrapper>
+            <Models models={models} lang={lang} />
+            {photographer && photographer.name === Maindata.author ?
+            <AllByMe lang={lang} />
             : <>
-            {props.photographer && <Photographer photographer={props.photographer} lang={props.lang} />}
-            <Muah muah={props.muah} lang={props.lang} />
-            <Nawashi lang={props.lang} />
+            {photographer && <Photographer photographer={photographer} lang={lang} />}
+            <Muah muah={muah} lang={lang} />
+            <Nawashi lang={lang} />
             </>}
-            
-        </div>
+        </Wrapper>
     )
 }
 

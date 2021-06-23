@@ -1,38 +1,28 @@
 import React from 'react'
 import Maindata from '../../constants'
-import './sidebar.scss'
+import { Wrapper } from './styled'
 
-const Sidebar = (props) => {
+const Sidebar = () => {
     return (
-        <div className="social__links">
+        <Wrapper>
             <NsfwIcons />
-        </div>
+        </Wrapper>
     )
 }
 
-const NsfwIcons = (props) => (
+const NsfwIcons = () => {
+    const socialArray = ['instagram', 'telegram', 'twitter']
+    return(
     <>
-    <a href={Maindata.socials.instagram_nsfw} rel="me noreferrer" target="_blank" aria-label="instagram link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#instagram"></use>
-        </svg>
-    </a>
-    <a href={Maindata.socials.telegram} rel="me noreferrer" target="_blank" aria-label="telegram link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#telegram"></use>
-        </svg>
-    </a>
-    <a href={Maindata.socials.twitter} rel="me noreferrer" target="_blank" aria-label="twitter link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#twitter"></use>
-        </svg>
-    </a>
-    {/* <a rel="me noreferrer" href="https://kinbaku.club/@azzky" target="_blank" aria-label="mastodon link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#mastodon"></use>
-        </svg>
-    </a> */}
+    {socialArray.map((item)=>(
+        <a href={Maindata.socials[item]} rel="me noreferrer" target="_blank" aria-label={`${item} link`}>
+            <svg width="24" height="24">
+            <use href={`#${item}`}></use>
+            </svg>
+        </a>
+    ))}
     </>
-)
+    )
+}
 
 export { Sidebar, NsfwIcons }

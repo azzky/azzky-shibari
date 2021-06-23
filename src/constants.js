@@ -2,8 +2,7 @@ const Maindata = {
     url: 'https://azzky.ru',
     author: 'Azzky',
     socials: {
-        instagram_nsfw: 'https://www.instagram.com/azzky_gallery/',
-        instagram_sfw: 'https://www.instagram.com/azzky_daily/',
+        instagram: 'https://www.instagram.com/azzky_gallery/',
         linkedin: 'https://www.linkedin.com/u/azzky',
         telegram: 'https://t.me/shibaribyazzky',
         twitter: 'https://twitter.com/AzzkyDemiurg'

@@ -7,9 +7,9 @@ import {PostGallery} from '../components/gallery/gallery'
 import { MetaPost } from '../components/meta/meta'
 import Share from '../components/share/share'
 import Team from '../components/team/team'
+import { Modal, ModalButton } from '../components/modal/modal'
 
 import './post.scss'
-import '../components/modal/modal.scss'
 
 const prepareContent = (str) => {
   if(str.includes('<p>')) {
@@ -72,16 +72,9 @@ const Post = ({
   }
 }) => {
   const [isShowModal, showModal] = useState(false)
-  const linkClass = link.replace('/', '')
   let readyData,
       paddingTopValue,
       popupSize
-
-  if(typeof document !== 'undefined') {
-    const bodyClasses = document.body.classList
-    bodyClasses.remove(...bodyClasses)
-    bodyClasses.add('post','shibari')
-  }
 
   if(popup) {
     const rawData = popup.raw
@@ -99,11 +92,7 @@ const Post = ({
     paddingTopValue = popupRatio && popupSize?.maximumHeight ? `${popupSize.maximumHeight}px` : popupRatio
   }
 
-  const textData = content ? prepareContent(content.childMarkdownRemark.html) : ''
-  const popupStyles = {
-    paddingBlockStart: paddingTopValue,
-    inlineSize: popupSize?.popupWidth ? `${popupSize.popupWidth}px` : `0`
-  }
+  const textData = content ? prepareContent(content.childMarkdownRemark.html) : null
     
   return (
     <Layout toggler={type.type === 'shibari' ? true : false} lang={node_locale} hero={true} dark={true} url={link} post={true} nsfw={type.type === 'shibari' ? true : false}>
@@ -111,10 +100,10 @@ const Post = ({
       <section className="hero__wrapper">
         <div className="hero__content">
           <h1 className="hero__title">{title}</h1>
-          {!content ? '' : <div className="hero__description">
+          {!content ? null : <div className="hero__description">
             <p>
               <span dangerouslySetInnerHTML={{ __html: textData }}/>
-              {!popup ? '' : <button className="linky" onClick={() => showModal(true)}>{node_locale === 'en-US' ? 'here' : 'тут'}</button>}
+              {!popup ? null : <ModalButton showModal={showModal} node_locale={node_locale} />}
             </p>
           </div> }
           {type.type === 'shibari' ? 
@@ -128,12 +117,14 @@ const Post = ({
           loading="lazy" alt={title} />
       </section>
       <PostGallery nsfw={nsfw} title={title} gallery={gallery} nsfwarr={nsfwarr} />
-      {!popup ? '' :
-      <div role="dialog" className={isShowModal ? 'modal open ' + linkClass : 'modal ' + linkClass} onClick={() => showModal(false)}>
-        <div className="modal__content" style={popupStyles}>
-        {isShowModal ? <div dangerouslySetInnerHTML={{ __html: readyData }} /> : null}
-        </div>
-      </div>}
+      {!popup ? null :
+      <Modal isShowModal={isShowModal}
+      showModal={showModal}
+      paddingTopValue={paddingTopValue}
+      size={popupSize?.popupWidth} >
+        <div dangerouslySetInnerHTML={{ __html: readyData }}/>
+      </Modal>
+      }
     </Layout>
   );
 }
