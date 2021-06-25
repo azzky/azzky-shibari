@@ -50,3 +50,45 @@ export const PageData = {
 }
 
 export default Maindata
+
+export const HolderSmall = {
+    "images": {
+        "sources": [
+            {
+            "srcSet": "/holder-small.png",
+            "sizes": "(min-width: 1920px) 1920px, 100vw",
+            "type": "image/png"
+            }
+        ],
+        "fallback": {
+            "src": "/holder-small.png",
+        }
+    },
+    "layout": "constrained",
+    "width": 400,
+    "height": 600,
+    "placeholder": {
+        "fallback": "/holder-small.png"
+    }
+}
+
+export const HolderBig = {
+    "images": {
+        "sources": [
+            {
+            "srcSet": "/holder-big.png",
+            "sizes": "(min-width: 1920px) 1920px, 100vw",
+            "type": "image/png"
+            }
+        ],
+        "fallback": {
+            "src": "/holder-big.png",
+        }
+    },
+    "layout": "constrained",
+    "width": 1920,
+    "height": 1280,
+    "placeholder": {
+        "fallback": "/holder-big.png"
+    }
+}
