@@ -9,6 +9,8 @@ import Share from '../components/share/share'
 import Team from '../components/team/team'
 import { Modal, ModalButton } from '../components/modal/modal'
 
+import {HolderBig} from '../constants'
+
 import './post.scss'
 
 const prepareContent = (str) => {
@@ -71,6 +73,19 @@ const Post = ({
     }
   }
 }) => {
+  let localState = false
+  if (typeof window !== 'undefined') {
+    localState = localStorage.getItem('nsfw') === 'true' ? true : false
+  }
+  const [pageNsfw, setToggle] = useState(localState)
+
+  const toggleNsfw = () => {
+    setToggle((prev) => {
+      localStorage.setItem('nsfw', !prev)
+      return !prev
+    })
+  }
+
   const [isShowModal, showModal] = useState(false)
   let readyData,
       paddingTopValue,
@@ -93,13 +108,15 @@ const Post = ({
   }
 
   const textData = content ? prepareContent(content.childMarkdownRemark.html) : null
+
+  const wallpaperImg = wallpaper ? wallpaper.gatsbyImageData : preview.gatsbyImageData
     
   return (
-    <Layout toggler={type.type === 'shibari' ? true : false} lang={node_locale} hero={true} dark={true} url={link} post={true} nsfw={type.type === 'shibari' ? true : false}>
+    <Layout lang={node_locale} hero={true} dark={true} url={link} post={true} pageNsfw={pageNsfw} toggleNsfw={toggleNsfw}>
       <MetaPost post={node}/>
       <section className="hero__wrapper">
         <div className="hero__content">
-          <h1 className="hero__title">{title}</h1>
+          <h1 className="hero__title">{title} {pageNsfw.toString()}</h1>
           {!content ? null : <div className="hero__description">
             <p>
               <span dangerouslySetInnerHTML={{ __html: textData }}/>
@@ -112,16 +129,19 @@ const Post = ({
           <Share preview={preview.file.url} title={type.type === 'shibari' ? title + ' shibari by Azzky' : title + ' by Azzky'} type={type.type}/>
         </div>
         <GatsbyImage
-          image={wallpaper ? wallpaper.gatsbyImageData : preview.gatsbyImageData}
+          image={!isWallNsfw ? wallpaperImg
+            : pageNsfw ? wallpaperImg : HolderBig
+          }
           className={isWallNsfw ? 'nsfw' : ''}
           loading="lazy" alt={title} />
       </section>
-      <PostGallery nsfw={nsfw} title={title} gallery={gallery} nsfwarr={nsfwarr} />
+      <PostGallery pageNsfw={pageNsfw} nsfw={nsfw} title={title} gallery={gallery} nsfwarr={nsfwarr} />
       {!popup ? null :
       <Modal isShowModal={isShowModal}
       showModal={showModal}
       paddingTopValue={paddingTopValue}
-      size={popupSize?.popupWidth} >
+      size={popupSize?.popupWidth}
+      pageNsfw={pageNsfw} >
         <div dangerouslySetInnerHTML={{ __html: readyData }}/>
       </Modal>
       }

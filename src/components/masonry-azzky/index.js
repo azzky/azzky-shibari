@@ -5,6 +5,7 @@ import { lightBoxReducer } from "./reducers"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Filters from "./filters"
 import useWidth from "./windowsize"
+import { HolderSmall } from '../../constants'
 
 import "react-image-lightbox/style.css"
 
@@ -12,21 +13,23 @@ const GalleryItem = ({
     img,
     imgIndex,
     index,
-    settings}) => {
+    settings,
+    pageNsfw
+}) => {
         return (
         settings.useLinks ?
             <figure itemScope itemType="http://schema.org/ImageObject"
             className={`masonry__item${img.nsfw ? ' nsfw' : ''}${settings.hover ? ' hover' : ''}`}>
                 <figcaption itemProp="name" className="visually-hidden">{img.title}</figcaption>
                 <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
-                    <GatsbyImage itemProp="contentUrl" image={img.data} alt={img.title} />
+                    <GatsbyImage itemProp="contentUrl" image={!img.nsfw || pageNsfw ? img.data : HolderSmall} alt={img.title} />
                 </Link>
             </figure>
             :
             <figure itemScope itemType="http://schema.org/ImageObject"
             className={`masonry__item${img.nsfw ? ' nsfw' : ''}${settings.hover ? ' hover' : ''}`}>
                 <figcaption itemProp="name" className="visually-hidden">{`${img.title} - gallery image ${img.number}`}</figcaption>
-                <GatsbyImage itemProp="contentUrl" image={img.data} alt={`${img.title} - gallery image ${img.number}`} />
+                <GatsbyImage itemProp="contentUrl" image={!img.nsfw || pageNsfw ? img.data : HolderSmall} alt={`${img.title} - gallery image ${img.number}`} />
                 <button className="masonry__item--full-opener"
                 onClick={() =>
                     settings.useLightBox &&
@@ -46,7 +49,9 @@ const GalleryItem = ({
 const GalleryColumn = ({
     column,
     index,
-    settings}) => {
+    settings,
+    pageNsfw
+}) => {
     return (
         <div className={`masonry__column ${column.length > 0 ? '' : 'no-display'}`} key={index}>
             {column.map((img, imgIndex) => (
@@ -54,7 +59,7 @@ const GalleryColumn = ({
                     img={img}
                     imgIndex={imgIndex}
                     index={index}
-                    settings={settings} key={imgIndex} />
+                    settings={settings} key={imgIndex} pageNsfw={pageNsfw} />
                 ))}
         </div>
     )
@@ -68,7 +73,8 @@ const ResponsiveGallery = ({
     filters,
     filter,
     lang,
-    classes
+    classes,
+    pageNsfw
 }) => {
     const allImages = images
     // start masonry logic here
@@ -167,7 +173,7 @@ const ResponsiveGallery = ({
             <GalleryColumn
                 column={column}
                 index={index}
-                settings={settings} key={index} />
+                settings={settings} key={index} pageNsfw={pageNsfw} />
         ))}
     </section>
     </>

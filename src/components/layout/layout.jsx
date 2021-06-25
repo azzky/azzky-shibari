@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import Sprite from '../svg-sprite'
 import Header from "../header/header"
 import Footer from '../footer/footer'
@@ -16,7 +16,9 @@ const Layout = (props) => {
     hero: isHero,
     classes,
     lang,
-    url
+    url,
+    pageNsfw,
+    toggleNsfw
   } = props;
   
   const schemaLogo = {
@@ -32,7 +34,7 @@ const Layout = (props) => {
         <script type="application/ld+json">{JSON.stringify(schemaLogo)}</script>
       </Helmet>
       <Sprite/>
-      <Header lang={lang} url={url} post={props.post} nsfw={props.nsfw} />
+      <Header lang={lang} url={url} post={props.post} pageNsfw={pageNsfw} toggleNsfw={toggleNsfw} />
       <main className={`main ${classes ? '' + classes + ' ' : ''}${!isHero ? '' : 'hero'} ${heroType === 'video' ? ' video': ' image'}`}>
         <div className="content">
           {props.children}

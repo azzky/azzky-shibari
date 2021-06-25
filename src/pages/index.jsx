@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React from "react"
+import React, { useState } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/layout/layout"
 import {MetaHome} from '../components/meta/meta'
@@ -11,10 +11,17 @@ import './shibari.scss'
 const Shibari = () => {
   const data = PageData.en.shibari
 
-  if(typeof document !== 'undefined') {
-    const bodyClasses = document.body.classList
-    bodyClasses.remove(...bodyClasses)
-    bodyClasses.add('shibari')
+  let localState = false
+  if (typeof window !== 'undefined') {
+    localState = localStorage.getItem('nsfw') === 'true' ? true : false
+  }
+  const [pageNsfw, setToggle] = useState(localState)
+
+  const toggleNsfw = () => {
+    setToggle((prev) => {
+      localStorage.setItem('nsfw', !prev)
+      return !prev
+    })
   }
 
   return(
@@ -72,7 +79,7 @@ const Shibari = () => {
         </section>
         
         
-        <PostsGallery classes="shibari" edges={edges} lang="en" />
+        <PostsGallery pageNsfw={pageNsfw} classes="shibari" edges={edges} lang="en" />
       </Layout>
     )}/>
 )}

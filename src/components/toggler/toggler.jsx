@@ -1,34 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { Wrapper } from './styled'
 
-const Toggler = () => {
-  let localState = false
-  if (typeof window !== 'undefined') {
-    localState = localStorage.getItem('nsfw') === 'true' ? true : false
-  }
-  const [pageNsfw, setToggle] = useState(localState)
-
-  const toggleNsfw = () => {
-    setToggle((prev) => {
-      localStorage.setItem('nsfw', !prev)
-      return !prev
-    })
-  }
-
-  useEffect(() => {
-    if(pageNsfw) {
-      document.body.classList.add('nsfw')
-    } else {
-      document.body.classList.remove('nsfw')
-    }
-  })
-
+const Toggler = (props) => {
+  const {
+    state,
+    changeState
+  } = props
   return (
-    <Wrapper nsfw={pageNsfw}>
+    <Wrapper state={state}>
       <input  type="checkbox"
-              onChange={toggleNsfw}
-              defaultChecked={pageNsfw}/>
-      {pageNsfw ? 'nsfw' : 'sfw'}
+              onChange={changeState}
+              defaultChecked={state}/>
+      {state ? 'nsfw' : 'sfw'}
     </Wrapper>
   )
 }

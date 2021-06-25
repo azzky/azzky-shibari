@@ -9,6 +9,7 @@ import './header.scss'
 import './setting-block.scss'
 
 const Header = (props) => {
+  const { lang, pageNsfw, toggleNsfw } = props
   const menuItems = [
     {
       name: 'home',
@@ -33,13 +34,13 @@ const Header = (props) => {
     getToken(setTokenFound)
   }
 
-  let lang = ''
-  if(props.lang === 'ru') {
-    lang = '/ru'
+  let langStr = ''
+  if(lang === 'ru') {
+    langStr = '/ru'
   }
   return(
     <header className={`header${showMenu ? ' active' : ''}${showSettings ? ' active' : ''}`}>
-      <Link to={`${lang}/`} className="logo__wrapper">
+      <Link to={`${langStr}/`} className="logo__wrapper">
         <img className="logo" src="/logo.svg" alt="logo" width="81" height="17" />
       </Link>
       <nav className="nav">
@@ -60,7 +61,7 @@ const Header = (props) => {
                 <svg width="24" height="24">
                 <use href={`#${el.name}`}></use>
                 </svg>
-                <span className="menu__label">{lang === '/ru' ? el.runame :el.name}</span>
+                <span className="menu__label">{langStr === '/ru' ? el.runame :el.name}</span>
               </Link>
             </li>
           ))}
@@ -75,11 +76,11 @@ const Header = (props) => {
           </svg>
         </button>
         <div className={`settings__block${showSettings ? ' active' : ''}`}>
-          <LangSwitcher lang={props.lang} url={props.url} post={props.post} />
+          <LangSwitcher lang={lang} url={props.url} post={props.post} />
           <hr />
           <Sidebar />
           <hr />
-          <NsfwSwitcher />
+          <NsfwSwitcher state={pageNsfw} changeState={toggleNsfw} />
           <hr />
           <div className="subscription">
           {isTokenFound && <p>Notification permission enabled - thank you!</p>}

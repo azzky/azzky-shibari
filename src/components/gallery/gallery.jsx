@@ -6,6 +6,7 @@ import ResponsiveGallery from '../masonry-azzky'
 const PostGallery = (props) => {
     const isNsfw = props.nsfw
     const gallery = props.gallery
+    const {pageNsfw} = props
     let nsfwArr = []
     
     if(isNsfw) {
@@ -26,7 +27,7 @@ const PostGallery = (props) => {
     }
 
     return(
-        <ResponsiveGallery images={images} useLightBox={true} hover={false} filters={false} />
+        <ResponsiveGallery pageNsfw={pageNsfw} images={images} useLightBox={true} hover={false} filters={false} />
     )
 }
 
@@ -37,6 +38,7 @@ const PostsGallery = (props) => {
     const lang = props.lang
     const filter = props.filter
     const images = []
+    const {pageNsfw} = props
 
     edges.map((i) => {
         let prefix = '/'
@@ -56,7 +58,7 @@ const PostsGallery = (props) => {
         return null
     })
     return(
-        <ResponsiveGallery images={images} useLightBox={false} useLinks={true}
+        <ResponsiveGallery pageNsfw={pageNsfw} images={images} useLightBox={false} useLinks={true}
         filters={true} lang={lang} classes={classes} hover={true} filter={filter}
         />
     )

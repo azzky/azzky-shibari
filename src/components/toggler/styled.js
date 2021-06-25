@@ -14,7 +14,7 @@ const Wrapper = styled.label`
     padding: 0 5px;
     background-color: var(--color-black);
     border-radius: 26px;
-    text-align: ${props => props.nsfw ? 'right' : 'left'};
+    text-align: ${props => props.state ? 'right' : 'left'};
     cursor: pointer;
     ${HorizontallyCenter}
 
@@ -23,14 +23,14 @@ const Wrapper = styled.label`
         content: "";
         block-size: 16px;
         inline-size: 16px;
-        left: ${props => props.nsfw ? '3px' : '27px'};
-        right: ${props => props.nsfw ? '27px' : '3px'};
+        left: ${props => props.state ? '3px' : '27px'};
+        right: ${props => props.state ? '27px' : '3px'};
         bottom: 5px;
         background-image: url('https://vk.com/emoji/e/f09f8c9a.png');
         background-color: var(--color-white);
         transition: all .4s;
         border-radius: 50%;
-        background-blend-mode: ${props => props.nsfw ? 'normal' : 'color'};
+        background-blend-mode: ${props => props.state ? 'normal' : 'color'};
     }
 
     input {
