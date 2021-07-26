@@ -10,18 +10,6 @@
     .masonry__gallery {
         padding: 15px 15px 0;
     }
-
-    .masonry__item {
-        position: relative;
-    }
-
-    .masonry__item--full-opener {
-        position: absolute;
-        left: 0;
-        top: 0;
-        inline-size: 100%;
-        block-size: 100%;
-    }
 }
 
 @media screen and (min-width: 850px){

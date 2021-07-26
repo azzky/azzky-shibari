@@ -116,7 +116,7 @@ const Post = ({
       <MetaPost post={node}/>
       <section className="hero__wrapper">
         <div className="hero__content">
-          <h1 className="hero__title">{title} {pageNsfw.toString()}</h1>
+          <h1 className="hero__title">{title}</h1>
           {!content ? null : <div className="hero__description">
             <p>
               <span dangerouslySetInnerHTML={{ __html: textData }}/>

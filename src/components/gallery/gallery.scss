@@ -1,12 +1,16 @@
 $image-size: 400px;
 .masonry {
     &__item {
-        .gatsby-image-wrapper {
-            cursor: pointer;
-        }
+        position: relative;
 
-        img {
-            transition: filter 1s, transform 3s !important;
+        .opener:after {
+            content: '';
+            position: absolute;
+            inset-block-start: 0;
+            inset-block-end: 0;
+            inset-inline-start: 0;
+            inset-inline-end: 0;
+            z-index: 1;
         }
     }
 }

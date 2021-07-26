@@ -61,7 +61,7 @@ const Shibari = () => {
     `}
     render={({
       allContentfulPost: { edges } }) => (
-      <Layout toggler={true} hero={true} dark={true} heroType="video" classes="shibari" lang="en" url="/" nsfw={true}>
+      <Layout toggler={true} hero={true} dark={true} heroType="video" classes="shibari" lang="en" url="/" pageNsfw={pageNsfw} toggleNsfw={toggleNsfw}>
         <MetaHome data={data} />
         <section className="hero__wrapper">
           <div className="hero__content">
@@ -77,7 +77,6 @@ const Shibari = () => {
               </video>
             </div>
         </section>
-        
         
         <PostsGallery pageNsfw={pageNsfw} classes="shibari" edges={edges} lang="en" />
       </Layout>
