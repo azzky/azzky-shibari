@@ -7,7 +7,6 @@ import {PostsGallery} from '../components/gallery/gallery'
 import {PageData} from "../constants"
 import useCenzorship from '../hooks/useCenzorship'
 import config from '../components/meta/config'
-import GET_PAGE from "./index-en.gql"
 
 import {
   HeroWrapper,

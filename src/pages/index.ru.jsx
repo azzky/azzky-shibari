@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React from "react"
-import { StaticQuery, Link } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/layout/layout"
 import {MetaHome} from '../components/meta/meta'
 import {PostsGallery} from '../components/gallery/gallery'
 import {PageData} from "../constants"
 import useCenzorship from '../hooks/useCenzorship'
 import config from '../components/meta/config'
-import GET_PAGE from "./index-ru.gql"
 
 import {
   HeroWrapper,
@@ -25,7 +24,38 @@ const Shibari = () => {
 
   return(
   <StaticQuery
-    query={GET_PAGE}
+    query={graphql`
+    {
+      allContentfulPost(sort: {order: DESC, fields: date}, filter: {node_locale: {eq: "ru"}, type: {type: {eq: "shibari"}}}) {
+        edges {
+          node {
+            id
+            title
+            link
+            nsfw
+            isPrevNsfw
+            content {
+              childMarkdownRemark {
+                html
+              }
+            }
+            preview {
+              gatsbyImageData(
+                width: 400
+                quality: 100
+                placeholder: BLURRED
+                formats: [AUTO, WEBP]
+              )
+            }
+            tags
+            type {
+              type
+            }
+          }
+        }
+      }
+    }
+    `}
     render={({ allContentfulPost: { edges } }) => (
     <Layout toggler={true}
               hero={true}

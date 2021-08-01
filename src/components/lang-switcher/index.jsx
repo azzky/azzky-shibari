@@ -24,8 +24,9 @@ const InactiveLink = (props) => {
 
 const Switcher = (props) => {
     let origin = ''
-    if (document !== 'undefined') {
-        origin = document && document?.location ? document.location.origin : Maindata.url
+    if (typeof window !== 'undefined' && window.document) {
+        const loc = window.document.location
+        origin = loc ? loc.origin : Maindata.url
     } else {
         origin = Maindata.url
     }
