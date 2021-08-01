@@ -23,7 +23,12 @@ const InactiveLink = (props) => {
 }
 
 const Switcher = (props) => {
-    const origin = document && document?.location ? document.location.origin : Maindata.url
+    let origin = ''
+    if (document !== 'undefined') {
+        origin = document && document?.location ? document.location.origin : Maindata.url
+    } else {
+        origin = Maindata.url
+    }
     const url = props.url
     const postPrefix = props.post === true ? '/shibari' : ''
     let locale
