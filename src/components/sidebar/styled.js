@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { MobileWidth } from '../../constants'
 
 const Wrapper = styled.div`
     display: flex;
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
         line-height: 0;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: ${MobileWidth}px) {
         display: grid;
         gap: 25px;
         margin: 25px 0;

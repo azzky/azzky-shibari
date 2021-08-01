@@ -8,10 +8,16 @@ import { MetaPost } from '../components/meta/meta'
 import Share from '../components/share/share'
 import Team from '../components/team/team'
 import { Modal, ModalButton } from '../components/modal/modal'
+import useCenzorship from '../hooks/useCenzorship'
 
-import {HolderBig} from '../constants'
+import { HolderBig } from '../constants'
 
-import './post.scss'
+import {
+    HeroWrapper,
+    HeroContent,
+    HeroTitle,
+    HeroDescription,
+} from '../components/layout/styled'
 
 const prepareContent = (str) => {
   if(str.includes('<p>')) {
@@ -73,18 +79,7 @@ const Post = ({
     }
   }
 }) => {
-  let localState = false
-  if (typeof window !== 'undefined') {
-    localState = localStorage.getItem('nsfw') === 'true' ? true : false
-  }
-  const [pageNsfw, setToggle] = useState(localState)
-
-  const toggleNsfw = () => {
-    setToggle((prev) => {
-      localStorage.setItem('nsfw', !prev)
-      return !prev
-    })
-  }
+  const { pageNsfw, toggleNsfw } = useCenzorship()
 
   const [isShowModal, showModal] = useState(false)
   let readyData,
@@ -112,36 +107,46 @@ const Post = ({
   const wallpaperImg = wallpaper ? wallpaper.gatsbyImageData : preview.gatsbyImageData
     
   return (
-    <Layout lang={node_locale} hero={true} dark={true} url={link} post={true} pageNsfw={pageNsfw} toggleNsfw={toggleNsfw}>
+    <Layout lang={node_locale}
+    hero={true}
+    dark={true}
+    url={link}
+    post={true}
+    pageNsfw={pageNsfw}
+    toggleNsfw={toggleNsfw}>
       <MetaPost post={node}/>
-      <section className="hero__wrapper">
-        <div className="hero__content">
-          <h1 className="hero__title">{title}</h1>
-          {!content ? null : <div className="hero__description">
+      <HeroWrapper>
+        <HeroContent>
+          <HeroTitle>{title}</HeroTitle>
+          {!content ? null : <HeroDescription>
             <p>
               <span dangerouslySetInnerHTML={{ __html: textData }}/>
               {!popup ? null : <ModalButton showModal={showModal} node_locale={node_locale} />}
             </p>
-          </div> }
+          </HeroDescription> }
           {type.type === 'shibari' ? 
           <Team models={model} nawashi={nawashi} photographer={photographer} muah={muah} lang={node_locale} />
           : ''}
           <Share preview={preview.file.url} title={type.type === 'shibari' ? title + ' shibari by Azzky' : title + ' by Azzky'} type={type.type}/>
-        </div>
+        </HeroContent>
         <GatsbyImage
           image={!isWallNsfw ? wallpaperImg
             : pageNsfw ? wallpaperImg : HolderBig
           }
           className={isWallNsfw ? 'nsfw' : ''}
           loading="lazy" alt={title} />
-      </section>
-      <PostGallery pageNsfw={pageNsfw} nsfw={nsfw} title={title} gallery={gallery} nsfwarr={nsfwarr} />
+      </HeroWrapper>
+      <PostGallery pageNsfw={pageNsfw}
+                   nsfw={nsfw}
+                   title={title}
+                   gallery={gallery}
+                   nsfwarr={nsfwarr} />
       {!popup ? null :
       <Modal isShowModal={isShowModal}
-      showModal={showModal}
-      paddingTopValue={paddingTopValue}
-      size={popupSize?.popupWidth}
-      pageNsfw={pageNsfw} >
+             showModal={showModal}
+             paddingTopValue={paddingTopValue}
+             size={popupSize?.popupWidth}
+             pageNsfw={pageNsfw} >
         <div dangerouslySetInnerHTML={{ __html: readyData }}/>
       </Modal>
       }

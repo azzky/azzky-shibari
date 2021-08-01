@@ -4,10 +4,12 @@ import ImagesLightBox from "../gallery/lightbox"
 import { lightBoxReducer } from "./reducers"
 import { GatsbyImage } from "gatsby-plugin-image"
 import Filters from "./filters"
-import useWidth from "./windowsize"
+import useWidth from "../../hooks/windowsize"
 import { HolderSmall } from '../../constants'
+import config from "./config"
 
 import "react-image-lightbox/style.css"
+import { Gallery, Column, Item } from './styled'
 
 const GalleryItem = ({
     img,
@@ -16,26 +18,36 @@ const GalleryItem = ({
     settings,
     pageNsfw
 }) => {
-        return (
-        settings.useLinks ?
-            <figure itemScope itemType="http://schema.org/ImageObject"
-            className={`masonry__item${img.nsfw ? ' nsfw' : ''}${settings.hover ? ' hover' : ''}`}>
-                <figcaption itemProp="name">
-                    <Link to={img.url} className="opener" aria-label={`link to post ${img.title}`}>
-                        <span className="visually-hidden">
-                            {img.title}
-                        </span>
-                    </Link>
-                </figcaption>
-                <GatsbyImage itemProp="contentUrl" image={!img.nsfw || pageNsfw ? img.data : HolderSmall} alt={img.title} />
-            </figure>
-            :
-            <figure itemScope itemType="http://schema.org/ImageObject"
-            className={`masonry__item${img.nsfw ? ' nsfw' : ''}${settings.hover ? ' hover' : ''}`}>
-                <figcaption itemProp="name" className="visually-hidden">{`${img.title} - gallery image ${img.number}`}</figcaption>
-                <GatsbyImage itemProp="contentUrl" image={!img.nsfw || pageNsfw ? img.data : HolderSmall} alt={`${img.title} - gallery image ${img.number}`} />
-                <button className="opener"
-                onClick={() =>
+    return (
+    settings.useLinks ?
+        <Item itemScope
+              itemType="http://schema.org/ImageObject">
+            <figcaption itemProp="name">
+                <Link to={img.url}
+                      className="opener"
+                      title={!img.nsfw || pageNsfw ? null : config.nsfwText}
+                      aria-label={`link to post ${img.title}`}>
+                    <span className="visually-hidden">
+                        {img.title}
+                    </span>
+                </Link>
+            </figcaption>
+            <GatsbyImage itemProp="contentUrl"
+                         image={!img.nsfw || pageNsfw ? img.data : HolderSmall} alt={img.title} />
+        </Item>
+        :
+        <Item itemScope
+                itemType="http://schema.org/ImageObject">
+            <figcaption itemProp="name"
+                        className="visually-hidden">
+                {`${img.title} ${config.galleryImageMiddleText} ${img.number}`}
+            </figcaption>
+            <GatsbyImage itemProp="contentUrl"
+                         image={!img.nsfw || pageNsfw ? img.data : HolderSmall}
+                         alt={`${img.title} ${config.galleryImageMiddleText} ${img.number}`} />
+            <button className="opener"
+                    title={!img.nsfw || pageNsfw ? null : config.nsfwText}
+                    onClick={() =>
                     settings.useLightBox &&
                     settings.lightBoxDispatch({
                         type: "photoIndex_Open",
@@ -44,9 +56,11 @@ const GalleryItem = ({
                                 ? index
                                 : index + imgIndex * settings.columnNumber,
                     })}>
-                    <span className="visually-hidden">Open full image</span>
-                </button>
-            </figure>
+                <span className="visually-hidden">
+                    {config.imageOpenText}
+                </span>
+            </button>
+        </Item>
     )
 }
 
@@ -57,7 +71,7 @@ const GalleryColumn = ({
     pageNsfw
 }) => {
     return (
-        <div className={`masonry__column ${column.length > 0 ? '' : 'no-display'}`} key={index}>
+        <Column key={index}>
             {column.map((img, imgIndex) => (
                 <GalleryItem
                     img={img}
@@ -65,7 +79,7 @@ const GalleryColumn = ({
                     index={index}
                     settings={settings} key={imgIndex} pageNsfw={pageNsfw} />
                 ))}
-        </div>
+        </Column>
     )
 }
 
@@ -78,7 +92,8 @@ const ResponsiveGallery = ({
     filter,
     lang,
     classes,
-    pageNsfw
+    pageNsfw,
+    isPost
 }) => {
     const allImages = images
     // start masonry logic here
@@ -86,21 +101,25 @@ const ResponsiveGallery = ({
     let columnNumber = 1
     let getWidth = false
 
+    const setWidth  = () => {
+        if (allImages.length < columnNumber) columnNumber = allImages.length
+        getWidth = true
+    }
+
     switch (true) {
-        case width > 1906:
-            columnNumber = 4
-            getWidth = true
+        case width > config.deviceXL:
+            columnNumber = config.deviceXLcolumncount
+            setWidth()
             break
-        case width > 1270:
-            columnNumber = 3
-            getWidth = true
+        case width > config.deviceL:
+            columnNumber = config.deviceLcolumncount
+            setWidth()
             break
-        case width > 840:
-            columnNumber = 2
-            getWidth = true
+        case width > config.deviceM:
+            columnNumber = config.deviceMcolumncount
+            setWidth()
             break
         default:
-            columnNumber = 1
             getWidth = true
     }
     
@@ -169,17 +188,25 @@ const ResponsiveGallery = ({
         imagesLightbox={images}
         photoIndex={lightBoxVal.photoIndex}
         lightBoxDispatch={lightBoxDispatch}
+        pageNsfw={pageNsfw}
         />
     )}
-    <Filters uniqueArr={uniqueArr} handleFilterChange={handleFilterChange} lang={lang} activeFilter={activeFilterName} />
-    <section className="masonry__gallery">
+    {!isPost &&
+        <Filters uniqueArr={uniqueArr}
+                 handleFilterChange={handleFilterChange}
+                 lang={lang}
+                 activeFilter={activeFilterName} />}
+    <Gallery columnNumber={columnNumber}
+             isPost={isPost}>
         {getWidth && imgSubArray.map((column, index) => (
             <GalleryColumn
                 column={column}
                 index={index}
-                settings={settings} key={index} pageNsfw={pageNsfw} />
+                settings={settings}
+                key={index}
+                pageNsfw={pageNsfw} />
         ))}
-    </section>
+    </Gallery>
     </>
 }
 

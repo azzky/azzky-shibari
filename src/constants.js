@@ -92,3 +92,18 @@ export const HolderBig = {
         "fallback": "/holder-big.png"
     }
 }
+
+export const MobileWidth = 768
+
+export const menuItems = [
+    {
+        name: 'home',
+        runame: 'главная',
+        link: '/'
+    },
+    {
+        name: 'contacts',
+        runame: 'контакты',
+        link: '/contact'
+    }
+]

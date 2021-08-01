@@ -8,13 +8,13 @@ import Maindata from "../../constants"
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/900.css'
-import './layout.scss'
+import { Main } from './styled'
 
 const Layout = (props) => {
   const {
-    heroType,
+    // heroType,
     hero: isHero,
-    classes,
+    // classes,
     lang,
     url,
     pageNsfw,
@@ -35,11 +35,11 @@ const Layout = (props) => {
       </Helmet>
       <Sprite/>
       <Header lang={lang} url={url} post={props.post} pageNsfw={pageNsfw} toggleNsfw={toggleNsfw} />
-      <main className={`main ${classes ? '' + classes + ' ' : ''}${!isHero ? '' : 'hero'} ${heroType === 'video' ? ' video': ' image'}`}>
-        <div className="content">
+      <Main isHero={isHero}>
+        <div>
           {props.children}
         </div>
-      </main>
+      </Main>
       <Footer lang={lang} />
     </>
 )}

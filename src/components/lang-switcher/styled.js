@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 
     a:not([href]) {
         color: var(--color-highlight);
+        pointer-events: none;
     }
 `;
 

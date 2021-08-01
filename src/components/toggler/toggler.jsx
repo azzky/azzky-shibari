@@ -7,7 +7,8 @@ const Toggler = (props) => {
     changeState
   } = props
   return (
-    <Wrapper state={state}>
+    <Wrapper state={state}
+             className="toggler">
       <input  type="checkbox"
               onChange={changeState}
               defaultChecked={state}/>

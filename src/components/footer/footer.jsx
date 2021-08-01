@@ -3,8 +3,10 @@ import config from './config'
 import { Wrapper, DesignerText } from './styled'
 
 const Footer = (props) => {
+  const { lang } = props
   const getYear = new Date().getFullYear()
-  const lang = props.lang
+  console.log(lang);
+
   return(
       <Wrapper>
         <p>© { getYear === 2020 ? getYear : '2020 - ' + getYear } {config.mainText[lang]}</p>

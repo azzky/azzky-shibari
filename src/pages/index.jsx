@@ -1,28 +1,27 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-import React, { useState } from "react"
+import React from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/layout/layout"
 import {MetaHome} from '../components/meta/meta'
 import {PostsGallery} from '../components/gallery/gallery'
 import {PageData} from "../constants"
+import useCenzorship from '../hooks/useCenzorship'
+import config from '../components/meta/config'
+import GET_PAGE from "./index-en.gql"
 
-import './shibari.scss'
+import {
+  HeroWrapper,
+  HeroContent,
+  HeroTitle,
+  HeroDescription,
+  HeroVideoWrapper,
+  HeroVideo
+} from '../components/layout/styled'
 
 const Shibari = () => {
   const data = PageData.en.shibari
 
-  let localState = false
-  if (typeof window !== 'undefined') {
-    localState = localStorage.getItem('nsfw') === 'true' ? true : false
-  }
-  const [pageNsfw, setToggle] = useState(localState)
-
-  const toggleNsfw = () => {
-    setToggle((prev) => {
-      localStorage.setItem('nsfw', !prev)
-      return !prev
-    })
-  }
+  const { pageNsfw, toggleNsfw } = useCenzorship()
 
   return(
   <StaticQuery
@@ -59,26 +58,38 @@ const Shibari = () => {
       }
     }
     `}
-    render={({
-      allContentfulPost: { edges } }) => (
-      <Layout toggler={true} hero={true} dark={true} heroType="video" classes="shibari" lang="en" url="/" pageNsfw={pageNsfw} toggleNsfw={toggleNsfw}>
+    render={({ allContentfulPost: { edges } }) => (
+      <Layout toggler={true}
+              hero={true}
+              dark={true}
+              heroType="video"
+              classes="shibari"
+              lang="en"
+              url="/"
+              pageNsfw={pageNsfw}
+              toggleNsfw={toggleNsfw}>
         <MetaHome data={data} />
-        <section className="hero__wrapper">
-          <div className="hero__content">
-            <h1 className="hero__title">{data.h1}</h1>
-            <div className="hero__description">
+        <HeroWrapper>
+          <HeroContent>
+            <HeroTitle>{data.h1}</HeroTitle>
+            <HeroDescription>
               <p>{data.text} <Link to="/contact">contact me</Link>!</p>
-            </div>
-          </div>
-          <div className="video-wrapper">
-              <video autoPlay loop={true} muted={true} playsInline id="background-video" poster="/shibari-background.webp">
-                <source src="/background.webm" type="video/webm" />
-                <source src="/background.mp4" type="video/mp4" />
-              </video>
-            </div>
-        </section>
+            </HeroDescription>
+          </HeroContent>
+          <HeroVideoWrapper>
+              <HeroVideo autoPlay loop={true}
+                         muted={true}
+                         playsInline
+                         id="background-video"
+                         poster={config.videoThumb}>
+                {config.videoFormats.map(format => {
+                  return <source src={`/${config.videoFileName}.${format}`} type={`video/${format}`} />
+                })}
+                </HeroVideo>
+            </HeroVideoWrapper>
+        </HeroWrapper>
         
-        <PostsGallery pageNsfw={pageNsfw} classes="shibari" edges={edges} lang="en" />
+        <PostsGallery pageNsfw={pageNsfw} edges={edges} lang="en" />
       </Layout>
     )}/>
 )}

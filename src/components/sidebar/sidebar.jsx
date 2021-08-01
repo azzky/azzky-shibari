@@ -15,7 +15,11 @@ const NsfwIcons = () => {
     return(
     <>
     {socialArray.map((item)=>(
-        <a key={item} href={Maindata.socials[item]} rel="me noreferrer" target="_blank" aria-label={`${item} link`}>
+        <a key={item}
+           href={Maindata.socials[item]}
+           rel="me noreferrer"
+           target="_blank"
+           aria-label={`${item} link`}>
             <svg width="24" height="24">
             <use href={`#${item}`}></use>
             </svg>
