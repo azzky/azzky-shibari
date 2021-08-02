@@ -24,15 +24,18 @@ const Header = (props) => {
   const [showSettings, toggleSettings] = useState(false)
   
   let langStr = ''
-    if(lang === 'ru') {
-        langStr = '/ru'
+  if(lang === 'ru') {
+    langStr = '/ru'
   }
+  console.log(lang);
+  console.log(langStr);
 
   return(
     <HeaderRoot active={showMenu || showSettings}>
       <Logo langStr={langStr} />
       <Navigation active={showMenu}
                   lang={lang}
+                  langStr={langStr}
                   toggleMenu={toggleMenu} />
       <Settings showSettings={showSettings}
                 toggleSettings={toggleSettings}>

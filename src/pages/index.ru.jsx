@@ -62,7 +62,7 @@ const Shibari = () => {
               dark={true}
               heroType="video"
               classes="shibari"
-              lang="en"
+              lang="ru"
               url="/ru"
               pageNsfw={pageNsfw}
               toggleNsfw={toggleNsfw}>

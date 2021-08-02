@@ -37,14 +37,14 @@ const Navigation = (props) => {
                 {menuItems.map((el, i) => (
                     <MenuItem key={i}
                             role="none">
-                        <Link to={lang + el.link}
+                        <Link to={langStr + el.link}
                             activeClassName="active"
                             role="menuitem">
                             <svg width="24" height="24">
                             <use href={`#${el.name}`}></use>
                             </svg>
                             <MenuLabel>
-                            {langStr === '/ru' ? el.runame :el.name}
+                            {lang === 'ru' ? el.runame :el.name}
                             </MenuLabel>
                         </Link>
                     </MenuItem>

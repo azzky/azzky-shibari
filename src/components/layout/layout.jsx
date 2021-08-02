@@ -34,7 +34,11 @@ const Layout = (props) => {
         <script type="application/ld+json">{JSON.stringify(schemaLogo)}</script>
       </Helmet>
       <Sprite/>
-      <Header lang={lang} url={url} post={props.post} pageNsfw={pageNsfw} toggleNsfw={toggleNsfw} />
+      <Header lang={lang}
+      url={url}
+      post={props.post}
+      pageNsfw={pageNsfw}
+      toggleNsfw={toggleNsfw} />
       <Main isHero={isHero}>
         <div>
           {props.children}
