@@ -32,13 +32,12 @@ export const Item = styled.figure`
     position: relative;
     margin-block-end: ${config.gapS};
 
-    .opener:after {
-        content: '';
+    .opener {
         position: absolute;
-        inset-block-start: 0;
-        inset-block-end: 0;
-        inset-inline-start: 0;
-        inset-inline-end: 0;
+        left: 0;
+        top: 0;
+        inline-size: 100%;
+        block-size: 100%;
         z-index: 1;
     }
 
