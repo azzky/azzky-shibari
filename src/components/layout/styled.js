@@ -38,23 +38,46 @@ export const HeroContent = styled.div`
     padding: 70px 15px 15px;
     max-block-size: 100vh;
     overflow-x: auto;
-    display: grid;
+    display: ${props => props.is404 ? 'flex' : 'grid'};
     row-gap: 20px;
     block-size: 100%;
     grid-template-areas: 'h1' 'text' 'team' 'share';
     grid-template-rows: auto 1fr auto auto;
+    // 404 specific
+    flex-direction: ${props => props.is404 ? 'column' : null};
+    align-items: ${props => props.is404 ? 'center' : null};
+    inline-size: ${props => props.is404 ? '100%' : null};
 
     @media (min-width: ${MobileWidth}px) {
-        position: initial;
+        position: ${props => props.is404 ? 'absolute' : 'initial'};
+        // 404 specific
+        right: ${props => props.is404 ? '204px' : null};
+        left: ${props => props.is404 ? 'auto' : null};
+        inline-size: ${props => props.is404 ? 'auto' : null};
+        top: ${props => props.is404 ? '80px' : null};
+        text-align: ${props => props.is404 ? 'center' : null};
+        block-size: ${props => props.is404 ? 'auto' : null};
     }
 `;
 export const HeroTitle = styled.h1`
     grid-area: h1;
+    // 404 specific
+    font-weight: ${props => props.is404 ? '900' : null};
+    font-size: ${props => props.is404 ? '9.375rem' : null};
+    margin-block-end: ${props => props.is404 ? '30px' : null};
+    // success page
+    font-size: ${props => props.isSuccess ? '4.375rem' : null};
 
     @media (min-width: ${MobileWidth}px) {
         top: 150px;
-        font-size: 2.125rem;
+        font-size: ${props => props.is404 ? '12.5rem' : '2.125rem'};
         ${HeroElement}
+        // 404 specific
+        position: ${props => props.is404 ? 'static' : null};
+        margin-block-end: ${props => props.is404 ? '6px' : null};
+        // success page
+        font-size: ${props => props.isSuccess ? '4.375rem' : null};
+        margin-block-start: ${props => props.isSuccess ? '100px' : null};
     }
 `;
 export const HeroDescription = styled.div`
@@ -69,7 +92,7 @@ export const HeroDescription = styled.div`
         top: 280px;
         ${HeroElement}
         max-inline-size: 810px;
-        block-size: 100%;
+        block-size: ${props => props.is404 ? null : '100%'};
     }
 `;
 export const HeroVideoWrapper = styled.div`

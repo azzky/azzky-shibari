@@ -12,14 +12,13 @@ import { Main } from './styled'
 
 const Layout = (props) => {
   const {
-    // heroType,
     hero: isHero,
-    // classes,
     lang,
     url,
     pageNsfw,
-    toggleNsfw
-  } = props;
+    toggleNsfw,
+    is404
+  } = props
   
   const schemaLogo = {
     "@context": "https://schema.org",
@@ -44,7 +43,8 @@ const Layout = (props) => {
           {props.children}
         </div>
       </Main>
-      <Footer lang={lang} />
+      <Footer lang={lang}
+              is404={is404} />
     </>
 )}
 

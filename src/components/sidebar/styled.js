@@ -3,16 +3,17 @@ import { MobileWidth } from '../../constants'
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: ${props => props.isBig ? null : 'center'};
 
     svg {
         block-size: 40px;
         inline-size: 40px;
-        margin: 0 20px;
+        margin: ${props => props.isBig ? '35px 25px' : '25px 0'};
+        transform: ${props => props.isBig ? 'scale(2)' : null};
     }
 
     use {
-        transform: scale(1.6);
+        transform: ${props => props.isBig ? null : 'scale(1.6)'};
     }
 
     a {
@@ -20,10 +21,10 @@ const Wrapper = styled.div`
     }
 
     @media (min-width: ${MobileWidth}px) {
-        display: grid;
+        display: ${props => props.isBig ? null : 'grid'};
         gap: 25px;
-        margin: 25px 0;
-        justify-content: center;
+        margin: ${props => props.isBig ? '45px 25px 0' : '25px 0'};
+        justify-content: ${props => props.isBig ? null : 'center'};
 
         svg {
             block-size: auto;

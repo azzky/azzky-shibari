@@ -19,6 +19,7 @@ import {
 
 const Shibari = () => {
   const data = PageData.ru.shibari
+  const lang = 'ru'
 
   const { pageNsfw, toggleNsfw } = useCenzorship()
 
@@ -61,8 +62,7 @@ const Shibari = () => {
               hero={true}
               dark={true}
               heroType="video"
-              classes="shibari"
-              lang="ru"
+              lang={lang}
               url="/ru"
               pageNsfw={pageNsfw}
               toggleNsfw={toggleNsfw}>
@@ -71,7 +71,7 @@ const Shibari = () => {
           <HeroContent>
             <HeroTitle>{data.h1}</HeroTitle>
             <HeroDescription>
-              <p>{data.text} <Link to="/contact">свяжись со мной!</Link></p>
+              <p>{data.text} <Link to="/contact">{config.contactMebuttonText[lang]}</Link>!</p>
             </HeroDescription>
           </HeroContent>
           <HeroVideoWrapper>

@@ -19,6 +19,7 @@ import {
 
 const Shibari = () => {
   const data = PageData.en.shibari
+  const lang = 'en-US'
 
   const { pageNsfw, toggleNsfw } = useCenzorship()
 
@@ -62,8 +63,7 @@ const Shibari = () => {
               hero={true}
               dark={true}
               heroType="video"
-              classes="shibari"
-              lang="en"
+              lang={lang}
               url="/"
               pageNsfw={pageNsfw}
               toggleNsfw={toggleNsfw}>
@@ -72,7 +72,7 @@ const Shibari = () => {
           <HeroContent>
             <HeroTitle>{data.h1}</HeroTitle>
             <HeroDescription>
-              <p>{data.text} <Link to="/contact">contact me</Link>!</p>
+              <p>{data.text} <Link to="/contact">{config.contactMebuttonText[lang]}</Link>!</p>
             </HeroDescription>
           </HeroContent>
           <HeroVideoWrapper>
@@ -82,7 +82,9 @@ const Shibari = () => {
                          id="background-video"
                          poster={config.videoThumb}>
                 {config.videoFormats.map(format => {
-                  return <source src={`/${config.videoFileName}.${format}`} type={`video/${format}`} />
+                  return <source src={`/${config.videoFileName}.${format}`}
+                                type={`video/${format}`}
+                                key={format} />
                 })}
                 </HeroVideo>
             </HeroVideoWrapper>

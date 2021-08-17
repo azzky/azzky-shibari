@@ -27,8 +27,6 @@ const Header = (props) => {
   if(lang === 'ru') {
     langStr = '/ru'
   }
-  console.log(lang);
-  console.log(langStr);
 
   return(
     <HeaderRoot active={showMenu || showSettings}>
@@ -48,7 +46,7 @@ const Header = (props) => {
         <NsfwSwitcher state={pageNsfw}
                         changeState={toggleNsfw} />
         <hr />
-        <Push />
+        <Push lang={lang} />
       </Settings>
     </HeaderRoot>
 )}

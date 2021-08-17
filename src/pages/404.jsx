@@ -1,19 +1,44 @@
 import React from "react"
 import Layout from "../components/layout/layout"
 import { StaticImage } from "gatsby-plugin-image"
-import {Link} from "gatsby"
+import config404 from '../constants'
 
-import './404.scss'
+import {
+    HeroWrapper,
+    HeroContent,
+    HeroTitle,
+    HeroDescription,
+} from '../components/layout/styled'
+import LinkButton from '../styles/404.styled'
+
+const is404 = true
+const lang = 'en-US'
 
 const page404 = () => (
-  <Layout hero={true} classes="page-404" lang="en" url="/404" nsfw={false}>
-    <div className="hero__content">
-      <h1 className="hero__title">404</h1>
-      <p className="hero__description">Oops! Page not found.</p>
-      <Link to="/" className="hero__button">Home page</Link>
-    </div>
-    <StaticImage src="../images/404.jpg" alt="404 image" placeholder="blurred"
-    layout="fullWidth" quality={100} breakpoints={[400, 800, 1080, 1366, 1440, 1920]} />
+    <Layout hero={true}
+            lang={lang}
+            url="/404"
+            nsfw={false}
+            is404={is404}>
+        <HeroWrapper>
+            <HeroContent is404={is404}>
+                <HeroTitle is404={is404}>
+                    {config404.title}
+                </HeroTitle>
+                <HeroDescription is404={is404}>
+                    {config404.description[lang]}
+                </HeroDescription>
+                <LinkButton to="/">
+                    {config404.buttonText[lang]}
+                </LinkButton>
+            </HeroContent>
+            <StaticImage src="../images/404.jpg"
+                        alt="404 image"
+                        placeholder="blurred"
+                        layout="fullWidth"
+                        quality={100}
+                        breakpoints={[400, 800, 1080, 1366, 1440, 1920]}/>
+        </HeroWrapper>
   </Layout>
 )
 

@@ -107,3 +107,61 @@ export const menuItems = [
         link: '/contact'
     }
 ]
+
+export const config404 = {
+    title: '404',
+    description: {
+        'en-US': 'Oops! Page not found.',
+        'ru': 'Ой! Здесь ничего нет.'
+    },
+    buttonText: {
+        'en-US': 'Home page',
+        'ru': 'На главную'
+    }
+}
+
+export const configContact = {
+    regionText: {
+        'en-US': ' Minsk, Belarus',
+        'ru': ' Минск, Беларусь'
+    },
+    promoText: {
+        'en-US': 'If you need me as a shibari master for photo/video shooting or looking for shibari classes just contact me via form',
+        'ru': 'Если вам нужен шибари мастер для съемок или обучения, свяжитесь со мной через форму'
+    },
+    followMeText: {
+        'en-US': 'Follow me on:',
+        'ru': 'Подпишись на меня в:'
+    },
+    nameLabel: {
+        'en-US': 'Name',
+        'ru': 'Имя'
+    },
+    emailLabel: {
+        'en-US': 'Email',
+        'ru': 'Email'
+    },
+    messageLabel: {
+        'en-US': 'Message',
+        'ru': 'Сообщение'
+    },
+    sendbutton: {
+        'en-US': 'Send',
+        'ru': 'Отправить'
+    }
+}
+
+export const configSuccess = {
+    title: {
+        'en-US': 'Form submitted - thank you!',
+        'ru': 'Форма отправлена - спасибо!'
+    },
+    description: {
+        'en-US': 'You will be contacted shortly',
+        'ru': 'Я скоро с вами свяжусь'
+    },
+    buttonText: {
+        'en-US': 'Home page',
+        'ru': 'Назад домой'
+    }
+}

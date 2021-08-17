@@ -10,7 +10,11 @@ const config = {
     videoUrl: Maindata.url + '/background.mp4',
     videoThumb: Maindata.url + '/shibari-background.webp',
     videoFileName: 'background',
-    videoFormats: ['webm', 'mp4']
+    videoFormats: ['webm', 'mp4'],
+    contactMebuttonText: {
+        'en-US': 'contact me',
+        'ru': 'свяжись со мной'
+    }
 }
 
 export default config
