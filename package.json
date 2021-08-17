@@ -14,8 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "@contentful/gatsby-transformer-contentful-richtext": "^13.1.0",
-    "@contentful/rich-text-react-renderer": "^15.1.0",
-    "@fontsource/montserrat": "^4.5.0",
+    "@contentful/rich-text-react-renderer": "^15.2.0",
+    "@fontsource/montserrat": "^4.5.1",
     "babel-plugin-styled-components": "^1.13.2",
     "dotenv": "^10.0.0",
     "firebase": "^8.9.1",

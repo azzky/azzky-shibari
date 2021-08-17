@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "../components/layout/layout"
 import { StaticImage } from "gatsby-plugin-image"
-import config404 from '../constants'
+import { config404 } from '../constants'
 
 import {
     HeroWrapper,

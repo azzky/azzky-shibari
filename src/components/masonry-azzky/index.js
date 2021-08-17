@@ -37,7 +37,7 @@ const GalleryItem = ({
         </Item>
         :
         <Item itemScope
-                itemType="http://schema.org/ImageObject">
+              itemType="http://schema.org/ImageObject">
             <figcaption itemProp="name"
                         className="visually-hidden">
                 {`${img.title} ${config.galleryImageMiddleText} ${img.number}`}
@@ -48,13 +48,13 @@ const GalleryItem = ({
             <button className="opener"
                     title={!img.nsfw || pageNsfw ? null : config.nsfwText}
                     onClick={() =>
-                    settings.useLightBox &&
-                    settings.lightBoxDispatch({
-                        type: "photoIndex_Open",
-                        photoIndex:
-                            imgIndex === 0
-                                ? index
-                                : index + imgIndex * settings.columnNumber,
+                        settings.useLightBox &&
+                        settings.lightBoxDispatch({
+                            type: "photoIndex_Open",
+                            photoIndex:
+                                imgIndex === 0
+                                    ? index
+                                    : index + imgIndex * settings.columnNumber,
                     })}>
                 <span className="visually-hidden">
                     {config.imageOpenText}

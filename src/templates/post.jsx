@@ -68,7 +68,7 @@ const Post = ({
                     nsfwarr,
                     preview,
                     wallpaper,
-                    node_locale,
+                    node_locale: lang,
                     isWallNsfw,
                     popup,
                     popupRatio
@@ -107,7 +107,7 @@ const Post = ({
     const wallpaperImg = wallpaper ? wallpaper.gatsbyImageData : preview.gatsbyImageData
     
     return (
-        <Layout lang={node_locale}
+        <Layout lang={lang}
                 hero={true}
                 dark={true}
                 url={link}
@@ -121,7 +121,7 @@ const Post = ({
                     {!content ? null : <HeroDescription>
                     <p>
                         <span dangerouslySetInnerHTML={{ __html: textData }}/>
-                        {!popup ? null : <ModalButton showModal={showModal} node_locale={node_locale} />}
+                        {!popup ? null : <ModalButton showModal={showModal} node_locale={lang} />}
                     </p>
                     </HeroDescription> }
                     {type.type === 'shibari' ? 
@@ -129,11 +129,12 @@ const Post = ({
                         nawashi={nawashi}
                         photographer={photographer}
                         muah={muah}
-                        lang={node_locale} />
+                        lang={lang} />
                     : ''}
                     <Share preview={preview.file.url}
-                        title={type.type === 'shibari' ? title + ' shibari by Azzky' : title + ' by Azzky'}
-                        type={type.type}/>
+                           title={type.type === 'shibari' ? title + ' shibari by Azzky' : title + ' by Azzky'}
+                           lang={lang}
+                           type={type.type}/>
                 </HeroContent>
                 <GatsbyImage image={!isWallNsfw ? wallpaperImg : pageNsfw ? wallpaperImg : HolderBig}
                             className={isWallNsfw ? 'nsfw' : ''}

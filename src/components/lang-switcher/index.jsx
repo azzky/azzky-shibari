@@ -42,15 +42,15 @@ const Switcher = (props) => {
     </Helmet>
     <Wrapper>
         {props.lang === 'ru' ? (
-        <>
-            <ActiveLink to={origin + postPrefix + url.replace('/ru', '')}>en</ActiveLink>
-            <InactiveLink>ru</InactiveLink>
-        </>
+            <>
+                <ActiveLink to={origin + postPrefix + url.replace('/ru', '')}>en</ActiveLink>
+                <InactiveLink>ru</InactiveLink>
+            </>
         ) : (
-        <>
-            <InactiveLink>en</InactiveLink>
-            <ActiveLink to={origin + '/ru' + postPrefix + url}>ru</ActiveLink>
-        </>
+            <>
+                <InactiveLink>en</InactiveLink>
+                <ActiveLink to={origin + '/ru' + postPrefix + url}>ru</ActiveLink>
+            </>
         )}
         
     </Wrapper>

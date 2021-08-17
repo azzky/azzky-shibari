@@ -9,85 +9,86 @@ import useCenzorship from '../hooks/useCenzorship'
 import config from '../components/meta/config'
 
 import {
-  HeroWrapper,
-  HeroContent,
-  HeroTitle,
-  HeroDescription,
-  HeroVideoWrapper,
-  HeroVideo
+    HeroWrapper,
+    HeroContent,
+    HeroTitle,
+    HeroDescription,
+    HeroVideoWrapper,
+    HeroVideo
 } from '../components/layout/styled'
 
 const Shibari = () => {
-  const data = PageData.ru.shibari
-  const lang = 'ru'
+    const data = PageData.ru.shibari
+    const lang = 'ru'
 
-  const { pageNsfw, toggleNsfw } = useCenzorship()
+    const { pageNsfw, toggleNsfw } = useCenzorship()
 
-  return(
-  <StaticQuery
-    query={graphql`
+    return(
+    <StaticQuery query={graphql`
     {
-      allContentfulPost(sort: {order: DESC, fields: date}, filter: {node_locale: {eq: "ru"}, type: {type: {eq: "shibari"}}}) {
-        edges {
-          node {
-            id
-            title
-            link
-            nsfw
-            isPrevNsfw
-            content {
-              childMarkdownRemark {
-                html
-              }
+        allContentfulPost(sort: {order: DESC, fields: date}, filter: {node_locale: {eq: "ru"}, type: {type: {eq: "shibari"}}}) {
+            edges {
+                node {
+                    id
+                    title
+                    link
+                    nsfw
+                    isPrevNsfw
+                    content {
+                        childMarkdownRemark {
+                            html
+                        }
+                    }
+                    preview {
+                        gatsbyImageData(
+                        width: 400
+                        quality: 100
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP]
+                        )
+                    }
+                    tags
+                    type {
+                        type
+                    }
+                }
             }
-            preview {
-              gatsbyImageData(
-                width: 400
-                quality: 100
-                placeholder: BLURRED
-                formats: [AUTO, WEBP]
-              )
-            }
-            tags
-            type {
-              type
-            }
-          }
         }
-      }
     }
     `}
     render={({ allContentfulPost: { edges } }) => (
     <Layout toggler={true}
-              hero={true}
-              dark={true}
-              heroType="video"
-              lang={lang}
-              url="/ru"
-              pageNsfw={pageNsfw}
-              toggleNsfw={toggleNsfw}>
+            hero={true}
+            dark={true}
+            heroType="video"
+            lang={lang}
+            url="/ru"
+            pageNsfw={pageNsfw}
+            toggleNsfw={toggleNsfw}>
         <MetaHome data={data} />
         <HeroWrapper>
-          <HeroContent>
+            <HeroContent>
             <HeroTitle>{data.h1}</HeroTitle>
             <HeroDescription>
-              <p>{data.text} <Link to="/contact">{config.contactMebuttonText[lang]}</Link>!</p>
+                <p>{data.text} <Link to="/contact">{config.contactMebuttonText[lang]}</Link>!</p>
             </HeroDescription>
-          </HeroContent>
-          <HeroVideoWrapper>
-          <HeroVideo autoPlay loop={true}
-                         muted={true}
-                         playsInline
-                         id="background-video"
-                         poster={config.videoThumb}>
+            </HeroContent>
+            <HeroVideoWrapper>
+            <HeroVideo autoPlay loop={true}
+                       muted={true}
+                       playsInline
+                       id="background-video"
+                       poster={config.videoThumb}>
                 {config.videoFormats.map(format => {
-                  return <source src={`/${config.videoFileName}.${format}`} type={`video/${format}`} />
+                    return <source src={`/${config.videoFileName}.${format}`} type={`video/${format}`} />
                 })}
                 </HeroVideo>
-          </HeroVideoWrapper>
+            </HeroVideoWrapper>
         </HeroWrapper>
-        <PostsGallery pageNsfw={pageNsfw} edges={edges} lang="ru" />
-      </Layout>
+        <PostsGallery pageNsfw={pageNsfw} 
+                      edges={edges}
+                      lang="ru" />
+        </Layout>
     )}/>
 )}
 

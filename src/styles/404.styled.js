@@ -13,6 +13,8 @@ const LinkButton = styled(Link)`
 
     @media (min-width: ${MobileWidth}px) {
         inline-size: 350px;
+        // success page
+        margin-block-start: ${props => props.isSuccess ? '0' : null};
     }
 `;
 

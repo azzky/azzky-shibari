@@ -38,18 +38,18 @@ export const HeroContent = styled.div`
     padding: 70px 15px 15px;
     max-block-size: 100vh;
     overflow-x: auto;
-    display: ${props => props.is404 ? 'flex' : 'grid'};
+    display: ${props => props.is404 || props.isSuccess ? 'flex' : 'grid'};
     row-gap: 20px;
     block-size: 100%;
     grid-template-areas: 'h1' 'text' 'team' 'share';
     grid-template-rows: auto 1fr auto auto;
     // 404 specific
-    flex-direction: ${props => props.is404 ? 'column' : null};
-    align-items: ${props => props.is404 ? 'center' : null};
-    inline-size: ${props => props.is404 ? '100%' : null};
+    flex-direction: ${props => props.is404 || props.isSuccess ? 'column' : null};
+    align-items: ${props => props.is404 || props.isSuccess ? 'center' : null};
+    inline-size: ${props => props.is404 || props.isSuccess ? '100%' : null};
 
     @media (min-width: ${MobileWidth}px) {
-        position: ${props => props.is404 ? 'absolute' : 'initial'};
+        position: ${props => props.is404 || props.isSuccess ? 'absolute' : 'initial'};
         // 404 specific
         right: ${props => props.is404 ? '204px' : null};
         left: ${props => props.is404 ? 'auto' : null};
@@ -57,6 +57,11 @@ export const HeroContent = styled.div`
         top: ${props => props.is404 ? '80px' : null};
         text-align: ${props => props.is404 ? 'center' : null};
         block-size: ${props => props.is404 ? 'auto' : null};
+        // success page
+        left: ${props => props.isSuccess ? 'auto' : null};
+        inline-size: ${props => props.isSuccess ? '100%' : null};
+        top: ${props => props.isSuccess ? '0' : null};
+        text-align: ${props => props.isSuccess ? 'center' : null};
     }
 `;
 export const HeroTitle = styled.h1`
@@ -73,7 +78,7 @@ export const HeroTitle = styled.h1`
         font-size: ${props => props.is404 ? '12.5rem' : '2.125rem'};
         ${HeroElement}
         // 404 specific
-        position: ${props => props.is404 ? 'static' : null};
+        position: ${props => props.is404 || props.isSuccess ? 'static' : null};
         margin-block-end: ${props => props.is404 ? '6px' : null};
         // success page
         font-size: ${props => props.isSuccess ? '4.375rem' : null};
@@ -92,7 +97,10 @@ export const HeroDescription = styled.div`
         top: 280px;
         ${HeroElement}
         max-inline-size: 810px;
-        block-size: ${props => props.is404 ? null : '100%'};
+        block-size: ${props => props.is404 || props.isSuccess ? null : '100%'};
+
+        // success page
+        position: ${props => props.isSuccess ? 'static' : null};
     }
 `;
 export const HeroVideoWrapper = styled.div`

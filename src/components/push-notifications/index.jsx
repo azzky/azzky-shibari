@@ -5,7 +5,7 @@ import config from "./config"
 import { SubscriptionButton, Subscription } from './styled'
 
 const Push = (props) => {
-  const { isVisible, lang } = props
+    const { isVisible, lang } = props
     let savedSubsciption = false
     if(typeof window !== 'undefined' && localStorage !== 'undefined' && localStorage.getItem('subscribed')) {
         savedSubsciption = true
@@ -19,19 +19,19 @@ const Push = (props) => {
     return (
         <Subscription isVisible={isVisible}>
             {isTokenFound &&
-              <p>
+                <p>
                 {config.successMessage[lang]}
-              </p>
+                </p>
             }
             {!isTokenFound &&
-              <p>
+                <p>
                 {config.defaultMessage[lang]}
-              </p>
+                </p>
             }
             {!isTokenFound &&
-              <SubscriptionButton onClick={() => allowNotifications()}>
+                <SubscriptionButton onClick={() => allowNotifications()}>
                                     {config.buttonText[lang]}
-              </SubscriptionButton>
+                </SubscriptionButton>
             }
         </Subscription>
     )

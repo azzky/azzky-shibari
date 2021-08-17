@@ -11,9 +11,9 @@ const Logo = (props) => {
     return (
         <LogoWrapper to={`${langStr}/`}>
             <LogoImage src="/logo.svg"
-                alt="logo"
-                width="81"
-                height="17" />
+                       alt="logo"
+                       width="81"
+                       height="17" />
         </LogoWrapper>
     )
 }

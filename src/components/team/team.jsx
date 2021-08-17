@@ -8,17 +8,19 @@ const Models = (props) => {
     return(models ?
         <p>
             {models.length > 1 ?
-            config.manyModels[lang] :
-            config.singleModel[lang]}
+                config.manyModels[lang] :
+                config.singleModel[lang]
+            }
             {models.map((model,i) => (
                 <Fragment key={i}>
-                    <Model model={model}  />
+                    <Model model={model} />
                     {models.length > 1 && i !== models.length - 1 ?
-                    <Fragment>{i < models.length - 2 ? ',' : ' and'}</Fragment>
+                        <>{i < models.length - 2 ? ',' : ' and'}</>
                     : ''}
                 </Fragment>
                 ))}
-        </p> : null
+        </p>
+        : null
     )
 }
 
@@ -30,15 +32,20 @@ const Model = (props) => {
         }
     } = props
     return(
-        <a href={url}>{config.space}{name}</a>
+        <a href={url}>
+            {config.space + name}
+        </a>
     )
 }
 
 const AllByMe = (props) => {
     const { lang } = props
     return(
-        <p>{config.allByMeText[lang]}
-            <a href={Maindata.socials.instagram_nsfw}>{config.space}{config.meText[props.lang]}</a>
+        <p>
+            {config.allByMeText[lang]}
+            <a href={Maindata.socials.instagram_nsfw}>
+                {config.space + config.meText[props.lang]}
+            </a>
         </p>
     )
 }
@@ -46,8 +53,11 @@ const AllByMe = (props) => {
 const Nawashi = (props) => {
     const { lang } = props
     return(
-    <p>{config.nawaText[lang]}
-        <a href={Maindata.socials.instagram_nsfw}>{config.space}{config.meText[props.lang]}</a>
+    <p>
+        {config.nawaText[lang]}
+        <a href={Maindata.socials.instagram_nsfw}>
+            {config.space + config.meText[props.lang]}
+        </a>
     </p>
     )
 }
@@ -55,18 +65,26 @@ const Nawashi = (props) => {
 const Photographer = (props) => {
     const { photographer, lang }  = props
     return( photographer ? 
-        <p>{config.photographerText[lang]}
-            <a href={photographer.url}>{config.space}{photographer.name}</a>
-        </p> : null
+        <p>
+            {config.photographerText[lang]}
+            <a href={photographer.url}>
+                {config.space + photographer.name}
+            </a>
+        </p>
+        : null
     )
 }
 
 const Muah = (props) => {
     const { muah, lang } = props
     return(muah ? 
-        <p>{config.muahText[lang]}
-            <a href={muah.url}>{config.space}{muah.name}</a>
-        </p> : null
+        <p>
+            {config.muahText[lang]}
+            <a href={muah.url}>
+                {config.space + muah.name}
+            </a>
+        </p>
+        : null
     )
 }
 
@@ -81,12 +99,17 @@ const Team = (props) => {
         <Wrapper>
             <Models models={models} lang={lang} />
             {photographer && photographer.name === Maindata.author ?
-            <AllByMe lang={lang} />
-            : <>
-            {photographer && <Photographer photographer={photographer} lang={lang} />}
-            <Muah muah={muah} lang={lang} />
-            <Nawashi lang={lang} />
-            </>}
+                <AllByMe lang={lang} />
+            :
+                <>
+                    {photographer && 
+                    <Photographer photographer={photographer}
+                                  lang={lang} />}
+                    <Muah muah={muah} 
+                          lang={lang} />
+                    <Nawashi lang={lang} />
+                </>
+            }
         </Wrapper>
     )
 }

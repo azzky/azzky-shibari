@@ -15,10 +15,10 @@ const Settings = (props) => {
     return (
         <Wrapper>
             <Trigger type="button"
-            aria-label="setings button"
-            onClick={() => toggleSettings((prev) => !prev)}>
+                     aria-label="setings button"
+                     onClick={() => toggleSettings((prev) => !prev)}>
                 <svg width="24" height="24">
-                    <use href="#settings"></use>
+                    <use href="#settings"/>
                 </svg>
             </Trigger>
             <SettingsBlock active={showSettings}>

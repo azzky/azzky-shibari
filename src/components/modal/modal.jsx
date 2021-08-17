@@ -15,9 +15,12 @@ const Modal = (props) => {
     } = props
 
     return (
-        <ModalWrapper role="dialog" isShowModal={isShowModal} onClick={() => showModal(false)}>
-            <ModalContentStyled modalHeight={paddingTopValue} modalWidth={size}>
-            {props.children}
+        <ModalWrapper role="dialog"
+                      isShowModal={isShowModal}
+                      onClick={() => showModal(false)}>
+            <ModalContentStyled modalHeight={paddingTopValue}
+                                modalWidth={size}>
+                {props.children}
             </ModalContentStyled>
         </ModalWrapper>
     )
