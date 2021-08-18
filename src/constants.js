@@ -165,3 +165,8 @@ export const configSuccess = {
         'ru': 'Назад домой'
     }
 }
+
+export const switchLabels = {
+    on: 'nsfw',
+    off: 'sfw'
+}
