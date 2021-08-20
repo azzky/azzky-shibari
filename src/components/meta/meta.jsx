@@ -2,19 +2,19 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import { useLocation } from "@reach/router"
 import Maindata from "../../constants"
+import config from './config'
 
 const MetaHome = (props) => {
     const href = Maindata.url
-    const image = `${Maindata.url}/shibari-background.webp`
     const schemaVideo = {
         "@context": "https://schema.org",
         "@type": "VideoObject",
-        "name": "Shibari by Azzky video for Lovalce lingerie brand ad",
-        "description": "Girl tied up in rope bondage by Azzky for Lovalce lingerie brand ad",
-        "thumbnailUrl": [image],
-        "uploadDate": "2020-05-15T11:47:00-05:00",
-        "duration": "PT0M44S",
-        "contentUrl": "https://www.example.com/video/123/file.mp4"
+        "name": config.videoName,
+        "description": config.videoDescription,
+        "thumbnailUrl": config.videoThumb,
+        "uploadDate": config.videoDate,
+        "duration": config.videoDuration,
+        "contentUrl": config.videoUrl
     }
     const schemaBreadcrumb = {
         "@context": "https://schema.org",
@@ -22,24 +22,43 @@ const MetaHome = (props) => {
         "itemListElement": [{
         "@type": "ListItem",
         "position": 1,
-        "name": "Azzky's",
+        "name": config.breadcrumbsRoot,
         "item": Maindata.url
         }]
     }
     return(
         <Helmet>
             <title>{props.data.title}</title>
-            <meta property="og:type" content="website"></meta>
-            <meta name="description" property="description" content={props.data.description} />
-            <meta name="og:title" property="og:title" content={props.data.title} />
-            <meta name="og:description" property="og:description" content={props.data.description} />
-            <meta name="og:image" property="og:image" content={image} />
-            <meta name="og:url" property="og:url" content={href} />
-            <meta name="twitter:card" property="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" property="twitter:title" content={props.data.title} />
-            <meta name="twitter:description" property="twitter:description" content={props.data.description} />
-            <meta name="twitter:image" property="twitter:image" content={image} />
-            <meta name="vk:image" property="vk:image" content={image} />
+            <meta property="og:type"
+                  content="website"></meta>
+            <meta name="description"
+                  property="description"
+                  content={props.data.description} />
+            <meta name="og:title"
+                  property="og:title"
+                  content={props.data.title} />
+            <meta name="og:description"
+                  property="og:description"
+                  content={props.data.description} />
+            <meta name="og:image"
+                  property="og:image"
+                  content={config.videoThumb} />
+            <meta name="og:url"
+                  property="og:url"
+                  content={href} />
+            <meta name="twitter:card"
+                  property="twitter:card"
+                  content="summary_large_image" />
+            <meta name="twitter:title"
+                  property="twitter:title"content={props.data.title} />
+            <meta name="twitter:description"
+                  property="twitter:description"
+                  content={props.data.description} />
+            <meta name="twitter:image"
+                  property="twitter:image"content={config.videoThumb} />
+            <meta name="vk:image"
+                  property="vk:image"
+                  content={config.videoThumb} />
             <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
             <script type="application/ld+json">{JSON.stringify(schemaVideo)}</script>
         </Helmet>
@@ -53,7 +72,7 @@ const MetaPage = (props) => {
         "itemListElement": [{
         "@type": "ListItem",
         "position": 1,
-        "name": "Azzky's",
+        "name": config.breadcrumbsRoot,
         "item": Maindata.url
         },{
         "@type": "ListItem",
@@ -81,7 +100,7 @@ const MetaPost = (props) => {
     const schemaImage = {
         "@context": "https://schema.org",
         "@type": "ImageObject",
-        "contentLocation": "Minsk, Belarus",
+        "contentLocation": config.location,
         "contentUrl": image,
         "datePublished": date.split('T')[0],
         "description": !post.metadescription ? post.description : post.metadescription,
@@ -107,7 +126,7 @@ const MetaPost = (props) => {
         "itemListElement": [{
         "@type": "ListItem",
         "position": 1,
-        "name": "Azzky's",
+        "name": config.breadcrumbsRoot,
         "item": Maindata.url
         },{
         "@type": "ListItem",
@@ -124,17 +143,38 @@ const MetaPost = (props) => {
     return(
         <Helmet>
             <title>{!post.metatitle ? post.title : post.metatitle}</title>
-            <meta property="og:type" content="article"></meta>
-            <meta name="description" property="description" content={post.metadescription} />
-            <meta name="og:title" property="og:title" content={!post.metatitle ? post.title : post.metatitle} />
-            <meta name="og:description" property="og:description" content={post.metadescription} />
-            <meta name="og:image" property="og:image" content={image} />
-            <meta name="og:url" property="og:url" content={href} />
-            <meta name="twitter:card" property="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" property="twitter:title" content={!post.metatitle ? post.title : post.metatitle} />
-            <meta name="twitter:description" property="twitter:description" content={post.metadescription} />
-            <meta name="twitter:image" property="twitter:image" content={image} />
-            <meta name="vk:image" property="vk:image" content={image} />
+            <meta property="og:type"
+                  content="article"></meta>
+            <meta name="description"
+                  property="description"
+                  content={post.metadescription} />
+            <meta name="og:title"
+                  property="og:title"
+                  content={!post.metatitle ? post.title : post.metatitle} />
+            <meta name="og:description"
+                  property="og:description"
+                  content={post.metadescription} />
+            <meta name="og:image"
+                  property="og:image"
+                  content={image} />
+            <meta name="og:url"
+                  property="og:url"
+                  content={href} />
+            <meta name="twitter:card"
+                  property="twitter:card"
+                  content="summary_large_image" />
+            <meta name="twitter:title"
+                  property="twitter:title"
+                  content={!post.metatitle ? post.title : post.metatitle} />
+            <meta name="twitter:description"
+                  property="twitter:description"
+                  content={post.metadescription} />
+            <meta name="twitter:image"
+                  property="twitter:image"
+                  content={image} />
+            <meta name="vk:image"
+                  property="vk:image"
+                  content={image} />
             <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>
             <script type="application/ld+json">{JSON.stringify(schemaBreadcrumb)}</script>
             <script type="application/ld+json">{JSON.stringify(schemaImage)}</script>

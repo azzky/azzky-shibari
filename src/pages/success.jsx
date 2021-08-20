@@ -1,20 +1,53 @@
 import React from "react"
 import Layout from "../components/layout/layout"
 import { StaticImage } from "gatsby-plugin-image"
-import { Link } from "gatsby"
+import { configSuccess } from '../constants'
+import useCenzorship from '../hooks/useCenzorship'
 
-import './success.scss'
+import {
+    HeroWrapper,
+    HeroContent,
+    HeroTitle,
+    HeroDescription
+} from '../components/layout/styled'
+import LinkButton from '../styles/404.styled'
 
-const Success = () => (
-  <Layout hero={true} classes="success" lang="en" url="/404" nsfw={false}>
-    <div className="hero__content">
-      <h1 className="">Form submitted - thank you!</h1>
-      <p className="">You will be contacted shortly</p>
-      <Link to="/" className="hero__button">Home page</Link>
-    </div>
-    <StaticImage src="../images/404.jpg" alt="404 image" placeholder="blurred"
-layout="fullWidth" quality={100} breakpoints={[400, 800, 1080, 1366, 1440, 1920]} />
-  </Layout>
-)
+const Success = () => {
+    const lang = 'en-US'
+    const isSuccess = true
+    const is404 = true
+    const { pageNsfw, toggleNsfw } = useCenzorship()
+
+    return(
+        <Layout hero={true} 
+                lang={lang}
+                url="/success"
+                isSuccess={isSuccess}
+                is404={is404}
+                pageNsfw={pageNsfw}
+                toggleNsfw={toggleNsfw}>
+            <HeroWrapper>
+                <HeroContent isSuccess={isSuccess}>
+                    <HeroTitle isSuccess={isSuccess}>
+                        {configSuccess.title[lang]}
+                    </HeroTitle>
+                    <HeroDescription isSuccess={isSuccess}>
+                        {configSuccess.description[lang]}
+                    </HeroDescription>
+                    <LinkButton to="/"
+                                isSuccess={isSuccess}>
+                        {configSuccess.buttonText[lang]}
+                    </LinkButton>
+                </HeroContent>
+                <StaticImage src="../images/404.jpg"
+                             alt="404 image"
+                             placeholder="blurred"
+                             layout="fullWidth"
+                             quality={100}
+                             breakpoints={[400, 800, 1080, 1366, 1440, 1920]} />
+            </HeroWrapper>
+        </Layout>
+    )
+}
 
 export default Success

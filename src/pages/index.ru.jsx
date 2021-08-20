@@ -5,72 +5,91 @@ import Layout from "../components/layout/layout"
 import {MetaHome} from '../components/meta/meta'
 import {PostsGallery} from '../components/gallery/gallery'
 import {PageData} from "../constants"
+import useCenzorship from '../hooks/useCenzorship'
+import config from '../components/meta/config'
 
-import './shibari.scss'
+import {
+    HeroWrapper,
+    HeroContent,
+    HeroTitle,
+    HeroDescription,
+    HeroVideoWrapper,
+    HeroVideo
+} from '../components/layout/styled'
 
 const Shibari = () => {
-  const data = PageData.ru.shibari
+    const data = PageData.ru.shibari
+    const lang = 'ru'
 
-  if(typeof document !== 'undefined') {
-    const bodyClasses = document.body.classList
-    bodyClasses.remove(...bodyClasses)
-    bodyClasses.add('shibari')
-  }
+    const { pageNsfw, toggleNsfw } = useCenzorship()
 
-  return(
-  <StaticQuery
-    query={graphql`
+    return(
+    <StaticQuery query={graphql`
     {
-      allContentfulPost(sort: {order: DESC, fields: date}, filter: {node_locale: {eq: "ru"}, type: {type: {eq: "shibari"}}}) {
-        edges {
-          node {
-            id
-            title
-            link
-            nsfw
-            isPrevNsfw
-            content {
-              childMarkdownRemark {
-                html
-              }
+        allContentfulPost(sort: {order: DESC, fields: date}, filter: {node_locale: {eq: "ru"}, type: {type: {eq: "shibari"}}}) {
+            edges {
+                node {
+                    id
+                    title
+                    link
+                    nsfw
+                    isPrevNsfw
+                    content {
+                        childMarkdownRemark {
+                            html
+                        }
+                    }
+                    preview {
+                        gatsbyImageData(
+                        width: 400
+                        quality: 100
+                        placeholder: BLURRED
+                        formats: [AUTO, WEBP]
+                        )
+                    }
+                    tags
+                    type {
+                        type
+                    }
+                }
             }
-            preview {
-              gatsbyImageData(
-                width: 400
-                quality: 100
-                placeholder: BLURRED
-                formats: [AUTO, WEBP]
-              )
-            }
-            tags
-            type {
-              type
-            }
-          }
         }
-      }
     }
     `}
     render={({ allContentfulPost: { edges } }) => (
-      <Layout toggler={true} hero={true} dark={true} heroType="video" classes="shibari" lang="ru" url="/ru" nsfw={true}>
+    <Layout toggler={true}
+            hero={true}
+            dark={true}
+            heroType="video"
+            lang={lang}
+            url="/ru"
+            pageNsfw={pageNsfw}
+            toggleNsfw={toggleNsfw}>
         <MetaHome data={data} />
-        <section className="hero__wrapper">
-          <div className="hero__content">
-            <h1 className="hero__title">{data.h1}</h1>
-            <div className="hero__description">
-              <p>{data.text} <Link to="/contact">свяжись со мной!</Link></p>
-            </div>
-          </div>
-          <div className="video-wrapper">
-            <video autoPlay loop={true} muted={true} playsInline id="background-video" poster="/shibari-background.webp">
-              <source src="/background.webm" type="video/webm" />
-              <source src="/background.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </section>
-        <PostsGallery classes="shibari" edges={edges} lang="ru" />
-      </Layout>
+        <HeroWrapper>
+            <HeroContent>
+            <HeroTitle>{data.h1}</HeroTitle>
+            <HeroDescription>
+                <p>{data.text} <Link to="/contact">{config.contactMebuttonText[lang]}</Link>!</p>
+            </HeroDescription>
+            </HeroContent>
+            <HeroVideoWrapper>
+            <HeroVideo autoPlay loop={true}
+                       muted={true}
+                       playsInline
+                       id="background-video"
+                       poster={config.videoThumb}>
+                {config.videoFormats.map(format => {
+                    return <source src={`/${config.videoFileName}.${format}`} type={`video/${format}`} />
+                })}
+                </HeroVideo>
+            </HeroVideoWrapper>
+        </HeroWrapper>
+        <PostsGallery pageNsfw={pageNsfw} 
+                      edges={edges}
+                      lang="ru" />
+        </Layout>
     )}/>
 )}
 
-export default Shibari;
+export default Shibari

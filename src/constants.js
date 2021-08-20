@@ -2,8 +2,7 @@ const Maindata = {
     url: 'https://azzky.ru',
     author: 'Azzky',
     socials: {
-        instagram_nsfw: 'https://www.instagram.com/azzky_gallery/',
-        instagram_sfw: 'https://www.instagram.com/azzky_daily/',
+        instagram: 'https://www.instagram.com/azzky_gallery/',
         linkedin: 'https://www.linkedin.com/u/azzky',
         telegram: 'https://t.me/shibaribyazzky',
         twitter: 'https://twitter.com/AzzkyDemiurg'
@@ -51,3 +50,123 @@ export const PageData = {
 }
 
 export default Maindata
+
+export const HolderSmall = {
+    "images": {
+        "sources": [
+            {
+            "srcSet": "/holder-small.png",
+            "sizes": "(min-width: 1920px) 1920px, 100vw",
+            "type": "image/png"
+            }
+        ],
+        "fallback": {
+            "src": "/holder-small.png",
+        }
+    },
+    "layout": "constrained",
+    "width": 400,
+    "height": 600,
+    "placeholder": {
+        "fallback": "/holder-small.png"
+    }
+}
+
+export const HolderBig = {
+    "images": {
+        "sources": [
+            {
+            "srcSet": "/holder-big.png",
+            "sizes": "(min-width: 1920px) 1920px, 100vw",
+            "type": "image/png"
+            }
+        ],
+        "fallback": {
+            "src": "/holder-big.png",
+        }
+    },
+    "layout": "constrained",
+    "width": 1920,
+    "height": 1280,
+    "placeholder": {
+        "fallback": "/holder-big.png"
+    }
+}
+
+export const MobileWidth = 768
+
+export const menuItems = [
+    {
+        name: 'home',
+        runame: 'главная',
+        link: '/'
+    },
+    {
+        name: 'contacts',
+        runame: 'контакты',
+        link: '/contact'
+    }
+]
+
+export const config404 = {
+    title: '404',
+    description: {
+        'en-US': 'Oops! Page not found.',
+        'ru': 'Ой! Здесь ничего нет.'
+    },
+    buttonText: {
+        'en-US': 'Home page',
+        'ru': 'На главную'
+    }
+}
+
+export const configContact = {
+    regionText: {
+        'en-US': ' Minsk, Belarus',
+        'ru': ' Минск, Беларусь'
+    },
+    promoText: {
+        'en-US': 'If you need me as a shibari master for photo/video shooting or looking for shibari classes just contact me via form',
+        'ru': 'Если вам нужен шибари мастер для съемок или обучения, свяжитесь со мной через форму'
+    },
+    followMeText: {
+        'en-US': 'Follow me on:',
+        'ru': 'Подпишись на меня в:'
+    },
+    nameLabel: {
+        'en-US': 'Name',
+        'ru': 'Имя'
+    },
+    emailLabel: {
+        'en-US': 'Email',
+        'ru': 'Email'
+    },
+    messageLabel: {
+        'en-US': 'Message',
+        'ru': 'Сообщение'
+    },
+    sendbutton: {
+        'en-US': 'Send',
+        'ru': 'Отправить'
+    }
+}
+
+export const configSuccess = {
+    title: {
+        'en-US': 'Form submitted - thank you!',
+        'ru': 'Форма отправлена - спасибо!'
+    },
+    description: {
+        'en-US': 'You will be contacted shortly',
+        'ru': 'Я скоро с вами свяжусь'
+    },
+    buttonText: {
+        'en-US': 'Home page',
+        'ru': 'Назад домой'
+    }
+}
+
+export const switchLabels = {
+    on: 'nsfw',
+    off: 'sfw'
+}

@@ -8,35 +8,45 @@ import Maindata from "../../constants"
 import '@fontsource/montserrat/400.css'
 import '@fontsource/montserrat/500.css'
 import '@fontsource/montserrat/900.css'
-import './layout.scss'
+import { Main } from './styled'
 
 const Layout = (props) => {
-  const heroType = props.heroType
-  const isHero = props.hero
-  const classes = props.classes
-  const lang = props.lang
-  const url = props.url
-  const schemaLogo = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "url": Maindata.url,
-    "logo": Maindata.url + "/logo.svg"
-  }
+    const {
+        hero: isHero,
+        lang,
+        url,
+        pageNsfw,
+        toggleNsfw,
+        is404
+    } = props
 
-  return(
-    <>
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(schemaLogo)}</script>
-      </Helmet>
-      <Sprite/>
-      <Header lang={lang} url={url} post={props.post} nsfw={props.nsfw} />
-      <main className={`main ${classes ? '' + classes + ' ' : ''}${!isHero ? '' : 'hero'} ${heroType === 'video' ? ' video': ' image'}`}>
-        <div className="content">
-          {props.children}
-        </div>
-      </main>
-      <Footer lang={lang} />
-    </>
-)}
+    const schemaLogo = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "url": Maindata.url,
+        "logo": Maindata.url + "/logo.svg"
+    }
+
+    return (
+        <>
+            <Helmet>
+                <script type="application/ld+json">{JSON.stringify(schemaLogo)}</script>
+            </Helmet>
+            <Sprite/>
+            <Header lang={lang}
+                    url={url}
+                    post={props.post}
+                    pageNsfw={pageNsfw}
+                    toggleNsfw={toggleNsfw} />
+            <Main isHero={isHero}>
+            <div>
+                {props.children}
+            </div>
+            </Main>
+            <Footer lang={lang}
+                    is404={is404} />
+        </>
+    )
+}
 
 export default Layout

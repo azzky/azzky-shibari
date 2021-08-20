@@ -1,6 +1,5 @@
 import React from "react"
 import { useLocation } from "@reach/router"
-
 import {
     FacebookShareButton,
     PinterestShareButton,
@@ -9,49 +8,66 @@ import {
     TwitterShareButton,
     VKShareButton
 } from "react-share"
+import config from "./config"
 
-import './share.scss'
+import Wrapper from './styled'
 
 const Share = (props) => {
-    const title = props.title
     const { href } = useLocation()
-    const image = props.preview
-
+    const { title, preview: image, lang } = props
+    const size = config.iconSize
 
     return(
-        <div className="react-share__group">
-            <p className="react-share__label">{'Share via: '}</p>
-            <FacebookShareButton quote={title} url={href}>
-                <svg width="24" height="24">
-                <use href="#facebook"></use>
+        <Wrapper>
+            <p>{config.title[lang]}</p>
+            <FacebookShareButton quote={title}
+                                 url={href}>
+                <svg width={size}
+                     height={size}>
+                    <use href="#facebook"/>
                 </svg>
             </FacebookShareButton>
-            <PinterestShareButton description="awesome shibari I found" media={image} url={href}>
-                <svg width="24" height="24">
-                <use href="#pinterest"></use>
+            <PinterestShareButton description={config.pinterestText[lang]}
+                                  media={image}
+                                  url={href}>
+                <svg width={size}
+                     height={size}>
+                    <use href="#pinterest"/>
                 </svg>
             </PinterestShareButton>
-            <RedditShareButton title={title} url={href}>
-            <svg width="24" height="24">
-                <use href="#reddit"></use>
+            <RedditShareButton title={title}
+                                url={href}>
+                <svg width={size}
+                     height={size}>
+                    <use href="#reddit"/>
                 </svg>
             </RedditShareButton>
-            <TelegramShareButton title={title} url={href}>
-                <svg width="24" height="24">
-                <use href="#telegram"></use>
+            <TelegramShareButton title={title}
+                                 url={href}>
+                <svg width={size}
+                     height={size}>
+                    <use href="#telegram"/>
                 </svg>
             </TelegramShareButton>
-            <TwitterShareButton title={title} related={['@AzzkyDemiurg']} hashtags={props.type === 'Shibari' ? ['shibari', 'bondage'] : []} url={href}>
-                <svg width="24" height="24">
-                <use href="#twitter"></use>
+            <TwitterShareButton title={title}
+                                related={config.related}
+                                hashtags={props.type === 'Shibari' ? ['shibari', 'bondage'] : []}
+                                url={href}>
+                <svg width={size}
+                     height={size}>
+                    <use href="#twitter"/>
                 </svg>
             </TwitterShareButton>
-            <VKShareButton title={title} image={image} url={href} noParse={true}>
-            <svg width="24" height="24">
-                <use href="#vk"></use>
+            <VKShareButton title={title}
+                           image={image}
+                           url={href}
+                           noParse={true}>
+                <svg width={size}
+                     height={size}>
+                    <use href="#vk"/>
                 </svg>
             </VKShareButton>
-        </div>
+        </Wrapper>
     )
 }
 

@@ -1,38 +1,40 @@
 import React from 'react'
 import Maindata from '../../constants'
-import './sidebar.scss'
+import config from './config'
+
+import { Wrapper } from './styled'
 
 const Sidebar = (props) => {
+    const { isBig } = props
+
     return (
-        <div className="social__links">
-            <NsfwIcons />
-        </div>
+        <Wrapper isBig={isBig}>
+            <NsfwIcons isBig={isBig} />
+        </Wrapper>
     )
 }
 
-const NsfwIcons = (props) => (
-    <>
-    <a href={Maindata.socials.instagram_nsfw} rel="me noreferrer" target="_blank" aria-label="instagram link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#instagram"></use>
-        </svg>
-    </a>
-    <a href={Maindata.socials.telegram} rel="me noreferrer" target="_blank" aria-label="telegram link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#telegram"></use>
-        </svg>
-    </a>
-    <a href={Maindata.socials.twitter} rel="me noreferrer" target="_blank" aria-label="twitter link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#twitter"></use>
-        </svg>
-    </a>
-    {/* <a rel="me noreferrer" href="https://kinbaku.club/@azzky" target="_blank" aria-label="mastodon link">
-        <svg width="24" height="24" className={props.class}>
-        <use href="#mastodon"></use>
-        </svg>
-    </a> */}
-    </>
-)
+const NsfwIcons = (props) => {
+    const { isBig } = props
+    const iconSize = isBig ? 48 : 24
+    const socialArray = config.socialArray
+
+    return(
+        <>
+        {socialArray.map((item)=>(
+            <a key={item}
+               href={Maindata.socials[item]}
+               rel="me noreferrer"
+               target="_blank"
+               aria-label={`${item} link`}>
+                <svg width={iconSize}
+                     height={iconSize}>
+                    <use href={`#${item}`}/>
+                </svg>
+            </a>
+        ))}
+        </>
+    )
+}
 
 export { Sidebar, NsfwIcons }
