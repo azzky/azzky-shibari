@@ -54,13 +54,13 @@ const Contact = () => {
                 <Form method="post"
                       netlify-honeypot="bot-field"
                       data-netlify="true"
-                      name="contact"
-                      action="/success">
+                      name="contact-ru"
+                      action="/ru/success">
                 <input type="hidden"
                        name="bot-field" />
                 <input type="hidden"
                        name="form-name"
-                       value="contact" />
+                       value="contact-ru" />
                 <label className="visually-hidden"
                        htmlFor="name">
                     {configContact.nameLabel[lang]}
